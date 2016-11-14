@@ -31,7 +31,7 @@ public class TilesGameStart implements Playable {
 			for (int j = 0; j < array2.length; j++){
 				if (array1[i] == array2[j]){
 					i++;
-				}
+				}s
 			}
 		}
 	}
