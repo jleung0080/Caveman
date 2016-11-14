@@ -15,7 +15,6 @@ public class MainEvent {
 	 * puzzle is a list of words
 	 * if the length of the word does not fill the length of columns, fill it with blank spaces
 	 * 
-	 * 
 	 * describe event
 	 * helper method to make grid
 	 * "pieces" are letters and make words
