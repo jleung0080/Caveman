@@ -17,14 +17,24 @@ public class TilesGameStart implements Playable {
 	public void play() {
 		readSequence(SEQUENCE_1);
 		createGrid();
-		while(CaveExplorer.in.nextLine().toLowerCase().indexOf("yes") < 0){
-			CaveExplorer.print("C'mon! You know you like puzzles. Say yes.");
+		boolean inGameLoop = true;
+		while (inGameLoop){
+			
 		}
 		readSequence(SEQUENCE_2);
 		CaveExplorer.inventory.setHasMap(true);
 
 	}
 	
+	public static void isMatch(String[] array1, String[] array2){
+		for (int i = 0; i < array1.length; i++){
+			for (int j = 0; j < array2.length; j++){
+				if (array1[i] == array2[j]){
+					i++;
+				}
+			}
+		}
+	}
 	public static void readSequence(String[] seq){
 		for(String s : seq){
 			CaveExplorer.print(s);
