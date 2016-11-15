@@ -14,7 +14,6 @@ public class MainEvent {
 		makeGrid(grid);
 		randomizeWords(words);
 		
-		
 //		String test = "abc";
 //		char[] array = test.toCharArray();
 //		
