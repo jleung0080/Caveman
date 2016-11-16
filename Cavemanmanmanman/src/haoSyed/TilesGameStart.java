@@ -25,7 +25,11 @@ public class TilesGameStart implements Playable {
 	public TilesGameStart() {
 		
 	}
-
+	
+	public static void main (String[] args){
+		
+	}
+	
 	public void play() {
 		readSequence(SEQUENCE_1);
 		createGrid();
@@ -90,13 +94,23 @@ public class TilesGameStart implements Playable {
 	**/
 
 	private String askForSecondTile() {
-		System.out.println("What is the second tile you want to flip?");
-		return input.nextLine();
+		String in = waitForEntry();
+		System.out.println("What is the first tile you want to flip?");
+		if (!isValid(in)){
+			System.out.println("The letter '" + in + "' is not on the board. Please choose"
+					+ " something that is on the board.");
+		}
+		return in;
 	}
 
 	private String askForTile() {
+		String in = waitForEntry();
 		System.out.println("What is the first tile you want to flip?");
-		return input.nextLine();
+		if (!isValid(in)){
+			System.out.println("The letter '" + in + "' is not on the board. Please choose"
+					+ " something that is on the board.");
+		}
+		return in;
 	}
 
 	private void board2() {
@@ -123,5 +137,15 @@ public class TilesGameStart implements Playable {
 			CaveExplorer.in.nextLine();
 		}
 	}
-
+	
+	public static boolean isValid(String input){
+		String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h",
+				"i", "j", "k", "l", "m", "n", "o", "p"};
+		for (int i = 0; i < letters.length; i++){
+			if (input != letters[i]){
+				return false;
+			}
+		}
+		return true;
+	}
 }
