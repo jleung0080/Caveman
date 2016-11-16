@@ -12,8 +12,11 @@ public class MainEvent {
 	public static void main(String[] args) {
 		grid = new String[16][17];
 		makeGrid(grid);
-		randomizeWords(words);
+		String[][] splitWordsArray = splitWords(words);
 		
+		//put letters in grid
+		
+
 //		String test = "abc";
 //		char[] array = test.toCharArray();
 //		
@@ -23,19 +26,37 @@ public class MainEvent {
 
 	}
 
-	private static void randomizeWords(String[][] words) {
+	private static String[][] splitWords(String[][] words) {
 		int rndIndx = (int)(Math.random()*words.length);
-		System.out.println(rndIndx);
 		String[] selectedArray = words[rndIndx];
 		
-		char[] charArr = new char[selectedArray.length];
+		String[][] splitWords = new String[selectedArray.length][10]; //length of column should be same as column length of grid
+		int cntr = 0;
 		
-		for(int i = 0; i < charArr.length; i++){
-			for(int j = 0; j < selectedArray.length; j++){
-				char[] temp = selectedArray[j].toCharArray();
+		for(int i = 0; i < selectedArray.length; i++){
+			String[] temp = selectedArray[i].split("");
+			
+			for(int j = 0; j < temp.length; j++){
+				splitWords[cntr][j] = temp[j];
+			}
+			cntr++;
+		}
+		
+		for(int i = 0; i < splitWords.length; i++){
+			for(int j = 0; j < splitWords[i].length; j++){
+				if(splitWords[i][j] == null)
+					splitWords[i][j] = " ";
+				System.out.println(splitWords[i][j]);
 			}
 		}
 		
+		return splitWords;
+		
+		//for(int i = 0; i < selectedArray.length; i++){
+			//char[] temp = selectedArray[0].toCharArray();
+			//System.out.println(temp[0]);
+			
+		//}		
 	}
 
 	private static void makeGrid(String[][] array) {
