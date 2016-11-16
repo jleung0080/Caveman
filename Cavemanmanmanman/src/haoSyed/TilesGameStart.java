@@ -85,9 +85,6 @@ public class TilesGameStart implements Playable {
 	}
 	
 	private boolean gameCleared() {
-		if (){
-			return true;
-		}
 		return false;
 	}
 	**/
