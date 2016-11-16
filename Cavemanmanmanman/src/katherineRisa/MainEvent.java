@@ -12,16 +12,33 @@ public class MainEvent {
 	public static void main(String[] args) {
 		grid = new String[16][17];
 		makeGrid(grid);
-		String[][] splitWordsArray = splitWords(words);
-		
-		//put letters in grid
+		String[][] splitWordsArray = splitWords(words, grid[0]);
+		inputLetters(grid, splitWordsArray);
 	}
 
-	private static String[][] splitWords(String[][] words) {
+	private static void inputLetters(String[][] grid, String[][] words) {
+		for(int i = 0; i < words.length; i++){
+			for(int j = 0; j < words[i].length; j++){
+				String letter = words[i][j];
+				
+			//for loop for grid. increase by 2. put letter in grid
+				
+				
+				
+				
+			}
+		}
+		
+		
+		
+		
+	}
+
+	private static String[][] splitWords(String[][] words, String[] gridCol){
 		int rndIndx = (int)(Math.random()*words.length);
 		String[] selectedArray = words[rndIndx];
 		
-		String[][] splitWords = new String[selectedArray.length][10]; //length of column should be same as column length of grid
+		String[][] splitWords = new String[selectedArray.length][gridCol.length]; //length of column should be same as column length of grid
 		int cntr = 0;
 		
 		for(int i = 0; i < selectedArray.length; i++){
