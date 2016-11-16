@@ -1,11 +1,14 @@
 package joeyRichard;
 
+import caveExplorer.CaveRoomPd8;
+
 public class Temp {
-	private static String[][] grid = new String[7][30];
+	private static String[][] grid = new String[7][10];
 	private static String map;
 	public static void main(String[] args){
 		grid = makeGrid(grid);
-		printPic(grid);
+		
+		printMap();
 	}
 	public static String[][] makeGrid(String[][] arr){
 		String[][] pic = new String[arr.length][arr[0].length];
@@ -43,12 +46,27 @@ public class Temp {
 	}
 
 	public static void printMap(){
+		map = " ";
 		for(int i = 0; i < grid[0].length - 1; i++){
-			map += "__";
+			map += "____";
 		}
 		
-		map += "_\n";
+		map += "___\n";
 		
+		for(String[] row : grid){
+			for(int textRow  = 0; textRow < 2; textRow++){
+				for(String block:row){
+					if(textRow == 1){
+						map+="|___";
+					}else{
+						map+="|   ";
+					}
+				}
+				
+				map += "|\n";
+			}
+		}
+		System.out.println(map);;
 	}
 
 
