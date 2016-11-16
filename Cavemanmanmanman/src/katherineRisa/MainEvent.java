@@ -15,15 +15,6 @@ public class MainEvent {
 		String[][] splitWordsArray = splitWords(words);
 		
 		//put letters in grid
-		
-
-//		String test = "abc";
-//		char[] array = test.toCharArray();
-//		
-//		for(int i = 0; i < array.length; i++){
-//			System.out.println(array[i]);	
-//		}
-
 	}
 
 	private static String[][] splitWords(String[][] words) {
@@ -51,12 +42,6 @@ public class MainEvent {
 		}
 		
 		return splitWords;
-		
-		//for(int i = 0; i < selectedArray.length; i++){
-			//char[] temp = selectedArray[0].toCharArray();
-			//System.out.println(temp[0]);
-			
-		//}		
 	}
 
 	private static void makeGrid(String[][] array) {
