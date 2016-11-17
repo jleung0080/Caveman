@@ -36,7 +36,13 @@ public class TilesGameStart implements Playable {
 	public void play() {
 
 	}
-	
+	public void createGrid() {//adjust for haoSyed
+            for (int i = 0; i < 4; i++) {
+            	for (int a = 0; a < 4; a++) {
+                upDown[i][a]=false;
+                }
+            }
+   	}
 	public static void TilesGameStart() {
 		readSequence(SEQUENCE_1);
 		createGrid();
@@ -97,15 +103,41 @@ public class TilesGameStart implements Playable {
 		readSequence(SEQUENCE_2);
 	}
 
-	private void displayBoard2() {
-		// TODO Auto-generated method stub
-		
-	}
+	private void displayBoard2(boolean[][] upDown, int[][] cards) {//adjust boolean and int to haoSyed
 
-	private void displayBoard1() {
-		// TODO Auto-generated method stub
-		
-	}
+        System.out.println("   |     1     |     2     |     3     |     4     ");
+        for (int i = 0; i < 4; i++) {
+            System.out.print(" " + (i + 1) + " ");
+            for (int a = 0; a < 4; a++) {
+                if (upDown[i][a]) {
+                    System.out.print(cards[i][a]);
+                    System.out.print(" ");
+                }
+                else
+                    System.out.print("|     *     ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+	private void displayBoard1(boolean[][] upDown, int[][] cards) {//adjust boolean and int to haoSyed
+
+        System.out.println("   |     1     |     2     |     3     |     4     ");
+        for (int i = 0; i < 4; i++) {
+            System.out.print(" " + (i + 1) + " ");
+            for (int a = 0; a < 4; a++) {
+                if (upDown[i][a]) {
+                    System.out.print(cards[i][a]);
+                    System.out.print(" ");
+                }
+                else
+                    System.out.print("|     ?     ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 	
 	public static void readSequence(String[] seq){
 		for(String s : seq){
