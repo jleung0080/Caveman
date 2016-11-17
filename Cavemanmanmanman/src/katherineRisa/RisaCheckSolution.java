@@ -1,14 +1,11 @@
 package katherineRisa;
 
-public class RisaCheckSolution {
+public class RisaCheckSolution implements caveExplorer.Playable {
 
-	public RisaCheckSolution() {
+	public void play() {
+		// TODO Auto-generated method stub
 		
 	}
 
-	public static void main(String[] args) {
-	
-
-	}
 
 }

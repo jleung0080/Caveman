@@ -2,59 +2,50 @@ package katherineRisa;
 
 public class MainEvent {
 	
+	static caveExplorer.Playable katherinePuzzle;
+	static caveExplorer.Playable risaPuzzle;
+	
 	private static String[][] grid;
 	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
-	
-	public MainEvent() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public static void main(String[] args) {
-		grid = new String[16][17];
+		grid = new String[10][37];
 		makeGrid(grid);
 		String[][] splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
+		
+		katherinePuzzle = new KatherinePlayPuzzle();
+		risaPuzzle = new RisaCheckSolution();
+		
 	}
 
 	private static void inputLetters(String[][] grid, String[][] words) {
+		int row = 2;
 		for(int i = 0; i < words.length; i++){
+			int col = 3;
 			for(int j = 0; j < words[i].length; j++){
 				String letter = words[i][j];
-				
-			//for loop for grid. increase by 2. put letter in grid
-				
-				
-				
+				grid[row][col] = letter;
+				col = col + 6;
 			}
+			row = row + 3;
 		}
 		
-		
-		
-		
+		printPic(grid);
 	}
 
 	private static String[][] splitWords(String[][] words, String[] gridCol){
 		int rndIndx = (int)(Math.random()*words.length);
 		String[] selectedArray = words[rndIndx];
 		
-		String[][] splitWords = new String[selectedArray.length][gridCol.length]; //length of column should be same as column length of grid
+		String[][] splitWords = new String[selectedArray.length][gridCol.length/6]; //length of column should be same as column length of grid
 		int cntr = 0;
 		
 		for(int i = 0; i < selectedArray.length; i++){
 			String[] temp = selectedArray[i].split("");
+			splitWords[cntr] = temp;
 			
-			for(int j = 0; j < temp.length; j++){
-				splitWords[cntr][j] = temp[j];
-			}
 			cntr++;
-		}
-		
-		for(int i = 0; i < splitWords.length; i++){
-			for(int j = 0; j < splitWords[i].length; j++){
-				if(splitWords[i][j] == null)
-					splitWords[i][j] = " ";
-				System.out.println(splitWords[i][j]);
-			}
 		}
 		
 		return splitWords;
@@ -67,13 +58,11 @@ public class MainEvent {
 				if(col!= 0 && col!= array[row].length - 1 && row % 3 == 0){
 					array[row][col] = "_";
 				}
-				if(row!= 0 && col % 4 == 0){
+				if(row!= 0 && col % 6 == 0){
 					array[row][col] = "|";
 				}
 			}
 		}
-		
-		printPic(array);
 	}
 	
 	private static void printPic(String[][] arr) {

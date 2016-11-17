@@ -1,14 +1,12 @@
 package katherineRisa;
 
-public class KatherinePlayPuzzle {
+public class KatherinePlayPuzzle implements caveExplorer.Playable {
 
-	public KatherinePlayPuzzle() {
-	
-	}
-
-	public static void main(String[] args) {
+	public void play() {
+		// TODO Auto-generated method stub
 		
-
 	}
+
+
 
 }
