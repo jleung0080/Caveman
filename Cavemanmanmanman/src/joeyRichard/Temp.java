@@ -1,5 +1,6 @@
 package joeyRichard;
 
+import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoomPd8;
 
 public class Temp {
@@ -56,13 +57,17 @@ public class Temp {
 			for(int textRow  = 0; textRow < 2; textRow++){
 				for(int count = 0; count<grid[row].length; count++){
 					if(row == (int)(grid.length/2) && count == 0 && textRow == 0){
-						map+="    ";
+						map+="EXIT";
 					}else if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
 						map+=" ___";
 					}else if(textRow == 1){
 						map+="|___";
 					}else{
-						map+="|   ";
+						if(row == (int)(grid.length/2-1)&&count==grid[row].length-1){
+							map+= "|EXIT";
+						}else{				
+							map+="|   ";
+						}
 					}
 				}
 				if(row == (int)(grid.length/2-1)){
@@ -73,9 +78,72 @@ public class Temp {
 			}
 		}
 		System.out.println(map);;
+		//function uses string and prints out board. we need to use getcontent to update mapping
 	}
-
-
+	
+	public void interpretAction(String input) {
+		while(!isValid(input)){
+			CaveExplorer.print("Please enter 'w', 'a', 's' or 'd'");
+			input = CaveExplorer.in.nextLine().toLowerCase();
+		}
+		
+		String[] keys = {"w", "d", "s", "a"};//order matters
+		int indexFound = -1;
+		
+		for(int i = 0; i < keys.length; i++){
+			if(keys[i].equals(input)){
+				indexFound = i;
+				break;
+			}
+		}
+		
+		
+		
+	}
+	
+	public static int findKeyword(String searchString, String keyword, int startPsn) {
+        searchString = searchString.trim();
+        searchString = searchString.toLowerCase();
+        keyword = keyword.toLowerCase();
+        int psn = searchString.indexOf(keyword);
+        while(psn>=0){
+            String before = " ";
+            String after = " ";
+            if(psn>0){
+                before = searchString.substring(psn-1, psn);
+            }
+            if(psn+keyword.length() < searchString.length()){
+                after = searchString.substring((psn + keyword.length()), 
+                        psn + keyword.length()+1);
+            }
+            if(before.compareTo("a") < 0 && after.compareTo("a") < 0 && noNegations(searchString, psn)){
+                return psn;
+            }else{
+                psn = searchString.indexOf(keyword,psn+1);
+            }
+        }
+        return -1;
+    }
+	private static boolean noNegations(String searchString, int psn) {
+        if(psn - 3 >= 0  && searchString.substring(psn-3, psn).equals("no "))
+        {
+            return false;
+        }
+        if(psn - 4 >= 0  && searchString.substring(psn-4, psn).equals("not "))
+        {
+            return false;
+        }
+        if(psn - 6 >= 0  && searchString.substring(psn-6, psn).equals("never "))
+        {
+            return false;
+        }
+        if(psn - 4 >= 0  && searchString.substring(psn-4, psn).equals("n't "))
+        {
+            return false;
+        }
+        return true;
+        
+    }
 
 
 }
