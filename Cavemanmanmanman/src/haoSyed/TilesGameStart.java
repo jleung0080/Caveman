@@ -28,30 +28,16 @@ public class TilesGameStart implements Playable {
 		return input.nextLine();
 	}
 	
-	public static void main (String[] args){
-		TilesGameStart();
-		
-	}
 	
 	public void play() {
-
-	}
-	public void createGrid() {//adjust for haoSyed
-            for (int i = 0; i < 4; i++) {
-            	for (int a = 0; a < 4; a++) {
-                upDown[i][a]=false;
-                }
-            }
-   	}
-	public static void TilesGameStart() {
 		readSequence(SEQUENCE_1);
 		createGrid();
 		int board1FlippedCards = 16;
 		int board2FlippedCards = 16;
 		while (board1FlippedCards > 0 && board2FlippedCards > 0){
 			System.out.println("Which board would you like to play from?");
-			if (waitForEntry() == "1"){
-				displayBoard1();
+			if (waitForEntry().equals(1)){
+				displayBoard1(flippedCardsBoard1, board1);
 				System.out.println("Enter the coordinates for your first card");
 				String x = input.nextLine();
 				int x1 = Integer.valueOf(x.substring(0, 1)) - 1;
@@ -74,8 +60,8 @@ public class TilesGameStart implements Playable {
 					System.out.println("Try again.");
 				}
 			}
-			if (waitForEntry() == "2"){
-				displayBoard2();
+			if (waitForEntry().equals(2)){
+				displayBoard2(flippedCardsBoard2, board2);
 				System.out.println("Enter the coordinates for your first card");
 				String i = input.nextLine();
 				int i1 = Integer.valueOf(i.substring(0, 1)) - 1;
@@ -98,19 +84,35 @@ public class TilesGameStart implements Playable {
 					System.out.println("Try again.");
 				}
 			}
+			else{
+				System.out.println("That is not a valid board");
+			}
 		}
-		displayFinishedBoard();
+		displayBoard1(flippedCardsBoard1, board1);
+		displayBoard2(flippedCardsBoard2, board2);
 		readSequence(SEQUENCE_2);
 	}
+	
+	public static void createGrid() {//adjust for haoSyed
+            for (int i = 0; i < 4; i++) {
+            	for (int a = 0; a < 4; a++) {
+                flippedCardsBoard1[i][a]=false;
+                flippedCardsBoard2[i][a]=false;
+                }
+            }
+   	}
+	public static void TilesGameStart() {
+		
+	}
 
-	private void displayBoard2(boolean[][] upDown, int[][] cards) {//adjust boolean and int to haoSyed
+	private static void displayBoard2(boolean flippedCardsBoard2[][], int[][] board2) {//adjust boolean and int to haoSyed
 
         System.out.println("   |     1     |     2     |     3     |     4     ");
         for (int i = 0; i < 4; i++) {
             System.out.print(" " + (i + 1) + " ");
             for (int a = 0; a < 4; a++) {
-                if (upDown[i][a]) {
-                    System.out.print(cards[i][a]);
+                if (flippedCardsBoard2[i][a]) {
+                    System.out.print(board2[i][a]);
                     System.out.print(" ");
                 }
                 else
@@ -121,22 +123,22 @@ public class TilesGameStart implements Playable {
         System.out.println();
     }
 
-	private void displayBoard1(boolean[][] upDown, int[][] cards) {//adjust boolean and int to haoSyed
+	private static void displayBoard1(boolean flippedCardsBoard1[][], int[][] board1) {//adjust boolean and int to haoSyed
 
         System.out.println("   |     1     |     2     |     3     |     4     ");
         for (int i = 0; i < 4; i++) {
             System.out.print(" " + (i + 1) + " ");
             for (int a = 0; a < 4; a++) {
-                if (upDown[i][a]) {
-                    System.out.print(cards[i][a]);
+                if (flippedCardsBoard1[i][a]) {
+                    System.out.print(board1[i][a]);
                     System.out.print(" ");
                 }
                 else
                     System.out.print("|     ?     ");
             }
-            System.out.println();
+            System.out.println("");
         }
-        System.out.println();
+        System.out.println("");
     }
 	
 	public static void readSequence(String[] seq){
