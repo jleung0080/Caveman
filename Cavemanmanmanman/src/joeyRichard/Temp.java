@@ -1,13 +1,36 @@
 package joeyRichard;
 
 import caveExplorer.CaveExplorer;
+import java.util.Scanner;
 import caveExplorer.CaveRoomPd8;
 
 public class Temp {
-	private static String[][] grid = new String[6][10];
+	private static String[][] grid = new String[8][15];
 	private static String map;
+	public static int[] empty = new int[1];
+	static Cars zero = new Cars("0", 2);
+	static Cars one = new Cars("1", 2);
+	static Cars two = new Cars("2", 2);
+	static Cars three = new Cars("3", 2);
+	static Cars four = new Cars("4", 2);
+	static Cars five = new Cars("5", 2);
+	static Cars six = new Cars("6", 2);
+	static Cars seven = new Cars("7", 2);
+	static Cars eight = new Cars("8", 2);
+	static Cars nine = new Cars("9", 2);
+	static Cars ten = new Cars("10", 2);
+	static Cars eleven = new Cars("11", 2);
+	static Cars twelve = new Cars("12", 2);
+	static Cars thirteen = new Cars("13", 2);
+	
+	
+	
+	
 	public static void main(String[] args){
-		
+	createCars();
+	for(int str:zero.startPos){
+		System.out.println(str);
+	}
 		printMap();
 	}
 //	public static String[][] makeGrid(String[][] arr){
@@ -116,7 +139,7 @@ public class Temp {
                 after = searchString.substring((psn + keyword.length()), 
                         psn + keyword.length()+1);
             }
-            if(before.compareTo("a") < 0 && after.compareTo("a") < 0 && noNegations(searchString, psn)){
+            if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
                 return psn;
             }else{
                 psn = searchString.indexOf(keyword,psn+1);
@@ -124,26 +147,56 @@ public class Temp {
         }
         return -1;
     }
-	private static boolean noNegations(String searchString, int psn) {
-        if(psn - 3 >= 0  && searchString.substring(psn-3, psn).equals("no "))
-        {
-            return false;
-        }
-        if(psn - 4 >= 0  && searchString.substring(psn-4, psn).equals("not "))
-        {
-            return false;
-        }
-        if(psn - 6 >= 0  && searchString.substring(psn-6, psn).equals("never "))
-        {
-            return false;
-        }
-        if(psn - 4 >= 0  && searchString.substring(psn-4, psn).equals("n't "))
-        {
-            return false;
-        }
-        return true;
-        
-    }
+	
+	private static int[] createPos(int start, int end){
+		int[] position = new int[2];
+		position[0] = start;
+		position[1] = end;
+		return position;
+	}
+	public static void createCars(){
+		zero.startPos = createPos(5,1);
+		zero.endPos = createPos(6,1);
+		
+		one.startPos = createPos(0,2);
+		one.endPos = createPos(2,2);
+		
+		two.startPos = createPos(5,2);
+		two.endPos = createPos(5,6);
+		
+		three.startPos = createPos(3,4);
+		three.endPos = createPos(4,4);
+		
+		four.startPos = createPos(1,4);
+		four.endPos = createPos(1,6);
+		
+		five.startPos = createPos(2,6);
+		five.endPos = createPos(4,6);
+		
+		six.startPos = createPos(0,7);
+		six.endPos = createPos(3,7);
+		
+		seven.startPos = createPos(2,8);
+		seven.endPos = createPos(2,11);
+		
+		eight.startPos = createPos(4,8);
+		eight.endPos = createPos(6,8);
+		
+		nine.startPos = createPos(3,9);
+		nine.endPos = createPos(5,9);
+		
+		ten.startPos = createPos(0,10);
+		ten.endPos = createPos(1,10);
+		
+		eleven.startPos = createPos(5,10);
+		eleven.endPos = createPos(7,10);
+		
+		twelve.startPos = createPos(0,12);
+		twelve.endPos = createPos(3,12);
+		
+		thirteen.startPos = createPos(7,11);
+		thirteen.endPos = createPos(7,14);
+	}
 
 
 }
