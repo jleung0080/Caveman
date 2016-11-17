@@ -10,10 +10,16 @@ public class TilesGameStart implements Playable {
 	
 	private static final String[] SEQUENCE_2 = {"something soemthing solved puzzle", "something something door opens"};
 	
-	private static String[] board1 = {"present", "tree", "reindeer", "present", "santa", "elf", "jingle bells", 
+	private static String[] board1Cards = {"present", "tree", "reindeer", "present", "santa", "elf", "jingle bells", 
 			"star", "reindeer", "cookies", "cookies", "tree", "santa", "star", "jingle bells", "elf"};
-	private static String[] board2 = {"santa", "elf", "santa", "reindeer", "present", "jingle bells", "star", 
+	private static String[] board2Cards = {"santa", "elf", "santa", "reindeer", "present", "jingle bells", "star", 
 			"tree", "star", "reindeer", "cookies", "tree", "jingle bells", "cookies", "jingle bells", "elf"};
+	
+	
+	static int board1[][] = new int[4][4];
+	static int board2[][] = new int[4][4];
+	static boolean flippedCardsBoard1[][] = new boolean[4][4];
+	static boolean flippedCardsBoard2[][] = new boolean[4][4];
 	
 	static Scanner input = new Scanner(System.in);
 	
@@ -22,112 +28,83 @@ public class TilesGameStart implements Playable {
 		return input.nextLine();
 	}
 	
-	public TilesGameStart() {
-		
-	}
-	
 	public static void main (String[] args){
+		TilesGameStart();
 		
 	}
 	
 	public void play() {
+
+	}
+	
+	public static void TilesGameStart() {
 		readSequence(SEQUENCE_1);
 		createGrid();
-		boolean inGameLoop = true;
-		while (inGameLoop){
+		int board1FlippedCards = 16;
+		int board2FlippedCards = 16;
+		while (board1FlippedCards > 0 && board2FlippedCards > 0){
 			System.out.println("Which board would you like to play from?");
-			if (input.nextLine() == "1"){
-				board1();
-				if (!isMatch(askForTile(), askForSecondTile())){
-					flipCards();
-					System.out.println("Try again.");
-					unflipCards();
+			if (waitForEntry() == "1"){
+				displayBoard1();
+				System.out.println("Enter the coordinates for your first card");
+				String x = input.nextLine();
+				int x1 = Integer.valueOf(x.substring(0, 1)) - 1;
+				int x2 = Integer.valueOf(x.substring(0, 2)) - 1;
+				System.out.print(board1[x1][x2]);
+				
+				System.out.println("Enter the coordinates for your second card");
+				String y = input.nextLine();
+				int y1 = Integer.valueOf(y.substring(0, 1)) - 1;
+				int y2 = Integer.valueOf(y.substring(0, 2)) - 1;
+				System.out.print(board1[y1][y2]);
+				
+				if (board1[x1][x2] == board1[y1][y2]){
+					System.out.println("Nice!");
+					flippedCardsBoard1[x1][x2] = true;
+					flippedCardsBoard1[y1][y2] = true;
+					board1FlippedCards -= 2;
 				}
 				else{
-					flipCards();
-					System.out.println("Nice!");
+					System.out.println("Try again.");
 				}
 			}
-			else if (input.nextLine() == "2"){
-				board2();
-				if (!isMatch(askForTile(), askForSecondTile())){
-					flipCards();
-					System.out.println("Try again.");
-					unflipCards();
+			if (waitForEntry() == "2"){
+				displayBoard2();
+				System.out.println("Enter the coordinates for your first card");
+				String i = input.nextLine();
+				int i1 = Integer.valueOf(i.substring(0, 1)) - 1;
+				int i2 = Integer.valueOf(i.substring(0, 2)) - 1;
+				System.out.print(board2[i1][i2]);
+				
+				System.out.println("Enter the coordinates for your second card");
+				String j = input.nextLine();
+				int j1 = Integer.valueOf(j.substring(0, 1)) - 1;
+				int j2 = Integer.valueOf(j.substring(0, 2)) - 1;
+				System.out.print(board2[j1][j2]);
+				
+				if (board2[i1][i2] == board2[j1][j2]){
+					System.out.println("Nice!");
+					flippedCardsBoard2[i1][i2] = true;
+					flippedCardsBoard2[j1][j2] = true;
+					board2FlippedCards -= 2;
 				}
 				else{
-					flipCards();
-					System.out.println("Nice!");
+					System.out.println("Try again.");
 				}
 			}
-			else{
-				System.out.println("Please type either '1' or '2'.");
-			}
-			if (gameCleared()){
-				inGameLoop = false;
-				readSequence(SEQUENCE_2);
-			}
 		}
-		CaveExplorer.inventory.setHasMap(true);
-
-	}
-	
-	/** These are for you
-	private void unflipCards() {
-		
-		
+		displayFinishedBoard();
+		readSequence(SEQUENCE_2);
 	}
 
-	private void flipCards() {
-		
-		
-	}
-
-	private void createGrid() {
-		
-		
-	}
-	
-	private boolean gameCleared() {
-		return false;
-	}
-	**/
-
-	private String askForSecondTile() {
-		String in = waitForEntry();
-		System.out.println("What is the first tile you want to flip?");
-		if (!isValid(in)){
-			System.out.println("The letter '" + in + "' is not on the board. Please choose"
-					+ " something that is on the board.");
-		}
-		return in;
-	}
-
-	private String askForTile() {
-		String in = waitForEntry();
-		System.out.println("What is the first tile you want to flip?");
-		if (!isValid(in)){
-			System.out.println("The letter '" + in + "' is not on the board. Please choose"
-					+ " something that is on the board.");
-		}
-		return in;
-	}
-
-	private void board2() {
+	private void displayBoard2() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	private void board1() {
+	private void displayBoard1() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public static boolean isMatch(String string, String string2){
-		if (string == string2){
-			return true;
-		}
-		return false;
 	}
 	
 	public static void readSequence(String[] seq){
@@ -138,14 +115,4 @@ public class TilesGameStart implements Playable {
 		}
 	}
 	
-	public static boolean isValid(String input){
-		String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h",
-				"i", "j", "k", "l", "m", "n", "o", "p"};
-		for (int i = 0; i < letters.length; i++){
-			if (input != letters[i]){
-				return false;
-			}
-		}
-		return true;
-	}
 }
