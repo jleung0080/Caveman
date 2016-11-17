@@ -9,19 +9,19 @@ public class Temp {
 	private static String map;
 	public static int[] empty = new int[1];
 	static Cars zero = new Cars("0", 2);
-	static Cars one = new Cars("1", 2);
-	static Cars two = new Cars("2", 2);
-	static Cars three = new Cars("3", 2);
+	static Cars one = new Cars("1", 3);
+	static Cars two = new Cars("2", 4);
+	static Cars three = new Cars("3", 3);
 	static Cars four = new Cars("4", 2);
-	static Cars five = new Cars("5", 2);
-	static Cars six = new Cars("6", 2);
-	static Cars seven = new Cars("7", 2);
-	static Cars eight = new Cars("8", 2);
-	static Cars nine = new Cars("9", 2);
+	static Cars five = new Cars("5", 3);
+	static Cars six = new Cars("6", 4);
+	static Cars seven = new Cars("7", 4);
+	static Cars eight = new Cars("8", 3);
+	static Cars nine = new Cars("9", 3);
 	static Cars ten = new Cars("10", 2);
-	static Cars eleven = new Cars("11", 2);
-	static Cars twelve = new Cars("12", 2);
-	static Cars thirteen = new Cars("13", 2);
+	static Cars eleven = new Cars("11", 3);
+	static Cars twelve = new Cars("12", 4);
+	static Cars thirteen = new Cars("13", 4);
 	
 	
 	
