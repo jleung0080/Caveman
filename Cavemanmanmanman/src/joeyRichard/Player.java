@@ -1,5 +1,4 @@
 package joeyRichard;
-import joeyRichard.Temp;
 public class Player {
 	public int[] position;
 	

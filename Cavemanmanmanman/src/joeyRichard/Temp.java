@@ -7,7 +7,7 @@ import caveExplorer.CaveRoomPd8;
 public class Temp {
 	private static String[][] grid = new String[8][15];
 	private static String map;
-	public static int[] empty = new int[1];
+	static Scanner input; 
 	static Cars zero = new Cars("0", 2);
 	static Cars one = new Cars("1", 3);
 	static Cars two = new Cars("2", 4);
@@ -24,13 +24,17 @@ public class Temp {
 	static Cars thirteen = new Cars("13", 4);
 	
 	
-	
-	
 	public static void main(String[] args){
 	createCars();
-	for(int str:zero.startPos){
-		System.out.println(str);
+	thirteen.setPos();
+	for(int[] str:thirteen.location){
+		for(int z:str){
+			System.out.println(z);
+		}
 	}
+	
+	
+	
 		printMap();
 	}
 //	public static String[][] makeGrid(String[][] arr){
@@ -104,6 +108,7 @@ public class Temp {
 		//function uses string and prints out board. we need to use getcontent to update mapping
 	}
 	
+	
 	public void interpretAction(String input) {
 		while(!isValid(input)){
 			CaveExplorer.print("Please enter 'w', 'a', 's' or 'd'");
@@ -148,12 +153,15 @@ public class Temp {
         return -1;
     }
 	
+	//gives cars positions start&beginning
 	private static int[] createPos(int start, int end){
 		int[] position = new int[2];
 		position[0] = start;
 		position[1] = end;
 		return position;
 	}
+	
+	//creates all the obstacle cars
 	public static void createCars(){
 		zero.startPos = createPos(5,1);
 		zero.endPos = createPos(6,1);
@@ -197,6 +205,27 @@ public class Temp {
 		thirteen.startPos = createPos(7,11);
 		thirteen.endPos = createPos(7,14);
 	}
-
+	
+	public static String promptInput() {
+        String userInput = input.nextLine();
+        return userInput;
+    }
+	
+	private int getInt(){
+		String integerString = promptInput();
+		boolean isInteger = false;
+		int value = 0;
+		while(!isInteger){
+			try{
+				value = Integer.parseInt(integerString);
+				//will not continue if an error above is thrown
+				isInteger = true;//exits loop if entry is valid
+			}catch(NumberFormatException e){
+				System.out.println("You must enter an integer.");
+				integerString = promptInput();
+			}
+		}
+		return value;
+	}
 
 }
