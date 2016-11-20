@@ -16,7 +16,6 @@ public class MainEvent{
 	
 	
 	public static void main(String[] args){
-		createFields();
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
@@ -24,13 +23,14 @@ public class MainEvent{
 		makeGrid(grid);
 		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
-		katherinePuzzle.play();
+		createFields();
+		//katherinePuzzle.play();
 		risaPuzzle.play();
 		
 	}
 
 	private static void createFields() {
-		katherinePuzzle = new KatherinePlayPuzzle();
+		//katherinePuzzle = new KatherinePlayPuzzle();
 		risaPuzzle = new RisaCheckSolution();
 		
 	}
