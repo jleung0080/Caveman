@@ -22,7 +22,7 @@ public class MainEvent implements caveExplorer.Playable{
 		String[][] splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
 		
-		katherinePuzzle = new KatherinePlayPuzzle();
+		katherinePuzzle = new KatherinePlayPuzzle(splitWordsArray);
 		risaPuzzle = new RisaCheckSolution();
 	}
 
