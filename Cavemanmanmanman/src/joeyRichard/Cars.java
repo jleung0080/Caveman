@@ -7,8 +7,18 @@ public class Cars {
 		location = new int[length][2];
 	}
 
-	public static void changePos(){
-		
+	public void changePos(String direction, int spaces){
+		if(direction == "left"){
+			for(int i = 0; i< location.length; i++){
+				
+			}
+		}else if(direction == "right"){
+			
+		}else if(direction == "up"){
+			
+		}else if(direction == "down"){
+			
+		}
 	}
 
 	public void setPos(){

@@ -1,11 +1,11 @@
 package joeyRichard;
 
-import caveExplorer.CaveExplorer;
 import java.util.Scanner;
 import caveExplorer.CaveRoomPd8;
 
 public class Temp {
 	private static String[][] grid = new String[8][15];
+	private static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
 	static Scanner input; 
 	static Cars zero = new Cars("0", 2);
@@ -22,64 +22,65 @@ public class Temp {
 	static Cars eleven = new Cars("11", 3);
 	static Cars twelve = new Cars("12", 4);
 	static Cars thirteen = new Cars("13", 4);
-	
-	
+	private static Object[] carList = {zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen};
+	public String direction;
+
 	public static void main(String[] args){
-	createCars();
-	thirteen.setPos();
-	for(int[] str:thirteen.location){
-		for(int z:str){
-			System.out.println(z);
+		createCars();
+		thirteen.setPos();
+		for(int[] str:thirteen.location){
+			for(int z:str){
+				System.out.println(z);
+			}
 		}
-	}
-	
-	
-	
+
+
+
 		printMap();
 	}
-//	public static String[][] makeGrid(String[][] arr){
-//		String[][] pic = new String[arr.length][arr[0].length];
-//		for(int row = 0; row <pic.length; row++){
-//			//put an entire array on each row
-//			for(int col = 0; col<pic[row].length; col++){
-//				//populate with coordinates
-//				pic[row][col] = (" ");
-//			}
-//		}
-//
-//		for(int col = 1; col<pic[0].length-1; col++){
-//			pic[0][col] = "_";
-//			pic[pic.length-1][col] = "_";
-//
-//		}
-//
-//		for(int row = 1; row<pic.length; row++){
-//			pic[row][0] = "|";
-//			pic[row][pic[0].length-1] = "|"; 
-//		}
-//
-//		pic[(int)(pic.length/2)][pic[0].length-1] = " ";
-//		pic[(int)(pic.length/2)+1][0] = " ";
-//
-//		return pic;
-//	}
-//	public static void printPic(String[][] pic){
-//		for(String[] row : pic){
-//			for(String col : row){
-//				System.out.print(col);
-//			}
-//			System.out.println();
-//		}
-//	}
+	//	public static String[][] makeGrid(String[][] arr){
+	//		String[][] pic = new String[arr.length][arr[0].length];
+	//		for(int row = 0; row <pic.length; row++){
+	//			//put an entire array on each row
+	//			for(int col = 0; col<pic[row].length; col++){
+	//				//populate with coordinates
+	//				pic[row][col] = (" ");
+	//			}
+	//		}
+	//
+	//		for(int col = 1; col<pic[0].length-1; col++){
+	//			pic[0][col] = "_";
+	//			pic[pic.length-1][col] = "_";
+	//
+	//		}
+	//
+	//		for(int row = 1; row<pic.length; row++){
+	//			pic[row][0] = "|";
+	//			pic[row][pic[0].length-1] = "|"; 
+	//		}
+	//
+	//		pic[(int)(pic.length/2)][pic[0].length-1] = " ";
+	//		pic[(int)(pic.length/2)+1][0] = " ";
+	//
+	//		return pic;
+	//	}
+	//	public static void printPic(String[][] pic){
+	//		for(String[] row : pic){
+	//			for(String col : row){
+	//				System.out.print(col);
+	//			}
+	//			System.out.println();
+	//		}
+	//	}
 
 	public static void printMap(){
 		map = " ";
 		for(int i = 0; i < grid[0].length - 1; i++){
 			map += "____";
 		}
-		
+
 		map += "___\n";
-		
+
 		for(int row = 0; row<grid.length; row++){
 			for(int textRow  = 0; textRow < 2; textRow++){
 				for(int count = 0; count<grid[row].length; count++){
@@ -107,110 +108,116 @@ public class Temp {
 		System.out.println(map);;
 		//function uses string and prints out board. we need to use getcontent to update mapping
 	}
-	
-	
+
+
 	public void interpretAction(String input) {
 		while(!isValid(input)){
 			CaveExplorer.print("Please enter 'w', 'a', 's' or 'd'");
 			input = CaveExplorer.in.nextLine().toLowerCase();
 		}
-		
+
 		String[] keys = {"w", "d", "s", "a"};//order matters
 		int indexFound = -1;
-		
+
 		for(int i = 0; i < keys.length; i++){
 			if(keys[i].equals(input)){
 				indexFound = i;
 				break;
 			}
 		}
-		
-		
-		
+
+
+
 	}
-	
+
 	public static int findKeyword(String searchString, String keyword, int startPsn) {
-        searchString = searchString.trim();
-        searchString = searchString.toLowerCase();
-        keyword = keyword.toLowerCase();
-        int psn = searchString.indexOf(keyword);
-        while(psn>=0){
-            String before = " ";
-            String after = " ";
-            if(psn>0){
-                before = searchString.substring(psn-1, psn);
-            }
-            if(psn+keyword.length() < searchString.length()){
-                after = searchString.substring((psn + keyword.length()), 
-                        psn + keyword.length()+1);
-            }
-            if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
-                return psn;
-            }else{
-                psn = searchString.indexOf(keyword,psn+1);
-            }
-        }
-        return -1;
-    }
-	
-	//gives cars positions start&beginning
+		searchString = searchString.trim();
+		searchString = searchString.toLowerCase();
+		keyword = keyword.toLowerCase();
+		int psn = searchString.indexOf(keyword);
+		while(psn>=0){
+			String before = " ";
+			String after = " ";
+			if(psn>0){
+				before = searchString.substring(psn-1, psn);
+			}
+			if(psn+keyword.length() < searchString.length()){
+				after = searchString.substring((psn + keyword.length()), 
+						psn + keyword.length()+1);
+			}
+			if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
+				return psn;
+			}else{
+				psn = searchString.indexOf(keyword,psn+1);
+			}
+		}
+		return -1;
+	}
+
+	//creates an array that carries the coordinates for one point
 	private static int[] createPos(int start, int end){
 		int[] position = new int[2];
 		position[0] = start;
 		position[1] = end;
 		return position;
 	}
-	
+
 	//creates all the obstacle cars
 	public static void createCars(){
 		zero.startPos = createPos(5,1);
 		zero.endPos = createPos(6,1);
-		
+
 		one.startPos = createPos(0,2);
 		one.endPos = createPos(2,2);
-		
+
 		two.startPos = createPos(5,2);
 		two.endPos = createPos(5,6);
-		
+
 		three.startPos = createPos(3,4);
 		three.endPos = createPos(4,4);
-		
+
 		four.startPos = createPos(1,4);
 		four.endPos = createPos(1,6);
-		
+
 		five.startPos = createPos(2,6);
 		five.endPos = createPos(4,6);
-		
+
 		six.startPos = createPos(0,7);
 		six.endPos = createPos(3,7);
-		
+
 		seven.startPos = createPos(2,8);
 		seven.endPos = createPos(2,11);
-		
+
 		eight.startPos = createPos(4,8);
 		eight.endPos = createPos(6,8);
-		
+
 		nine.startPos = createPos(3,9);
 		nine.endPos = createPos(5,9);
-		
+
 		ten.startPos = createPos(0,10);
 		ten.endPos = createPos(1,10);
-		
+
 		eleven.startPos = createPos(5,10);
 		eleven.endPos = createPos(7,10);
-		
+
 		twelve.startPos = createPos(0,12);
 		twelve.endPos = createPos(3,12);
-		
+
 		thirteen.startPos = createPos(7,11);
 		thirteen.endPos = createPos(7,14);
 	}
-	
+
+	public static void updateCheck(String direction, int spaces){
+		for(int[] coord: zero.location){
+			if()
+		}
+	}
+
 	public static String promptInput() {
-        String userInput = input.nextLine();
-        return userInput;
-    }
-	
+		String userInput = input.nextLine();
+		return userInput;
+	}
+
 	private int getInt(){
 		String integerString = promptInput();
 		boolean isInteger = false;
