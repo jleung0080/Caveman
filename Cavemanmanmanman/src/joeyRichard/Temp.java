@@ -79,25 +79,15 @@ public class Temp {
 		//function uses string and prints out board. we need to use getcontent to update mapping
 	}
 
-
-	public void interpretAction(String input) {
-		while(!isValid(input)){
-			CaveExplorer.print("Please enter 'w', 'a', 's' or 'd'");
-			input = CaveExplorer.in.nextLine().toLowerCase();
-		}
-
-		String[] keys = {"w", "d", "s", "a"};//order matters
-		int indexFound = -1;
-
-		for(int i = 0; i < keys.length; i++){
-			if(keys[i].equals(input)){
-				indexFound = i;
-				break;
-			}
-		}
-
-	}
-
+	// WW           WW  HH     HH  YY     YY
+	// WW           WW  HH     HH  YY     YY
+	//  WW   WWW   WW   HH     HH   YY   YY
+	//  WW   WWW   WW   HHHHHHHHH    YY YY
+	//   WW WW WW WW    HHHHHHHHH     YYY
+	//   WW WW WW WW    HH     HH     YYY
+	//    WW     WW     HH     HH     YYY
+	//    WW     WW     HH     HH     YYY      pls save us
+	
 	public static int findKeyword(String searchString, String keyword, int startPsn) {
 		searchString = searchString.trim();
 		searchString = searchString.toLowerCase();
@@ -247,6 +237,12 @@ public class Temp {
 			return false;
 		}else
 			return false;
+	}
+
+
+	private boolean borderingCar() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 
