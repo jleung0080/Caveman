@@ -1,13 +1,15 @@
 package joeyRichard;
 
 import java.util.Scanner;
+
+import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoomPd8;
 
 public class Temp {
 	private static String[][] grid = new String[8][15];
 	private static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
-	static Scanner input; 
+	static Scanner input = new Scanner(System.in); 
 	static Cars two = new Cars("0", 2);
 	static Cars three = new Cars("1", 3);
 	static Cars four = new Cars("2", 4);
@@ -36,6 +38,7 @@ public class Temp {
 
 
 		printMap();
+		
 	}
 	
 
@@ -177,9 +180,10 @@ public class Temp {
 		int spaces;
 		System.out.println("Which car would you like to move? The player's car is 0 and the computer's car is 1.");
 		selectedCar = getInt();
-		selectDirection();
+		System.out.println("Which direction would you like to move?");
+		direction = selectDirection();
 		while(!isValidDirection(direction)){
-			selectDirection();
+			direction = selectDirection();
 		}
 		System.out.println("How many spaces would you like to move the car in that direction?");
 		spaces = getInt();
@@ -189,6 +193,39 @@ public class Temp {
 		}
 
 	}
+
+	private String selectDirection(){
+		// TODO Auto-generated method stub
+		String directionChoice = promptInput().toLowerCase();
+		
+		while(!isDir(directionChoice)){
+			System.out.println("Please enter one of the following: 'up', 'down', 'left', 'right'");
+			directionChoice = promptInput();
+		}
+		String[] keys = {"up", "down", "left", "right"};
+		int indexFound = -1;
+		for(int i = 0; i < keys.length; i++){
+			if(keys[i].equals(directionChoice)){
+				indexFound = i;
+				break;
+			}
+		}
+		
+		System.out.println(keys[indexFound]);
+		return keys[indexFound];
+	}
+
+
+	private boolean isDir(String directionChoice) {
+		// TODO Auto-generated method stub
+		String[] validDir = {"up", "down", "left", "right"};
+		for(String key : validDir){
+			if(directionChoice.equals(key))
+				return true;
+		}
+		return false;
+	}
+
 
 	private boolean isValidDirection(String dir) {
 		if(selectedCar == 0 || selectedCar == 1 || selectedCar == 3 || 
