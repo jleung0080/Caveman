@@ -179,7 +179,7 @@ public class Temp {
 		selectedCar = getInt();
 		selectDirection();
 		while(!isValidDirection(direction)){
-			direction = promptInput();
+			selectDirection();
 		}
 		System.out.println("How many spaces would you like to move the car in that direction?");
 		spaces = getInt();
