@@ -2,7 +2,7 @@ package katherineRisa;
 
 import caveExplorer.CaveExplorer;
 
-public class MainEvent implements caveExplorer.Playable{
+public class MainEvent{
 	
 	private static final String[] DESCRIPTION = {};
 	private static final String[] DIRECTIONS = {};
@@ -13,7 +13,7 @@ public class MainEvent implements caveExplorer.Playable{
 	private static String[][] grid;
 	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
 	
-	public void play(){
+	public static void main(String[] args){
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
