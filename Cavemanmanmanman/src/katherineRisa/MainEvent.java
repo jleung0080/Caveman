@@ -1,6 +1,11 @@
 package katherineRisa;
 
-public class MainEvent {
+import caveExplorer.CaveExplorer;
+
+public class MainEvent implements caveExplorer.Playable{
+	
+	private static final String[] DESCRIPTION = {};
+	private static final String[] DIRECTIONS = {};
 	
 	static caveExplorer.Playable katherinePuzzle;
 	static caveExplorer.Playable risaPuzzle;
@@ -8,7 +13,10 @@ public class MainEvent {
 	private static String[][] grid;
 	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
 
-	public static void main(String[] args) {
+	public void play(){
+		readSequence(DESCRIPTION);
+		readSequence(DIRECTIONS);
+		
 		grid = new String[10][37];
 		makeGrid(grid);
 		String[][] splitWordsArray = splitWords(words, grid[0]);
@@ -16,7 +24,6 @@ public class MainEvent {
 		
 		katherinePuzzle = new KatherinePlayPuzzle();
 		risaPuzzle = new RisaCheckSolution();
-		
 	}
 
 	private static void inputLetters(String[][] grid, String[][] words) {
@@ -39,14 +46,30 @@ public class MainEvent {
 		String[] selectedArray = words[rndIndx];
 		
 		String[][] splitWords = new String[selectedArray.length][gridCol.length/6]; //length of column should be same as column length of grid
-		int cntr = 0;
+		
+		for(int i = 0; i < splitWords.length; i++){
+			for(int j = 0; j < splitWords[i].length; j++){
+				splitWords[i][j] = " ";
+			}
+		}
 		
 		for(int i = 0; i < selectedArray.length; i++){
-			String[] temp = selectedArray[i].split("");
-			splitWords[cntr] = temp;
-			
-			cntr++;
+			for(int j = 0; j < selectedArray[i].length(); j++){
+				String temp = selectedArray[i].substring(j, j + 1);
+				splitWords[i][j] = temp;						
+			}
 		}
+		
+//		CAN USE SPLIT
+//		
+//		int cntr = 0;
+//		
+//		for(int i = 0; i < selectedArray.length; i++){
+//			String[] temp = selectedArray[i].split("");
+//			splitWords[cntr] = temp;
+//			
+//			cntr++;
+//		}
 		
 		return splitWords;
 	}
@@ -72,6 +95,42 @@ public class MainEvent {
 			}
 			System.out.println();
 		}
+	}
+	
+	public static void readSequence(String[] seq){
+		for(String s : seq){
+			CaveExplorer.print(s);
+			CaveExplorer.print("- - - press enter - - -");
+			CaveExplorer.in.nextLine();
+		}
+	}
+	
+	public void interpretAction(String input) {
+		while(!isValid(input)){
+			CaveExplorer.print("Please enter 'w', 'a', 's' or 'd'");
+			input = CaveExplorer.in.nextLine().toLowerCase();
+		}
+		
+		String[] keys = {"w", "d", "s", "a"};//order matters
+		int indexFound = -1;
+		
+		for(int i = 0; i < keys.length; i++){
+			if(keys[i].equals(input)){
+				indexFound = i;
+				break;
+			}
+		}
+	}
+
+	private boolean isValid(String input) {
+		String[] validKeys = {"w", "a", "s", "d"};
+		
+		for(String key: validKeys){
+			if(input.toLowerCase().equals(key))
+				return true;
+		}
+		
+		return false;
 	}
 	
 	/*
