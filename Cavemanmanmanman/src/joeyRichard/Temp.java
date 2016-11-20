@@ -23,7 +23,7 @@ public class Temp {
 	static Cars twelve = new Cars("12", 4);
 	static Cars thirteen = new Cars("13", 4);
 	private static Object[] carList = {zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen};
-	public String direction;
+	private int selectedCar;
 
 	public static void main(String[] args){
 		createCars();
@@ -38,40 +38,7 @@ public class Temp {
 
 		printMap();
 	}
-	//	public static String[][] makeGrid(String[][] arr){
-	//		String[][] pic = new String[arr.length][arr[0].length];
-	//		for(int row = 0; row <pic.length; row++){
-	//			//put an entire array on each row
-	//			for(int col = 0; col<pic[row].length; col++){
-	//				//populate with coordinates
-	//				pic[row][col] = (" ");
-	//			}
-	//		}
-	//
-	//		for(int col = 1; col<pic[0].length-1; col++){
-	//			pic[0][col] = "_";
-	//			pic[pic.length-1][col] = "_";
-	//
-	//		}
-	//
-	//		for(int row = 1; row<pic.length; row++){
-	//			pic[row][0] = "|";
-	//			pic[row][pic[0].length-1] = "|"; 
-	//		}
-	//
-	//		pic[(int)(pic.length/2)][pic[0].length-1] = " ";
-	//		pic[(int)(pic.length/2)+1][0] = " ";
-	//
-	//		return pic;
-	//	}
-	//	public static void printPic(String[][] pic){
-	//		for(String[] row : pic){
-	//			for(String col : row){
-	//				System.out.print(col);
-	//			}
-	//			System.out.println();
-	//		}
-	//	}
+
 
 	public static void printMap(){
 		map = " ";
@@ -207,9 +174,51 @@ public class Temp {
 		thirteen.endPos = createPos(7,14);
 	}
 
-	public static void updateCheck(String direction, int spaces){
+	private void move(){
+		String direction;
+		int spaces;
+		System.out.println("Which way would you like to move this car?");
+		direction = promptInput();
+		while(!isValidDirection(direction)){
+			direction = promptInput();
+		}
+		System.out.println("How many spaces would you like to move the car in that direction?");
+		spaces = getInt();
+		while(intersects()){
+			System.out.println("That is an invalid move. Please enter a valid number of spaces to move the car.");
+		}
+
+	}
+
+	private boolean isValidDirection(String dir) {
+		if(selectedCar == 0 || selectedCar == 1 || selectedCar == 3 || 
+				selectedCar == 5 || selectedCar == 6 || selectedCar == 8 || 
+				selectedCar == 9 || selectedCar == 10 || selectedCar == 11 || selectedCar == 12){
+			if(dir == "up"||dir == "down"){
+				return true;
+			}
+			System.out.println("The selected car may only move up or down. Please select a valid direction.");
+			return false;
+		}else if(selectedCar == 2 ||selectedCar == 4||selectedCar == 7||selectedCar == 13){
+			if(dir == "left"||dir == "right"){
+				return true;
+			}
+			System.out.println("The selected car may only move left or right. Please select a valid direction.");
+			return false;
+		}
+	}
+
+
+	private static boolean intersects(){
+
+
+
+
+		return false;
+	}
+
+	public void updateCheck(direction, int spaces){
 		for(int[] coord: zero.location){
-			if()
 		}
 	}
 
