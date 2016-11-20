@@ -12,7 +12,7 @@ public class MainEvent implements caveExplorer.Playable{
 	
 	private static String[][] grid;
 	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
-
+	
 	public void play(){
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
@@ -55,8 +55,8 @@ public class MainEvent implements caveExplorer.Playable{
 		
 		for(int i = 0; i < selectedArray.length; i++){
 			for(int j = 0; j < selectedArray[i].length(); j++){
-				String temp = selectedArray[i].substring(j, j + 1);
-				splitWords[i][j] = temp;						
+				String letter = selectedArray[i].substring(j, j + 1);
+				splitWords[i][j] = letter;						
 			}
 		}
 		
