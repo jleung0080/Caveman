@@ -38,14 +38,14 @@ public class Temp {
 
 
 		printMap();
-		
+		printCars();
 	}
 	
 
 	public static void printMap(){
 		map = " ";
 		for(int i = 0; i < grid[0].length - 1; i++){
-			map += "____";
+			map += "___ ";
 		}
 
 		map += "___\n";
@@ -78,6 +78,12 @@ public class Temp {
 		System.out.println(map);;
 		//function uses string and prints out board. we need to use getcontent to update mapping
 	}
+
+	private static void printCars() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	// WW           WW  HH     HH  YY     YY
 	// WW           WW  HH     HH  YY     YY
