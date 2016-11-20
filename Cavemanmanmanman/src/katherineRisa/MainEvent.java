@@ -12,18 +12,27 @@ public class MainEvent{
 	
 	private static String[][] grid;
 	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
+	static String[][] splitWordsArray;
+	
 	
 	public static void main(String[] args){
+		createFields();
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
 		grid = new String[10][37];
 		makeGrid(grid);
-		String[][] splitWordsArray = splitWords(words, grid[0]);
+		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
+		katherinePuzzle.play();
+		risaPuzzle.play();
 		
-		katherinePuzzle = new KatherinePlayPuzzle(splitWordsArray);
+	}
+
+	private static void createFields() {
+		katherinePuzzle = new KatherinePlayPuzzle();
 		risaPuzzle = new RisaCheckSolution();
+		
 	}
 
 	private static void inputLetters(String[][] grid, String[][] words) {

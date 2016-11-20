@@ -6,16 +6,11 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 	private static boolean complete = false;
 	private static String[][] array;
 	
-	public RisaCheckSolution(String[][] splitWordsArray) {
-		array = splitWordsArray;
-	}
-
 	public RisaCheckSolution() {
-		// TODO Auto-generated constructor stub
+		array = MainEvent.splitWordsArray;
 	}
 
 	public void play() {
-		System.out.println("!");
 		for(int i = 0; i < array.length;i++){
 			for(int j = 0; j < array[i].length; j++){
 				System.out.println(array[i][j]);
