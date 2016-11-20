@@ -8,20 +8,20 @@ public class Temp {
 	private static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
 	static Scanner input; 
-	static Cars zero = new Cars("0", 2);
-	static Cars one = new Cars("1", 3);
-	static Cars two = new Cars("2", 4);
-	static Cars three = new Cars("3", 3);
-	static Cars four = new Cars("4", 2);
-	static Cars five = new Cars("5", 3);
-	static Cars six = new Cars("6", 4);
-	static Cars seven = new Cars("7", 4);
-	static Cars eight = new Cars("8", 3);
-	static Cars nine = new Cars("9", 3);
-	static Cars ten = new Cars("10", 2);
-	static Cars eleven = new Cars("11", 3);
-	static Cars twelve = new Cars("12", 4);
-	static Cars thirteen = new Cars("13", 4);
+	static Cars two = new Cars("0", 2);
+	static Cars three = new Cars("1", 3);
+	static Cars four = new Cars("2", 4);
+	static Cars five = new Cars("3", 3);
+	static Cars six = new Cars("4", 2);
+	static Cars seven = new Cars("5", 3);
+	static Cars eight = new Cars("6", 4);
+	static Cars nine = new Cars("7", 4);
+	static Cars ten = new Cars("8", 3);
+	static Cars eleven = new Cars("9", 3);
+	static Cars twelve = new Cars("10", 2);
+	static Cars thirteen = new Cars("11", 3);
+	static Cars fourteen = new Cars("12", 4);
+	static Cars fifteen = new Cars("13", 4);
 	private int selectedCar;
 
 	public static void main(String[] args){
@@ -129,54 +129,55 @@ public class Temp {
 
 	//creates all the obstacle cars
 	public static void createCars(){
-		zero.startPos = createPos(5,1);
-		zero.endPos = createPos(6,1);
+		two.startPos = createPos(5,1);
+		two.endPos = createPos(6,1);
 
-		one.startPos = createPos(0,2);
-		one.endPos = createPos(2,2);
+		three.startPos = createPos(0,2);
+		three.endPos = createPos(2,2);
 
-		two.startPos = createPos(5,2);
-		two.endPos = createPos(5,6);
+		four.startPos = createPos(5,2);
+		four.endPos = createPos(5,6);
 
-		three.startPos = createPos(3,4);
-		three.endPos = createPos(4,4);
+		five.startPos = createPos(3,4);
+		five.endPos = createPos(4,4);
 
-		four.startPos = createPos(1,4);
-		four.endPos = createPos(1,6);
+		six.startPos = createPos(1,4);
+		six.endPos = createPos(1,6);
 
-		five.startPos = createPos(2,6);
-		five.endPos = createPos(4,6);
+		seven.startPos = createPos(2,6);
+		seven.endPos = createPos(4,6);
 
-		six.startPos = createPos(0,7);
-		six.endPos = createPos(3,7);
+		eight.startPos = createPos(0,7);
+		eight.endPos = createPos(3,7);
 
-		seven.startPos = createPos(2,8);
-		seven.endPos = createPos(2,11);
+		nine.startPos = createPos(2,8);
+		nine.endPos = createPos(2,11);
 
-		eight.startPos = createPos(4,8);
-		eight.endPos = createPos(6,8);
+		ten.startPos = createPos(4,8);
+		ten.endPos = createPos(6,8);
 
-		nine.startPos = createPos(3,9);
-		nine.endPos = createPos(5,9);
+		eleven.startPos = createPos(3,9);
+		eleven.endPos = createPos(5,9);
 
-		ten.startPos = createPos(0,10);
-		ten.endPos = createPos(1,10);
+		twelve.startPos = createPos(0,10);
+		twelve.endPos = createPos(1,10);
 
-		eleven.startPos = createPos(5,10);
-		eleven.endPos = createPos(7,10);
+		thirteen.startPos = createPos(5,10);
+		thirteen.endPos = createPos(7,10);
 
-		twelve.startPos = createPos(0,12);
-		twelve.endPos = createPos(3,12);
+		fourteen.startPos = createPos(0,12);
+		fourteen.endPos = createPos(3,12);
 
-		thirteen.startPos = createPos(7,11);
-		thirteen.endPos = createPos(7,14);
+		fifteen.startPos = createPos(7,11);
+		fifteen.endPos = createPos(7,14);
 	}
 
 	private void move(){
 		String direction;
 		int spaces;
-		System.out.println("Which way would you like to move this car?");
-		direction = promptInput();
+		System.out.println("Which car would you like to move? The player's car is 0 and the computer's car is 1.");
+		selectedCar = getInt();
+		selectDirection();
 		while(!isValidDirection(direction)){
 			direction = promptInput();
 		}
@@ -212,13 +213,13 @@ public class Temp {
 
 
 	private boolean onEdge() {
-		if(selectedCar==0){
-			if(zero.location[0][0] == 0 || zero.location[zero.location.length-1][0] == grid.length-1){
+		if(selectedCar==2){
+			if(two.location[0][0] == 0 || two.location[two.location.length-1][0] == grid.length-1){
 				
 			}
 		}
 		if(selectedCar==1){
-			if(zero.location[0][0] == 0 || zero.location[zero.location.length-1][0] == grid.length-1){
+			if(two.location[0][0] == 0 || two.location[two.location.length-1][0] == grid.length-1){
 				
 			}
 		}
