@@ -185,6 +185,7 @@ public class Temp {
 		spaces = getInt();
 		while(intersects()){
 			System.out.println("That is an invalid move. Please enter a valid number of spaces to move the car.");
+			spaces = getInt();
 		}
 
 	}
