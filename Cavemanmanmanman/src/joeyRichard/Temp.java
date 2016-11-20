@@ -22,23 +22,22 @@ public class Temp {
 	static Cars eleven = new Cars("11", 3);
 	static Cars twelve = new Cars("12", 4);
 	static Cars thirteen = new Cars("13", 4);
-	private static Object[] carList = {zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen};
 	private int selectedCar;
 
 	public static void main(String[] args){
 		createCars();
-		thirteen.setPos();
-		for(int[] str:thirteen.location){
-			for(int z:str){
-				System.out.println(z);
-			}
-		}
+				thirteen.setPos();
+				for(int[] str:thirteen.location){
+					for(int z:str){
+						System.out.println(z);
+					}
+				}
 
 
 
 		printMap();
 	}
-
+	
 
 	public static void printMap(){
 		map = " ";
@@ -53,17 +52,18 @@ public class Temp {
 				for(int count = 0; count<grid[row].length; count++){
 					if(row == (int)(grid.length/2) && count == 0 && textRow == 0){
 						map+="EXIT";
-					}else if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
-						map+=" ___";
-					}else if(textRow == 1){
-						map+="|___";
-					}else{
-						if(row == (int)(grid.length/2-1)&&count==grid[row].length-1){
-							map+= "|EXIT";
-						}else{				
-							map+="|   ";
+					}else 
+						if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
+							map+=" ___";
+						}else if(textRow == 1){
+							map+="|___";
+						}else{
+							if(row == (int)(grid.length/2-1)&&count==grid[row].length-1){
+								map+= "|EXIT";
+							}else{				
+								map+="|   ";
+							}
 						}
-					}
 				}
 				if(row == (int)(grid.length/2-1)){
 					map+= "\n";
@@ -92,8 +92,6 @@ public class Temp {
 				break;
 			}
 		}
-
-
 
 	}
 
@@ -200,12 +198,67 @@ public class Temp {
 			System.out.println("The selected car may only move up or down. Please select a valid direction.");
 			return false;
 		}else if(selectedCar == 2 ||selectedCar == 4||selectedCar == 7||selectedCar == 13){
+			if(onEdge() || borderingCar()){
+
+			}
 			if(dir == "left"||dir == "right"){
 				return true;
 			}
 			System.out.println("The selected car may only move left or right. Please select a valid direction.");
 			return false;
+		}else
+			return false;
+	}
+
+
+	private boolean onEdge() {
+		if(selectedCar==0){
+			if(zero.location[0][0] == 0 || zero.location[zero.location.length-1][0] == grid.length-1){
+				
+			}
 		}
+		if(selectedCar==1){
+			if(zero.location[0][0] == 0 || zero.location[zero.location.length-1][0] == grid.length-1){
+				
+			}
+		}
+		if(selectedCar==2){
+
+		}
+		if(selectedCar==3){
+
+		}
+		if(selectedCar==4){
+
+		}
+		if(selectedCar==5){
+
+		}
+		if(selectedCar==6){
+
+		}
+		if(selectedCar==7){
+
+		}
+		if(selectedCar==8){
+
+		}
+		if(selectedCar==9){
+
+		}
+		if(selectedCar==10){
+
+		}
+		if(selectedCar==11){
+
+		}
+		if(selectedCar==12){
+
+		}
+		if(selectedCar==13){
+
+		}
+		return false;
 	}
 
 
@@ -217,10 +270,6 @@ public class Temp {
 		return false;
 	}
 
-	public void updateCheck(direction, int spaces){
-		for(int[] coord: zero.location){
-		}
-	}
 
 	public static String promptInput() {
 		String userInput = input.nextLine();
