@@ -26,6 +26,8 @@ public class Temp {
 	static Cars thirteen = new Cars(" 13", 3);
 	static Cars fourteen = new Cars(" 14", 4);
 	static Cars fifteen = new Cars(" 15", 4);
+	static boolean inLoop = true;
+	static boolean playerResults;
 	private int selectedCar;
 	private int[] vertical = {2,3,5,7,8,10,11,12,13,14};
 	private int[] horizontal = {0,1,4,6,9,15};
@@ -326,5 +328,16 @@ public class Temp {
 		}
 		return value;
 	}
-
+	private void winOrLose(){
+		if(zero.location[zero.location.length-1][1] == 14){
+			//win
+			playerResults = true;
+			inLoop = false;
+		}
+		if(one.location[0][1] == 0){
+			//lose
+			playerResults = false;
+			inLoop = false;
+		}
+	}
 }
