@@ -29,7 +29,6 @@ public class CaveRoomPd8 {
 		}
 		setDirections();
 	}
-
 	protected void setDirections() {
 	directions	= "";
 		for(int dir = 0; dir < doors.length; dir++){
