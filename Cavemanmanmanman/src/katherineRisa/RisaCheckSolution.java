@@ -23,21 +23,6 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 			}
 		}
 	}
-	
-	private static void inputLetters(String[][] grid, String[][] words) {
-		int row = 2;
-		for(int i = 0; i < words.length; i++){
-			int col = 3;
-			for(int j = 0; j < words[i].length; j++){
-				String letter = words[i][j];
-				grid[row][col] = letter;
-				col = col + 6;
-			}
-			row = row + 3;
-		}
-		
-		printPic(grid);
-	}
 
 	private void checkComplete() {
 		

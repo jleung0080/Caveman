@@ -4,7 +4,7 @@ import caveExplorer.CaveExplorer;
 
 public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
-	private static String[][] letters;
+	public static String[][] letters;
 	private static String[][] grid;
 	private static int[][] coordinates = new int[2][2];
 	private static boolean firstPlay = true;
