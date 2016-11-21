@@ -29,13 +29,10 @@ public class Temp {
 	private int selectedCar;
 	private int[] vertical = {2,3,5,7,8,10,11,12,13,14};
 	private int[] horizontal = {0,1,4,6,9,15};
-	private static final String[] SEQUENCE_1 = {"You have collected all your presents and is ready to go!", "Looking far in the distant, you see another Santa getting ready to go too!",
+	private static final String[] SEQUENCE_1 = {"You have collected all your presents and are ready to go!", "Looking far in the distance, you see another Santa getting ready to go too!",
 			"There can only be one Santa", "FIRST ONE OUT GETS TO BE THIS YEAR'S SANTA!! XDDDD"};
 	public static void main(String[] args){
-		createCars();
-		
 		readSequence(SEQUENCE_1);
-		
 		createCars();
 		printMap();
 	}
