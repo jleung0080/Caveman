@@ -1,8 +1,11 @@
 package katherineRisa;
 
+import java.util.Scanner;
 import caveExplorer.CaveExplorer;
 
 public class MainEvent{
+	
+	static Scanner input;
 	
 	private static final String[] DESCRIPTION = {};
 	private static final String[] DIRECTIONS = {};
@@ -29,7 +32,13 @@ public class MainEvent{
 		
 	}
 
+	public static String userInput(){
+		String uInput = input.nextLine();
+		return uInput;
+	}
+	
 	private static void createFields() {
+		input = new Scanner(System.in);
 		katherinePuzzle = new KatherinePlayPuzzle();
 		risaPuzzle = new RisaCheckSolution();
 		
