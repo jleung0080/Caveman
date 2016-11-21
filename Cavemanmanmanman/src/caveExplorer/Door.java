@@ -7,9 +7,9 @@ public class Door {
 	private String description;
 	private String details;
 	
-	public Door() {
-		open = true;
-		locked = false;
+	public Door(boolean a, boolean b) {
+		open = a;
+		locked = b;
 		description = "door";
 		details = "";
 	}

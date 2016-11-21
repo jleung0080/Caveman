@@ -31,21 +31,14 @@ public class CaveRoomPd8 {
 	}
 
 	protected void setDirections() {
-		directions	= "";
-		if(doors[NORTH] == null && 
-				doors[EAST] == null &&
-				doors[SOUTH] == null &&
-				doors[WEST] == null){
-			directions = "\n\nThis is a room with no exit. You will die here.";		
-		}else{
-			for(int dir = 0; dir < doors.length; dir++){
-				if(doors[dir] != null){
-					directions += "\n   There is a "+doors[dir].getDescription()+" to "+toDirection(dir)+". "+doors[dir].getDetails();
-				}
+	directions	= "";
+		for(int dir = 0; dir < doors.length; dir++){
+			if(doors[dir] != null){
+				directions += "\n   There is a "+doors[dir].getDescription()+" to "+toDirection(dir)+". "+doors[dir].getDetails();
 			}
 		}
-	
 	}
+	
 
 	private static String toDirection(int dir){
 		String[] strings = {"the North", "the East", "the South", "the West"};
