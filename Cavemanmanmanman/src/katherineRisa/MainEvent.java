@@ -163,5 +163,4 @@ public class MainEvent{
 	 * check if bomb piece is in the middle -  game over if it is
 	 * check if puzzle is complete
 	 */
-
 }
