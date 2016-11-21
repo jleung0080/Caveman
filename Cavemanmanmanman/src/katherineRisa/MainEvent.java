@@ -10,7 +10,7 @@ public class MainEvent{
 	static caveExplorer.Playable katherinePuzzle;
 	static caveExplorer.Playable risaPuzzle;
 	
-	private static String[][] grid;
+	static String[][] grid;
 	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
 	static String[][] splitWordsArray;
 	
@@ -19,18 +19,22 @@ public class MainEvent{
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
+		rowID = 65;
+
+		SystemCharacter.toString((char)rowID);
+		
 		grid = new String[10][37];
 		makeGrid(grid);
 		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
-		createFields();
-		//katherinePuzzle.play();
-		risaPuzzle.play();
+//		createFields();
+//		katherinePuzzle.play();
+//		risaPuzzle.play();
 		
 	}
 
 	private static void createFields() {
-		//katherinePuzzle = new KatherinePlayPuzzle();
+		katherinePuzzle = new KatherinePlayPuzzle();
 		risaPuzzle = new RisaCheckSolution();
 		
 	}
@@ -84,9 +88,14 @@ public class MainEvent{
 	}
 
 	private static void makeGrid(String[][] array) {
+		int rowID = 65;
 		for(int row = 0; row < array.length; row++){
 			for(int col = 0; col < array[row].length; col++){
 				array[row][col] = " ";
+				if(col == array[row].length){
+					array[row][col] = Character.toString((char)rowID);
+					rowID++;
+				}
 				if(col!= 0 && col!= array[row].length - 1 && row % 3 == 0){
 					array[row][col] = "_";
 				}
