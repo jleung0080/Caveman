@@ -29,25 +29,25 @@ public class Cars {
 
 
 	private boolean validMove(int spaces){
-			for(int i=1; i<=spaces; i++){
-				if(Temp.direction == "left"){
-					if(Temp.check[location[0][0]][location[0][1]-i]||location[0][1]-i<0){
-						return false;
-					}
-				}else if(Temp.direction == "right"){
-					if(Temp.check[location[0][0]][location[0][1]+i]||location[0][1]+i>14){
-						return false;
-					}
-				}else if(Temp.direction == "up"){
-					if(Temp.check[location[0][0]-i][location[0][1]]||location[0][0]-i<0){
-						return false;
-					}
-				}else{
-					if(Temp.check[location[location.length-1][0]+i][location[location.length-1][1]]||location[location.length-1][0]+i>7){
-						return false;
-					}
+		for(int i=1; i<=spaces; i++){
+			if(Temp.direction == "left"){
+				if(Temp.check[location[0][0]][location[0][1]-i]||location[0][1]-i<0){
+					return false;
 				}
-			
+			}else if(Temp.direction == "right"){
+				if(Temp.check[location[0][0]][location[0][1]+i]||location[0][1]+i>14){
+					return false;
+				}
+			}else if(Temp.direction == "up"){
+				if(Temp.check[location[0][0]-i][location[0][1]]||location[0][0]-i<0){
+					return false;
+				}
+			}else{
+				if(Temp.check[location[location.length-1][0]+i][location[location.length-1][1]]||location[location.length-1][0]+i>7){
+					return false;
+				}
+			}
+
 		}
 		return true;
 	}
@@ -58,7 +58,7 @@ public class Cars {
 				Temp.grid[point[0]][point[1]]=null;
 				Temp.check[point[0]][point[1]-spaces]=true;
 				Temp.grid[point[0]][point[1]-spaces]=show;
-				
+
 			}else if(Temp.direction == "right"){
 				Temp.check[point[0]][point[1]]=false;
 				Temp.grid[point[0]][point[1]]=null;
