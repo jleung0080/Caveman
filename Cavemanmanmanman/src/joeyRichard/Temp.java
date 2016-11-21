@@ -230,10 +230,44 @@ public class Temp {
 				System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
 				spaces = getInt();
 			}
+			performMove(spaces);
 		}
 
 	}
 
+	private void performMove(int spaces) {
+		if(selectedCar == 0){
+		}else if(selectedCar == 1){
+			
+		}else if(selectedCar == 2){
+			
+		}else if(selectedCar == 3){
+			
+		}else if(selectedCar == 4){
+			
+		}else if(selectedCar == 5){
+			
+		}else if(selectedCar == 6){
+			
+		}else if(selectedCar == 7){
+			
+		}else if(selectedCar == 8){
+			
+		}else if(selectedCar == 9){
+			
+		}else if(selectedCar == 10){
+			
+		}else if(selectedCar == 11){
+			
+		}else if(selectedCar == 12){
+			
+		}else if(selectedCar == 13){
+			
+		}else if(selectedCar == 14){
+			
+		}else
+			
+	}
 	private static int roll(){
 		return (int)(Math.random()*6+1);
 	}
@@ -297,19 +331,19 @@ public class Temp {
 		for(int[] point: selectedCarLocation()){
 			for(int i=1; i<=spaces; i++){
 				if(direction == "left"){
-					if(check[point[0]][point[1]-i]){
+					if(check[point[0]][point[1]-i]||point[1]-i<0){
 						return true;
 					}
 				}else if(direction == "right"){
-					if(check[point[0]][point[1]+i]){
+					if(check[point[0]][point[1]+i]||point[1]+i>14){
 						return true;
 					}
 				}else if(direction == "up"){
-					if(check[point[0]-i][point[1]]){
+					if(check[point[0]-i][point[1]]||point[0]-i<0){
 						return true;
 					}
 				}else{
-					if(check[point[0]+i][point[1]]){
+					if(check[point[0]+i][point[1]]||point[0]+i>7){
 						return true;
 					}
 				}
