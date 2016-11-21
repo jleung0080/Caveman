@@ -54,18 +54,27 @@ public class Temp {
 				for(int count = 0; count<grid[row].length; count++){
 					if(row == (int)(grid.length/2) && count == 0 && textRow == 0){
 						map+="EXIT";
-					}else 
-						if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
-							map+=" ___";
-						}else if(textRow == 1){
-							map+="|___";
-						}else{
-							if(row == (int)(grid.length/2-1)&&count==grid[row].length-1){
-								map+= "|EXIT";
-							}else{				
-								map+="|   ";
-							}
+					}
+					else if(row == two.startPos[0] && count == two.startPos[1] && textRow == 1){
+						map += "|222";
+					}
+					else if(row == two.endPos[0] && count == two.endPos[1] && textRow == 0){
+						map += "|222";
+					}
+					else if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
+						map+=" ___";
+					}
+					else if(textRow == 1){
+						map+="|___";
+					}
+					else{
+						if(row == (int)(grid.length/2-1)&&count==grid[row].length-1){
+							map+= "|EXIT";
 						}
+						else{				
+							map+="|   ";
+						}
+					}
 				}
 				if(row == (int)(grid.length/2-1)){
 					map+= "\n";
