@@ -29,7 +29,7 @@ public class Temp {
 	static Cars fifteen = new Cars(" 15", 4);
 	static boolean inLoop = true;
 	static boolean playerResults;
-	private int selectedCar;
+	private static int selectedCar;
 	private int[] vertical = {2,3,5,7,8,10,11,12,13,14};
 	private int[] horizontal = {0,1,4,6,9,15};
 	private static final String[] SEQUENCE_1 = {"You have collected all your presents and are ready to go!", "Looking far in the distance, you see another Santa getting ready to go too!",
@@ -142,7 +142,7 @@ public class Temp {
 				col = false;
 			}
 		}
-		
+
 
 
 		zero.startPos = createPos(3,0);
@@ -233,11 +233,11 @@ public class Temp {
 		}
 
 	}
-	
+
 	private static int roll(){
 		return (int)(Math.random()*6+1);
 	}
-	
+
 	private String selectDirection(){
 		// TODO Auto-generated method stub
 		String directionChoice = promptInput().toLowerCase();
@@ -301,13 +301,33 @@ public class Temp {
 
 
 	private boolean onEdge() {
-		
+
 		return false;
 	}
 
 
 	private static boolean intersects(int spaces){
-		for(se)
+		for(int[] point: selectedCarLocation()){
+			for(int i=1; i<=spaces; i++){
+				if(direction == "left"){
+					if(check[point[0]][point[1]-i]){
+						return true;
+					}
+				}else if(direction == "right"){
+					if(check[point[0]][point[1]+i]){
+						return true;
+					}
+				}else if(direction == "up"){
+					if(check[point[0]-i][point[1]]){
+						return true;
+					}
+				}else{
+					if(check[point[0]+i][point[1]]){
+						return true;
+					}
+				}
+			}
+		}
 		return false;
 	}
 
@@ -315,6 +335,42 @@ public class Temp {
 	public static String promptInput() {
 		String userInput = input.nextLine();
 		return userInput;
+	}
+
+	private static int[][] selectedCarLocation(){
+		if(selectedCar == 0){
+			return zero.location;
+		}else if(selectedCar == 1){
+			return one.location;
+		}else if(selectedCar == 2){
+			return two.location;
+		}else if(selectedCar == 3){
+			return three.location;
+		}else if(selectedCar == 4){
+			return four.location;
+		}else if(selectedCar == 5){
+			return five.location;
+		}else if(selectedCar == 6){
+			return six.location;
+		}else if(selectedCar == 7){
+			return seven.location;
+		}else if(selectedCar == 8){
+			return eight.location;
+		}else if(selectedCar == 9){
+			return nine.location;
+		}else if(selectedCar == 10){
+			return ten.location;
+		}else if(selectedCar == 11){
+			return eleven.location;
+		}else if(selectedCar == 12){
+			return twelve.location;
+		}else if(selectedCar == 13){
+			return thirteen.location;
+		}else if(selectedCar == 14){
+			return fourteen.location;
+		}else
+			return fifteen.location;
+
 	}
 
 	private int getInt(){
