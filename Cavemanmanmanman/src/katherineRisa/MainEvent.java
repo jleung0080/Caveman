@@ -28,7 +28,7 @@ public class MainEvent{
 	private static String[][] words = {{"candycane", "cocoa", "cookies"}, {"perfume", "slippers", "apparel"}, {"mugs", "jars", "bottles"}};
 	static String[][] splitWordsArray;
 	
-	public static void main(String[] args){
+	public static void main(){
 		input = new Scanner(System.in);
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
@@ -39,7 +39,7 @@ public class MainEvent{
 		inputLetters(grid, splitWordsArray);
 		createFields();
 		katherinePuzzle.play();
-//		risaPuzzle.play();
+		risaPuzzle.play();
 		
 	}
 
