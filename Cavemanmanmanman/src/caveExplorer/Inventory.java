@@ -3,9 +3,11 @@ package caveExplorer;
 public class Inventory {
 
 	private boolean hasMap;
+	private boolean hasKey;
 	private String map;
 	
 	public Inventory() {
+		hasKey = false;
 		hasMap = true;
 		updateMap();
 	}
@@ -18,7 +20,7 @@ public class Inventory {
 		// except for last column
 		map = " ";
 		for(int i = 0; i < caves[0].length - 1; i++){
-			map += "____";
+			map += "___ ";
 		}
 		
 		map += "___\n";
@@ -28,9 +30,9 @@ public class Inventory {
 			//3 rows of text
 			for(int textRow  = 0; textRow < 3; textRow++){
 				for(CaveRoomPd8 cr : row){
+					
 					String str = "|   ";
 					String content = cr.getContents();
-					
 					
 					if(textRow == 1){
 						if(cr.getDoor(CaveRoomPd8.WEST) != null && cr.getDoor(CaveRoomPd8.WEST).isOpen())
@@ -57,7 +59,9 @@ public class Inventory {
 	public void setHasMap(boolean hasMap) {
 		this.hasMap = hasMap;
 	}
-
+	public void setHasKey(boolean hasKey){
+		this.hasKey = hasKey;
+	}
 	public String getDescription() {
 		if(hasMap)
 			return map;
