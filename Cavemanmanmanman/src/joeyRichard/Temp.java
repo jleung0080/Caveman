@@ -27,6 +27,8 @@ public class Temp {
 	static Cars fourteen = new Cars(" 14", 4);
 	static Cars fifteen = new Cars(" 15", 4);
 	private int selectedCar;
+	private int[] vertical = {2,3,5,7,8,10,11,12,13,14};
+	private int[] horizontal = {0,1,4,6,9,15};
 
 	public static void main(String[] args){
 		createCars();
@@ -36,7 +38,6 @@ public class Temp {
 		printMap();
 	}
 	public static void printMap(){
-		String[] carNum = {"two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen"};
 		map = " ";
 		for(int i = 0; i < grid[0].length - 1; i++){
 			map += "___ ";
@@ -50,98 +51,6 @@ public class Temp {
 					if(row == (int)(grid.length/2) && count == 0 && textRow == 0){
 						map+="EXIT";
 					}
-					//					//lengths of 2 units
-					//					else if(row == zero.startPos[0] && count == zero.startPos[1]){
-					//						map += "|000";
-					//					}
-					//					else if(row == zero.endPos[0] && count == zero.endPos[1]){
-					//						if(textRow == 0){
-					//							map += "0000";
-					//						}
-					//						if(textRow == 1){
-					//							map += "0000";
-					//						}
-					//					}
-					//					else if(row == one.startPos[0] && count == one.startPos[1]){
-					//						map += "|111";
-					//					}
-					//					else if(row == one.endPos[0] && count == one.endPos[1]){
-					//						if(textRow == 0){
-					//							map += "1111";
-					//						}
-					//						if(textRow == 1){
-					//							map += "1111";
-					//						}
-					//					}
-					//					
-					//					else if(row == two.startPos[0] && count == two.startPos[1] && textRow == 1){
-					//						map += "| 2 ";
-					//					}
-					//					else if(row == two.endPos[0] && count == two.endPos[1] && textRow == 0){
-					//						map += "| 2 ";
-					//					}
-					//					else if(row == five.startPos[0] && count == five.startPos[1] && textRow == 1){
-					//						map += "| 5 ";
-					//					}
-					//					else if(row == five.endPos[0] && count == five.endPos[1] && textRow == 0){
-					//						map += "| 5 ";
-					//					}
-					//					else if(row == twelve.startPos[0] && count == twelve.startPos[1] && textRow == 1){
-					//						map += "| 12";
-					//					}
-					//					else if(row == twelve.endPos[0] && count == twelve.endPos[1] && textRow == 0){
-					//						map += "| 12";
-					//					}
-					//					//lengths of 3 units
-					//					else if(row == three.startPos[0] && count == three.startPos[1] && textRow == 1){
-					//						map += "| 3 ";
-					//					}
-					//					else if(row == (three.startPos[0] + three.endPos[0])/2 && count == three.startPos[1] && (textRow == 0 || textRow == 1)){
-					//						map += "| 3 ";
-					//					}
-					//					else if(row == three.endPos[0] && count == three.endPos[1] && textRow == 0){
-					//						map += "| 3 ";
-					//					}
-					//					else if(row == seven.startPos[0] && count == seven.startPos[1] && textRow == 1){
-					//						map += "| 7 ";
-					//					}
-					//					else if(row == (seven.startPos[0] + seven.endPos[0])/2 && count == seven.startPos[1] && (textRow == 0 || textRow == 1)){
-					//						map += "| 7 ";
-					//					}
-					//					else if(row == seven.endPos[0] && count == seven.endPos[1] && textRow == 0){
-					//						map += "| 7 ";
-					//					}
-					//					else if(row == ten.startPos[0] && count == ten.startPos[1] && textRow == 1){
-					//						map += "| 10";
-					//					}
-					//					else if(row == (ten.startPos[0] + ten.endPos[0])/2 && count == ten.startPos[1] && (textRow == 0 || textRow == 1)){
-					//						map += "| 10";
-					//					}
-					//					else if(row == ten.endPos[0] && count == ten.endPos[1] && textRow == 0){
-					//						map += "| 10";
-					//					}
-					//					else if(row == eleven.startPos[0] && count == eleven.startPos[1] && textRow == 1){
-					//						map += "| 11";
-					//					}
-					//					else if(row == (eleven.startPos[0] + eleven.endPos[0])/2 && count == eleven.startPos[1] && (textRow == 0 || textRow == 1)){
-					//						map += "| 11";
-					//					}
-					//					else if(row == eleven.endPos[0] && count == eleven.endPos[1] && textRow == 0){
-					//						map += "| 11";
-					//					}
-					//					else if(row == thirteen.startPos[0] && count == thirteen.startPos[1] && textRow == 1){
-					//						map += "| 13";
-					//					}
-					//					else if(row == (thirteen.startPos[0] + thirteen.endPos[0])/2 && count == thirteen.startPos[1] && (textRow == 0 || textRow == 1)){
-					//						map += "| 13";
-					//					}
-					//					else if(row == thirteen.endPos[0] && count == thirteen.endPos[1] && textRow == 0){
-					//						map += "| 13";
-					//					}
-					//					
-					//					
-					//					
-					//					
 					else if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
 						map+=" ___";
 					}
@@ -302,7 +211,11 @@ public class Temp {
 		}
 
 	}
-
+	
+	private static int roll(){
+		return (int)(Math.random()*6+1);
+	}
+	
 	private String selectDirection(){
 		// TODO Auto-generated method stub
 		String directionChoice = promptInput().toLowerCase();
@@ -367,7 +280,7 @@ public class Temp {
 
 	private boolean onEdge() {
 		if(selectedCar==0){
-			if(two.location[0][0] == 0 || two.location[two.location.length-1][0] == grid.length-1){
+			if(zero.location[0][0] == 0 || zero.location[zero.location.length-1][0] == grid.length-1){
 
 			}
 		}
@@ -446,4 +359,5 @@ public class Temp {
 		}
 		return value;
 	}
+
 }
