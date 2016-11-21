@@ -9,6 +9,7 @@ public class Temp {
 	public static String[][] grid = new String[8][15];
 	public static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
+	private static String direction;
 	static Scanner input = new Scanner(System.in); 
 	static Cars zero = new Cars("you", 2);
 	static Cars one = new Cars("cpu", 2);
@@ -210,21 +211,25 @@ public class Temp {
 	}
 
 	private void move(){
-		String direction;
+		direction = "";
 		int numberOfMoves = roll();
+		System.out.println("You rolled a "+numberOfMoves+"!");
 		int spaces;
-		System.out.println("Which sleigh would you like to move? Your sleigh is 0 and the other santa's sleigh is 1.");
-		selectedCar = getInt();
-		System.out.println("Which direction would you like to move?");
-		direction = selectDirection();
-		while(!isValidDirection(direction)){
+		for(int i=numberOfMoves;i>0;i-- ){
+			System.out.println("You have "+numberOfMoves+" moves.");
+			System.out.println("Which sleigh would you like to move? Select a sleigh by its number. Your sleigh is 0 and the other santa's sleigh is 1.");
+			selectedCar = getInt();
+			System.out.println("Which direction would you like to move?");
 			direction = selectDirection();
-		}
-		System.out.println("How many spaces would you like to sleigh the car in that direction?");
-		spaces = getInt();
-		while(intersects()){
-			System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
+			while(!isValidDirection(direction)){
+				direction = selectDirection();
+			}
+			System.out.println("How many spaces would you like to sleigh the car in that direction?");
 			spaces = getInt();
+			while(intersects(spaces)){
+				System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
+				spaces = getInt();
+			}
 		}
 
 	}
@@ -301,8 +306,8 @@ public class Temp {
 	}
 
 
-	private static boolean intersects(){
-		for
+	private static boolean intersects(int spaces){
+		for(se)
 		return false;
 	}
 
