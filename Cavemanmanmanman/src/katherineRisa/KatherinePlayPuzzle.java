@@ -23,6 +23,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		MainEvent.inputLetters(grid, letters);
 	}
 
+	
 	private void swap(String[][] arr) {
 		System.out.println("Type in the first coordinate of the letter you want to swap.");
 		String input = MainEvent.userInput();

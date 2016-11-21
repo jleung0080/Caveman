@@ -17,7 +17,6 @@ public class MainEvent{
 	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
 	static String[][] splitWordsArray;
 	
-	
 	public static void main(String[] args){
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
