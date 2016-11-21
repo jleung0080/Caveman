@@ -38,7 +38,6 @@ public class Temp {
 
 
 		printMap();
-		printCars();
 	}
 	
 
@@ -77,11 +76,6 @@ public class Temp {
 		}
 		System.out.println(map);;
 		//function uses string and prints out board. we need to use getcontent to update mapping
-	}
-
-	private static void printCars() {
-		// TODO Auto-generated method stub
-		
 	}
 
 
