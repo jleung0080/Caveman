@@ -6,37 +6,31 @@ import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoomPd8;
 
 public class Temp {
-	private static String[][] grid = new String[8][15];
+	public static String[][] grid = new String[8][15];
 	private static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
 	static Scanner input = new Scanner(System.in); 
-	static Cars zero = new Cars("player", 2);
+	static Cars zero = new Cars("you", 2);
 	static Cars one = new Cars("cpu", 2);
-	static Cars two = new Cars("0", 2);
-	static Cars three = new Cars("1", 3);
-	static Cars four = new Cars("2", 4);
-	static Cars five = new Cars("3", 3);
-	static Cars six = new Cars("4", 2);
-	static Cars seven = new Cars("5", 3);
-	static Cars eight = new Cars("6", 4);
-	static Cars nine = new Cars("7", 4);
-	static Cars ten = new Cars("8", 3);
-	static Cars eleven = new Cars("9", 3);
-	static Cars twelve = new Cars("10", 2);
-	static Cars thirteen = new Cars("11", 3);
-	static Cars fourteen = new Cars("12", 4);
-	static Cars fifteen = new Cars("13", 4);
+	static Cars two = new Cars(" 2 ", 2);
+	static Cars three = new Cars(" 3 ", 3);
+	static Cars four = new Cars(" 4 ", 4);
+	static Cars five = new Cars(" 5 ", 3);
+	static Cars six = new Cars(" 6 ", 2);
+	static Cars seven = new Cars(" 7 ", 3);
+	static Cars eight = new Cars(" 8 ", 4);
+	static Cars nine = new Cars(" 9 ", 4);
+	static Cars ten = new Cars(" 10", 3);
+	static Cars eleven = new Cars(" 11", 3);
+	static Cars twelve = new Cars(" 12", 2);
+	static Cars thirteen = new Cars(" 13", 3);
+	static Cars fourteen = new Cars(" 14", 4);
+	static Cars fifteen = new Cars(" 15", 4);
 	private int selectedCar;
 
 	public static void main(String[] args){
 		createCars();
-//				thirteen.setPos();
-//				for(int[] str:thirteen.location){
-//					for(int z:str){
-//						System.out.println(z);
-//					}
-//				}
-
+		
 
 
 		printMap();
@@ -56,98 +50,98 @@ public class Temp {
 					if(row == (int)(grid.length/2) && count == 0 && textRow == 0){
 						map+="EXIT";
 					}
-					//lengths of 2 units
-					else if(row == zero.startPos[0] && count == zero.startPos[1]){
-						map += "|000";
-					}
-					else if(row == zero.endPos[0] && count == zero.endPos[1]){
-						if(textRow == 0){
-							map += "0000";
-						}
-						if(textRow == 1){
-							map += "0000";
-						}
-					}
-					else if(row == one.startPos[0] && count == one.startPos[1]){
-						map += "|111";
-					}
-					else if(row == one.endPos[0] && count == one.endPos[1]){
-						if(textRow == 0){
-							map += "1111";
-						}
-						if(textRow == 1){
-							map += "1111";
-						}
-					}
-					
-					else if(row == two.startPos[0] && count == two.startPos[1] && textRow == 1){
-						map += "| 2 ";
-					}
-					else if(row == two.endPos[0] && count == two.endPos[1] && textRow == 0){
-						map += "| 2 ";
-					}
-					else if(row == five.startPos[0] && count == five.startPos[1] && textRow == 1){
-						map += "| 5 ";
-					}
-					else if(row == five.endPos[0] && count == five.endPos[1] && textRow == 0){
-						map += "| 5 ";
-					}
-					else if(row == twelve.startPos[0] && count == twelve.startPos[1] && textRow == 1){
-						map += "| 12";
-					}
-					else if(row == twelve.endPos[0] && count == twelve.endPos[1] && textRow == 0){
-						map += "| 12";
-					}
-					//lengths of 3 units
-					else if(row == three.startPos[0] && count == three.startPos[1] && textRow == 1){
-						map += "| 3 ";
-					}
-					else if(row == (three.startPos[0] + three.endPos[0])/2 && count == three.startPos[1] && (textRow == 0 || textRow == 1)){
-						map += "| 3 ";
-					}
-					else if(row == three.endPos[0] && count == three.endPos[1] && textRow == 0){
-						map += "| 3 ";
-					}
-					else if(row == seven.startPos[0] && count == seven.startPos[1] && textRow == 1){
-						map += "| 7 ";
-					}
-					else if(row == (seven.startPos[0] + seven.endPos[0])/2 && count == seven.startPos[1] && (textRow == 0 || textRow == 1)){
-						map += "| 7 ";
-					}
-					else if(row == seven.endPos[0] && count == seven.endPos[1] && textRow == 0){
-						map += "| 7 ";
-					}
-					else if(row == ten.startPos[0] && count == ten.startPos[1] && textRow == 1){
-						map += "| 10";
-					}
-					else if(row == (ten.startPos[0] + ten.endPos[0])/2 && count == ten.startPos[1] && (textRow == 0 || textRow == 1)){
-						map += "| 10";
-					}
-					else if(row == ten.endPos[0] && count == ten.endPos[1] && textRow == 0){
-						map += "| 10";
-					}
-					else if(row == eleven.startPos[0] && count == eleven.startPos[1] && textRow == 1){
-						map += "| 11";
-					}
-					else if(row == (eleven.startPos[0] + eleven.endPos[0])/2 && count == eleven.startPos[1] && (textRow == 0 || textRow == 1)){
-						map += "| 11";
-					}
-					else if(row == eleven.endPos[0] && count == eleven.endPos[1] && textRow == 0){
-						map += "| 11";
-					}
-					else if(row == thirteen.startPos[0] && count == thirteen.startPos[1] && textRow == 1){
-						map += "| 13";
-					}
-					else if(row == (thirteen.startPos[0] + thirteen.endPos[0])/2 && count == thirteen.startPos[1] && (textRow == 0 || textRow == 1)){
-						map += "| 13";
-					}
-					else if(row == thirteen.endPos[0] && count == thirteen.endPos[1] && textRow == 0){
-						map += "| 13";
-					}
-					
-					
-					
-					
+					//					//lengths of 2 units
+					//					else if(row == zero.startPos[0] && count == zero.startPos[1]){
+					//						map += "|000";
+					//					}
+					//					else if(row == zero.endPos[0] && count == zero.endPos[1]){
+					//						if(textRow == 0){
+					//							map += "0000";
+					//						}
+					//						if(textRow == 1){
+					//							map += "0000";
+					//						}
+					//					}
+					//					else if(row == one.startPos[0] && count == one.startPos[1]){
+					//						map += "|111";
+					//					}
+					//					else if(row == one.endPos[0] && count == one.endPos[1]){
+					//						if(textRow == 0){
+					//							map += "1111";
+					//						}
+					//						if(textRow == 1){
+					//							map += "1111";
+					//						}
+					//					}
+					//					
+					//					else if(row == two.startPos[0] && count == two.startPos[1] && textRow == 1){
+					//						map += "| 2 ";
+					//					}
+					//					else if(row == two.endPos[0] && count == two.endPos[1] && textRow == 0){
+					//						map += "| 2 ";
+					//					}
+					//					else if(row == five.startPos[0] && count == five.startPos[1] && textRow == 1){
+					//						map += "| 5 ";
+					//					}
+					//					else if(row == five.endPos[0] && count == five.endPos[1] && textRow == 0){
+					//						map += "| 5 ";
+					//					}
+					//					else if(row == twelve.startPos[0] && count == twelve.startPos[1] && textRow == 1){
+					//						map += "| 12";
+					//					}
+					//					else if(row == twelve.endPos[0] && count == twelve.endPos[1] && textRow == 0){
+					//						map += "| 12";
+					//					}
+					//					//lengths of 3 units
+					//					else if(row == three.startPos[0] && count == three.startPos[1] && textRow == 1){
+					//						map += "| 3 ";
+					//					}
+					//					else if(row == (three.startPos[0] + three.endPos[0])/2 && count == three.startPos[1] && (textRow == 0 || textRow == 1)){
+					//						map += "| 3 ";
+					//					}
+					//					else if(row == three.endPos[0] && count == three.endPos[1] && textRow == 0){
+					//						map += "| 3 ";
+					//					}
+					//					else if(row == seven.startPos[0] && count == seven.startPos[1] && textRow == 1){
+					//						map += "| 7 ";
+					//					}
+					//					else if(row == (seven.startPos[0] + seven.endPos[0])/2 && count == seven.startPos[1] && (textRow == 0 || textRow == 1)){
+					//						map += "| 7 ";
+					//					}
+					//					else if(row == seven.endPos[0] && count == seven.endPos[1] && textRow == 0){
+					//						map += "| 7 ";
+					//					}
+					//					else if(row == ten.startPos[0] && count == ten.startPos[1] && textRow == 1){
+					//						map += "| 10";
+					//					}
+					//					else if(row == (ten.startPos[0] + ten.endPos[0])/2 && count == ten.startPos[1] && (textRow == 0 || textRow == 1)){
+					//						map += "| 10";
+					//					}
+					//					else if(row == ten.endPos[0] && count == ten.endPos[1] && textRow == 0){
+					//						map += "| 10";
+					//					}
+					//					else if(row == eleven.startPos[0] && count == eleven.startPos[1] && textRow == 1){
+					//						map += "| 11";
+					//					}
+					//					else if(row == (eleven.startPos[0] + eleven.endPos[0])/2 && count == eleven.startPos[1] && (textRow == 0 || textRow == 1)){
+					//						map += "| 11";
+					//					}
+					//					else if(row == eleven.endPos[0] && count == eleven.endPos[1] && textRow == 0){
+					//						map += "| 11";
+					//					}
+					//					else if(row == thirteen.startPos[0] && count == thirteen.startPos[1] && textRow == 1){
+					//						map += "| 13";
+					//					}
+					//					else if(row == (thirteen.startPos[0] + thirteen.endPos[0])/2 && count == thirteen.startPos[1] && (textRow == 0 || textRow == 1)){
+					//						map += "| 13";
+					//					}
+					//					else if(row == thirteen.endPos[0] && count == thirteen.endPos[1] && textRow == 0){
+					//						map += "| 13";
+					//					}
+					//					
+					//					
+					//					
+					//					
 					else if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
 						map+=" ___";
 					}
@@ -158,8 +152,13 @@ public class Temp {
 						if(row == (int)(grid.length/2-1)&&count==grid[row].length-1){
 							map+= "|EXIT";
 						}
-						else{				
-							map+="|   ";
+						else{
+							if(grid[row][count] == null){
+								map+="|   ";								
+							}
+							else{
+								map+="|"+grid[row][count];
+							}
 						}
 					}
 				}
@@ -183,7 +182,7 @@ public class Temp {
 	//   WW WW WW WW    HH     HH     YYY
 	//    WW     WW     HH     HH     YYY
 	//    WW     WW     HH     HH     YYY      pls save us
-	
+
 	public static int findKeyword(String searchString, String keyword, int startPsn) {
 		searchString = searchString.trim();
 		searchString = searchString.toLowerCase();
@@ -218,53 +217,71 @@ public class Temp {
 
 	//creates all the obstacle cars
 	public static void createCars(){
+
+
 		zero.startPos = createPos(3,0);
 		zero.endPos = createPos(3,1);
-		
+		zero.setPos();
+
 		one.startPos = createPos(4,13);
 		one.endPos = createPos(4,14);
-		
+		one.setPos();
+
 		two.startPos = createPos(5,1);
 		two.endPos = createPos(6,1);
+		two.setPos();
 
 		three.startPos = createPos(0,2);
 		three.endPos = createPos(2,2);
+		three.setPos();
 
 		four.startPos = createPos(5,2);
 		four.endPos = createPos(5,6);
+		four.setPos();
 
-		five.startPos = createPos(3,4);
-		five.endPos = createPos(4,4);
+		five.startPos = createPos(2,4);
+		five.endPos = createPos(3,4);
+		five.setPos();
 
 		six.startPos = createPos(1,4);
 		six.endPos = createPos(1,6);
+		six.setPos();
 
 		seven.startPos = createPos(2,6);
 		seven.endPos = createPos(4,6);
+		seven.setPos();
 
 		eight.startPos = createPos(0,7);
 		eight.endPos = createPos(3,7);
+		eight.setPos();
 
 		nine.startPos = createPos(2,8);
 		nine.endPos = createPos(2,11);
+		nine.setPos();
 
 		ten.startPos = createPos(4,8);
 		ten.endPos = createPos(6,8);
+		ten.setPos();
 
 		eleven.startPos = createPos(3,9);
 		eleven.endPos = createPos(5,9);
+		eleven.setPos();
 
 		twelve.startPos = createPos(0,10);
 		twelve.endPos = createPos(1,10);
+		twelve.setPos();
 
 		thirteen.startPos = createPos(5,10);
 		thirteen.endPos = createPos(7,10);
+		thirteen.setPos();
 
 		fourteen.startPos = createPos(0,12);
 		fourteen.endPos = createPos(3,12);
+		fourteen.setPos();
 
 		fifteen.startPos = createPos(7,11);
 		fifteen.endPos = createPos(7,14);
+		fifteen.setPos();
 	}
 
 	private void move(){
@@ -289,7 +306,7 @@ public class Temp {
 	private String selectDirection(){
 		// TODO Auto-generated method stub
 		String directionChoice = promptInput().toLowerCase();
-		
+
 		while(!isDir(directionChoice)){
 			System.out.println("Please enter one of the following: 'up', 'down', 'left', 'right'");
 			directionChoice = promptInput();
@@ -302,7 +319,7 @@ public class Temp {
 				break;
 			}
 		}
-		
+
 		System.out.println(keys[indexFound]);
 		return keys[indexFound];
 	}
@@ -351,12 +368,12 @@ public class Temp {
 	private boolean onEdge() {
 		if(selectedCar==0){
 			if(two.location[0][0] == 0 || two.location[two.location.length-1][0] == grid.length-1){
-				
+
 			}
 		}
 		if(selectedCar==1){
 			if(two.location[0][0] == 0 || two.location[two.location.length-1][0] == grid.length-1){
-				
+
 			}
 		}
 		if(selectedCar==2){

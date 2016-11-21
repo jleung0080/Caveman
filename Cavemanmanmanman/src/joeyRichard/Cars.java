@@ -1,10 +1,14 @@
 package joeyRichard;
+import joeyRichard.Temp;
 public class Cars {
 	public int[][] location;
 	public int[] startPos;
 	public int[] endPos;
+	private String show;
+	
 	public Cars(String id, int length){
 		location = new int[length][2];
+		show = id;
 	}
 
 	public void changePos(String direction, int spaces){
@@ -26,11 +30,13 @@ public class Cars {
 			for(int i=0; i<location.length;i++){
 				location[i][0] = startPos[0];
 				location[i][1] = startPos[1]+i;
+				Temp.grid[location[i][0]][location[i][1]] = show;
 			}
 		}else{
 			for(int i=0; i<location.length;i++){
 				location[i][0] = startPos[0]+i;
 				location[i][1] = startPos[1];
+				Temp.grid[location[i][0]][location[i][1]] = show;
 			}
 		}
 	}
