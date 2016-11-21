@@ -69,12 +69,10 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 								return true;
 							}
 						}
-						return false;
 					}
 					return false;
 				}
 			}
-			return false;
 		}
 		return false;
 	}
