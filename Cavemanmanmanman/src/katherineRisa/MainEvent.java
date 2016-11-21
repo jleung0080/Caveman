@@ -4,7 +4,6 @@ import java.util.Scanner;
 import caveExplorer.CaveExplorer;
 
 public class MainEvent{
-	
 	static Scanner input;
 	
 	private static final String[] DESCRIPTION = {};
