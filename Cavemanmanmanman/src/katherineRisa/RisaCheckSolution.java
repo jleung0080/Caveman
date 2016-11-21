@@ -17,7 +17,7 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 		
 		if(checkBomb()){
 			System.out.println("You put a bomb in the bag!! How stupi-- uh... foolish can you be to mistake a bomb as a present! Leave! You're fired.");
-			MainEvent.main();
+			//MainEvent.main();
 		}else{
 			checkComplete();
 			if(!complete){
