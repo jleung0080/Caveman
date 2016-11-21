@@ -4,7 +4,7 @@ import caveExplorer.CaveExplorer;
 
 public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
-	public static String[][] original;
+	private static String[][] original;
 	public static String[][] letters;
 	private static String[][] grid;
 	private static int[][] coordinates = new int[2][2];
@@ -27,15 +27,8 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	}
 	
 	public void play() {
-		for(int i = 0; i < original.length; i++){
-			for(int j = 0; j < original[i].length; j++){
-				System.out.println(original[i][j]);
-			}
-		}
-		
-		
 		while(firstPlay){
-			mixLetters(letters);
+			letters = mixLetters(letters);
 			makeBombs(letters);
 			MainEvent.inputLetters(grid, letters);
 			firstPlay = false;
@@ -139,7 +132,8 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		return false;
 	}
 
-	public static void mixLetters(String[][] words){
+	public static String[][] mixLetters(String[][] words){
+		String[][] mixedArray = new String[words.length][words[0].length];
 		String[] temp = new String[words.length * words[0].length];
 		int cntr = 0;
 		for(int i = 0; i < words.length; i++){
@@ -160,9 +154,10 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		cntr = 0;
 		for(int i = 0; i < words.length; i++){
 			for(int j = 0; j < words[i].length; j++){
-				words[i][j] = temp[cntr];
+				mixedArray[i][j] = temp[cntr];
 				cntr ++;
 			}
 		}
+		return mixedArray;
 	}
 }

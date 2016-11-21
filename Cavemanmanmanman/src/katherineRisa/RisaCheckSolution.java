@@ -16,12 +16,15 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 	public void play() {
 		for(int i = 0; i < originalLetters.length; i++){
 			for(int j = 0; j < originalLetters[i].length; j++){
+				System.out.println("AAA");
 				System.out.println(originalLetters[i][j]);
 			}
 		}
+		
 		if(checkBomb()){
 			System.out.println("You put a bomb in the bag!! How stupi-- uh... foolish can you be to mistake a bomb as a present! Leave! You're fired.");
-			System.out.println("...");
+			System.out.println("- - - Press Enter - - -");
+			MainEvent.userInput();
 			MainEvent.main(null);
 		}else{
 			if(checkComplete()){
