@@ -6,7 +6,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
 	private static String[][] letters;
 	private static String[][] grid;
-	private static int[][] coordinates;
+	private static int[][] coordinates = new int[2][2];
 
 	public KatherinePlayPuzzle() {
 		letters = MainEvent.splitWordsArray;
@@ -46,28 +46,34 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		String[] validRow = new String[grid.length/3];
 		String[] validCol = new String[grid[0].length/6];
 		
-		int cntr = 0;
-		String subInput;
-		
-		for(String rowKey : validRow){
-			subInput = input.substring(cntr, cntr + 1);
-			if(subInput.equals(rowKey)){
-				for(String colKey : validCol){
-					coordinates[n][0] = Integer.parseInt(subInput); //converts string to integer
-					cntr ++;
-					subInput = input.substring(cntr, cntr + 1);
-					if(subInput.equals(colKey)){
-						coordinates[n][1] = Integer.parseInt(subInput); 
-						return true;
-					}
-				}
-				
-				return false;
-			}
-			
-			cntr ++;
+		for(int i = 0; i < validRow.length; i++){
+			validRow[i] = "" + i; 
 		}
 		
+		for(int i = 0; i < validCol.length; i++){
+			validCol[i] = "" + i;
+		}
+		
+		String subInput;
+		
+		for(int i = 0; i < input.length(); i++){
+			subInput = input.substring(i, i + 1);
+			for(String rowKey : validRow){
+				if(subInput.equals(rowKey)){
+					coordinates[n][0] = Integer.parseInt(subInput); //converts string to integer
+					for(int j = i; j < input.length(); j++){
+						subInput = input.substring(j, j + 1);
+						for(String colKey : validCol){
+							if(subInput.equals(colKey)){
+								coordinates[n][1] = Integer.parseInt(subInput); 
+								return true;
+							}
+						}
+					}
+					return false;
+				}
+			}
+		}
 		return false;
 	}
 
