@@ -13,7 +13,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		letters = MainEvent.splitWordsArray;
 		grid = MainEvent.grid;
 	}
-
+	
 	public void play() {
 		while(firstPlay){
 			mixLetters(letters);
