@@ -42,7 +42,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		for(int row = 0; row < arr.length; row++){
 			for(int col = 0; col < arr[row].length; col++){
 				if(num > 0 && arr[row][col] == " "){
-					if(row != 1 && col == 0 || row != 1 && col == grid.length - 1){
+					if(row != 1){
 						arr[row][col] = "!";
 						num --;
 					}
@@ -52,24 +52,31 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	}
 
 	private void swap(String[][] arr) {
-		System.out.println("Type in the first coordinate of the letter you want to swap.");
-		String coord1 = MainEvent.userInput();
-		if(coord1.toLowerCase().equals("hint")){
+		System.out.println("Would you like a hint?");
+		String response = MainEvent.userInput();
+		if(response.toLowerCase().equals("yes")){
 			giveHint(original, hints);
 		}
+		
+		System.out.println("Type in the first coordinate of the letter you want to swap.");
+		String coord1 = MainEvent.userInput();
 		interpretAction(coord1, 0);
 		
 		System.out.println("Type in the second coordinate of the letter you want to swap with.");
 		String coord2 = MainEvent.userInput();
-		if(coord2.toLowerCase().equals("hint")){
-			giveHint(original, hints);
-		}
 		interpretAction(coord2, 1);
 		
 		String temp;
 		temp = arr[coordinates[0][0]][coordinates[0][1]];
 		arr[coordinates[0][0]][coordinates[0][1]] = arr[coordinates[1][0]][coordinates[1][1]];
 		arr[coordinates[1][0]][coordinates[1][1]] = temp;
+	}
+
+	public void interpretAction(String input, int n) {
+		while(!isValid(input, n)){
+		CaveExplorer.print("Please enter a valid coordinate.");
+		input = MainEvent.userInput();
+		}
 	}
 	
 	private void giveHint(String[][] arr, String[][] hints) {
@@ -87,13 +94,6 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		else{
 			System.out.println(hints[2][hintIdx]);
 			hintIdx++;
-		}
-	}
-
-	public void interpretAction(String input, int n) {
-		while(!isValid(input, n)){
-			CaveExplorer.print("Please enter a valid coordinate.");
-			input = MainEvent.userInput();
 		}
 	}
 	
