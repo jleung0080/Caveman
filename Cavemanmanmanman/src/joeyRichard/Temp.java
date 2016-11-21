@@ -293,19 +293,6 @@ public class Temp {
 		return false;
 	}
 
-
-	private boolean borderingCar() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	private boolean onEdge() {
-
-		return false;
-	}
-
-
 	private static boolean intersects(int spaces){
 		for(int[] point: selectedCarLocation()){
 			for(int i=1; i<=spaces; i++){
