@@ -6,15 +6,23 @@ import caveExplorer.CaveExplorer;
 public class MainEvent{
 	static Scanner input;
 	
-	private static final String[] DESCRIPTION = {};
-	private static final String[] DIRECTIONS = {};
+	private static final String[] DESCRIPTION = {"Ugh. Getting all those gifts were tiring. At least you were here to help.",
+												 "Wait what are you doing?",
+												 "There's no time to relax. You can have that cup of hot chocolate later.",
+												 ""};
+	private static final String[] DIRECTIONS = {"In each bag there are three words.", 
+												"Each word is scrambled so the letters are all over the place.",
+												"Put the letters back together to form a complete word.",
+												"To do this, type in the coordinates of the pieces you would like to swap.",
+												"To help you out, there is one word in each row.",
+												"If you need an extra hint, just type HINT!",
+												"Oh, and, before you start, make sure not to swap the '!' pieces with the middle pieces!"};
 	
 	static caveExplorer.Playable katherinePuzzle;
 	static caveExplorer.Playable risaPuzzle;
 	
 	static String[][] grid;
-	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
-	// {{"candycane", "cocoa", "cookies"}, {"perfume", "slippers", "apparel"}, {"mugs", "jars", "bottles"};
+	private static String[][] words = {{"candycane", "cocoa", "cookies"}, {"perfume", "slippers", "apparel"}, {"mugs", "jars", "bottles"}};
 	static String[][] splitWordsArray;
 	
 	public static void main(String[] args){
