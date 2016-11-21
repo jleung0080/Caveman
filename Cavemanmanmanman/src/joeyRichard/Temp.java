@@ -7,7 +7,7 @@ import caveExplorer.CaveRoomPd8;
 
 public class Temp {
 	public static String[][] grid = new String[8][15];
-	private static boolean[][] check = new boolean[grid.length][grid[0].length];
+	public static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
 	static Scanner input = new Scanner(System.in); 
 	static Cars zero = new Cars("you", 2);
@@ -29,13 +29,19 @@ public class Temp {
 	private int selectedCar;
 	private int[] vertical = {2,3,5,7,8,10,11,12,13,14};
 	private int[] horizontal = {0,1,4,6,9,15};
-
+	private static final String[] SEQUENCE_1 = {"You have collected all your presents and are ready to go!", "Looking far in the distance, you see another Santa getting ready to go too!",
+			"There can only be one Santa", "FIRST ONE OUT GETS TO BE THIS YEAR'S SANTA!! XDDDD"};
 	public static void main(String[] args){
+		readSequence(SEQUENCE_1);
 		createCars();
-		
-
-
 		printMap();
+	}
+	public static void readSequence(String[] seq){
+		for(String s : seq){
+			System.out.println(s);
+			System.out.println("- - - press enter - - -");
+			input.nextLine();
+		}
 	}
 	public static void printMap(){
 		map = " ";
@@ -79,7 +85,6 @@ public class Temp {
 			}
 		}
 		System.out.println(map);;
-		//function uses string and prints out board. we need to use getcontent to update mapping
 	}
 
 
@@ -126,6 +131,12 @@ public class Temp {
 
 	//creates all the obstacle cars
 	public static void createCars(){
+		for(boolean[] row: check){
+			for(boolean col: row){
+				col = false;
+			}
+		}
+		
 
 
 		zero.startPos = createPos(3,0);

@@ -31,12 +31,14 @@ public class Cars {
 				location[i][0] = startPos[0];
 				location[i][1] = startPos[1]+i;
 				Temp.grid[location[i][0]][location[i][1]] = show;
+				Temp.check[location[i][0]][location[i][1]] = true;
 			}
 		}else{
 			for(int i=0; i<location.length;i++){
 				location[i][0] = startPos[0]+i;
 				location[i][1] = startPos[1];
 				Temp.grid[location[i][0]][location[i][1]] = show;
+				Temp.check[location[i][0]][location[i][1]] = true;
 			}
 		}
 	}
