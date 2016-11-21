@@ -1,14 +1,11 @@
 package katherineRisa;
 
-import java.util.Scanner;
-
 import caveExplorer.CaveExplorer;
 
 public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
 	private static String[][] letters;
 	private static String[][] grid;
-	private static Scanner in;
 	private static int[][] coordinates;
 
 	public KatherinePlayPuzzle() {
@@ -30,6 +27,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		interpretAction(input, 0);
 		System.out.println("Type in the second coordinate of the letter you want to swap with.");
 		String input2 = MainEvent.userInput();
+		interpretAction(input2, 0);
 	
 		String temp;
 		temp = arr[coordinates[0][0]][coordinates[0][1]];

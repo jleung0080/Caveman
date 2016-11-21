@@ -14,6 +14,7 @@ public class MainEvent{
 	
 	static String[][] grid;
 	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
+	// {{"candycane", "cocoa", "cookies"}, {"perfume", "slippers", "apparel"}, {"mugs", "jars", "bottles"};
 	static String[][] splitWordsArray;
 	
 	public static void main(String[] args){
