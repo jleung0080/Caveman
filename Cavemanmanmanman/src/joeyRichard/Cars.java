@@ -31,20 +31,36 @@ public class Cars {
 	private boolean validMove(int spaces){
 		for(int i=1; i<=spaces; i++){
 			if(Temp.direction == "left"){
-				if(Temp.check[location[0][0]][location[0][1]-i]||location[0][1]-i<0){
+				if(location[0][1]-i<0){
 					return false;
+				}else{
+					if(Temp.check[location[0][0]][location[0][1]-i]){
+						return false;
+					}
 				}
 			}else if(Temp.direction == "right"){
-				if(Temp.check[location[0][0]][location[0][1]+i]||location[0][1]+i>14){
+				if(location[0][1]+i>14){
 					return false;
+				}else{
+					if(Temp.check[location[0][0]][location[0][1]+i]){
+						return false;
+					}
 				}
 			}else if(Temp.direction == "up"){
-				if(Temp.check[location[0][0]-i][location[0][1]]||location[0][0]-i<0){
+				if(location[0][0]-i<0){
 					return false;
+				}else{
+					if(Temp.check[location[0][0]-i][location[0][1]]){
+						return false;
+					}
 				}
 			}else{
-				if(Temp.check[location[location.length-1][0]+i][location[location.length-1][1]]||location[location.length-1][0]+i>7){
+				if(location[location.length-1][0]+i>7){
 					return false;
+				}else{
+					if(Temp.check[location[location.length-1][0]+i][location[location.length-1][1]]){
+						return false;
+					}
 				}
 			}
 
@@ -52,31 +68,27 @@ public class Cars {
 		return true;
 	}
 	public void changePos(String direction, int spaces){
-		for(int[] point: location){
+		for(int[] point:location){
+			Temp.check[point[0]][point[1]]=false;
+			Temp.grid[point[0]][point[1]]=null;
+		}
+		for(int i =0;i<location.length;i++){
 			if(Temp.direction == "left"){
-				Temp.check[point[0]][point[1]]=false;
-				Temp.grid[point[0]][point[1]]=null;
-				Temp.check[point[0]][point[1]-spaces]=true;
-				Temp.grid[point[0]][point[1]-spaces]=show;
-
+				Temp.check[location[i][0]][location[i][1]-spaces]=true;
+				Temp.grid[location[i][0]][location[i][1]-spaces]=show;
+				location[i][1] = location[i][1]-spaces;
 			}else if(Temp.direction == "right"){
-				Temp.check[point[0]][point[1]]=false;
-				Temp.grid[point[0]][point[1]]=null;
-				Temp.check[point[0]][point[1]+spaces]=true;
-				Temp.grid[point[0]][point[1]+spaces]=show;
-
+				Temp.check[location[i][0]][location[i][1]+spaces]=true;
+				Temp.grid[location[i][0]][location[i][1]+spaces]=show;
+				location[i][1] = location[i][1]+spaces;
 			}else if(Temp.direction == "up"){
-				Temp.check[point[0]][point[1]]=false;
-				Temp.grid[point[0]][point[1]]=null;
-				Temp.check[point[0]-spaces][point[1]]=true;
-				Temp.grid[point[0]-spaces][point[1]]=show;
-
+				Temp.check[location[i][0]-spaces][location[i][1]]=true;
+				Temp.grid[location[i][0]-spaces][location[i][1]]=show;
+				location[i][0] = location[i][0]-spaces;
 			}else{
-				Temp.check[point[0]][point[1]]=false;
-				Temp.grid[point[0]][point[1]]=null;
-				Temp.check[point[0]+spaces][point[1]]=true;
-				Temp.grid[point[0]+spaces][point[1]]=show;
-
+				Temp.check[location[i][0]+spaces][location[i][1]]=true;
+				Temp.grid[location[i][0]+spaces][location[i][1]]=show;
+				location[i][0] = location[i][0]+spaces;
 			}
 		}
 	}
