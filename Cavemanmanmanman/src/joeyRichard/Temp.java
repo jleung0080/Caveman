@@ -320,7 +320,25 @@ public class Temp {
 		return false;
 	}
 
-
+	private static void computerMove(){
+		String[] possible = {"left", "right", "up", "down"};
+		direction = "";
+		int pick = (int)(Math.random()*15);
+		int numberOfMoves = roll();
+		System.out.println("Other Santa rolled a "+numberOfMoves+"!");
+		for(int i=numberOfMoves;i>0;i-- ){
+			System.out.println("He has "+i+" moves.");
+			System.out.println("Other santa chooses to move "+pick+" car.");
+			selectedCar = pick;
+			whichPerformMove();
+			printMap();
+		}
+		
+		
+		
+		
+	}
+	
 
 	public static String promptInput() {
 		String userInput = input.nextLine();
