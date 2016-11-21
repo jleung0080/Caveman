@@ -4,10 +4,15 @@ import caveExplorer.CaveExplorer;
 
 public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
-	private static String[][] letters;
+	public static String[][] letters;
 	private static String[][] grid;
 	private static int[][] coordinates = new int[2][2];
 	private static boolean firstPlay = true;
+	private static String[][] hints = {{"First Row : Candy you would see for sure on Christmas.", 
+									    "Second Row : Something chocolate is made from.", 
+									    "Third Row : What should you leave for Santa?"},
+									   {"", "", ""},
+									   {"", "", ""}};
 
 	public KatherinePlayPuzzle() {
 		letters = MainEvent.splitWordsArray;
@@ -59,8 +64,13 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	}
 	
 	private void giveHint() {
-		int hintCntr = 0;
-		if()
+		int hintCntr = 3;
+		if(hintCntr == 0){
+			System.out.println("I would love to give you more hints, but you are limited to only 3.");
+		}
+		else{
+			
+		}
 	}
 
 	public void interpretAction(String input, int n) {
