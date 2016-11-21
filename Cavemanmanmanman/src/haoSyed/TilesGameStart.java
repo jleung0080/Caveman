@@ -1,6 +1,8 @@
 package haoSyed;
 
 import caveExplorer.CaveExplorer;
+
+import java.util.Random;
 import java.util.Scanner;
 import caveExplorer.Playable;
 
@@ -107,10 +109,8 @@ public class TilesGameStart implements Playable {
                 flippedCardsBoard2[i][a]=false;
                 }
             }
+            board1 = randomizer();
    	}
-	public static void TilesGameStart() {
-		
-	}
 
 	private static void displayBoard2(boolean flippedCardsBoard2[][], int[][] board2) {//adjust boolean and int to haoSyed
 
@@ -143,9 +143,9 @@ public class TilesGameStart implements Playable {
                 else
                     System.out.print("|     ?     ");
             }
-            System.out.println("");
+            System.out.println();
         }
-        System.out.println("");
+        System.out.println();
     }
 	
 	public static void readSequence(String[] seq){
@@ -155,5 +155,56 @@ public class TilesGameStart implements Playable {
 			CaveExplorer.in.nextLine();
 		}
 	}
+	public static int[][] shuf() {
+	    int start[] = {1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8};
+	    int cards[][] = new int[4][4];
+	    Random ran = new Random();
+	    int tmp, i;
+	    for (int s = 0; s <= 20; s++) {
+	        for (int x = 0; x < 16; x++) //randomize the card placements
+	        {
+	            i = ran.nextInt(100000) % 15;
+	            tmp = start[x];
+	            start[x] = start[i];
+	            start[i] = tmp;
+	        }
+	    }
+	    i = 0;
 	
+	    for (int r = 0; r < 4; r++) // put values in cards here
+	    {
+	        for (int c = 0; c < 4; c++) {
+	            cards[r][c] = start[i];
+	            i = i + 1;
+	        }
+	    }
+	    return cards;
+	
+	}
+	  public static int[][] randomizer() {
+	        int num[] = {1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8};
+	        int board1[][] = new int[4][4];
+	        Random random = new Random();
+	        int temp, t;
+	        for (int j = 0; j <= 20; j++) {
+	            for (int x = 0; x < 16; x++) { //Randomize the card order
+	                t = random.nextInt(1000) % 15;
+	                temp = num[x];
+	                num[x] = num[t];
+	                num[t] = temp;
+
+	            }
+	            t = 0;
+	            for (int r = 0; r < 4; r++) // Cards receive Numbers
+	            {
+	                for (int s = 0; s < 4; s++) {
+	                    board1[r][s] = num[t];
+	                    t = t + 1;
+	                }
+	            }
+
+	        }
+	        return board1;
+	    }
 }
+
