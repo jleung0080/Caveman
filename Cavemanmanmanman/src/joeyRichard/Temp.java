@@ -39,9 +39,8 @@ public class Temp {
 
 		printMap();
 	}
-	
-
 	public static void printMap(){
+		String[] carNum = {"two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen"};
 		map = " ";
 		for(int i = 0; i < grid[0].length - 1; i++){
 			map += "___ ";
@@ -57,23 +56,71 @@ public class Temp {
 					}
 					//lengths of 2 units
 					else if(row == two.startPos[0] && count == two.startPos[1] && textRow == 1){
-						map += "|222";
+						map += "| 2 ";
 					}
 					else if(row == two.endPos[0] && count == two.endPos[1] && textRow == 0){
-						map += "|222";
+						map += "| 2 ";
 					}
 					else if(row == five.startPos[0] && count == five.startPos[1] && textRow == 1){
-						map += "|555";
+						map += "| 5 ";
 					}
 					else if(row == five.endPos[0] && count == five.endPos[1] && textRow == 0){
-						map += "|555";
+						map += "| 5 ";
 					}
 					else if(row == twelve.startPos[0] && count == twelve.startPos[1] && textRow == 1){
-						map += "|12 ";
+						map += "| 12";
 					}
 					else if(row == twelve.endPos[0] && count == twelve.endPos[1] && textRow == 0){
-						map += "|12 ";
+						map += "| 12";
 					}
+					//lengths of 3 units
+					else if(row == three.startPos[0] && count == three.startPos[1] && textRow == 1){
+						map += "| 3 ";
+					}
+					else if(row == (three.startPos[0] + three.endPos[0])/2 && count == three.startPos[1] && (textRow == 0 || textRow == 1)){
+						map += "| 3 ";
+					}
+					else if(row == three.endPos[0] && count == three.endPos[1] && textRow == 0){
+						map += "| 3 ";
+					}
+					else if(row == seven.startPos[0] && count == seven.startPos[1] && textRow == 1){
+						map += "| 7 ";
+					}
+					else if(row == (seven.startPos[0] + seven.endPos[0])/2 && count == seven.startPos[1] && (textRow == 0 || textRow == 1)){
+						map += "| 7 ";
+					}
+					else if(row == seven.endPos[0] && count == seven.endPos[1] && textRow == 0){
+						map += "| 7 ";
+					}
+					else if(row == ten.startPos[0] && count == ten.startPos[1] && textRow == 1){
+						map += "| 10";
+					}
+					else if(row == (ten.startPos[0] + ten.endPos[0])/2 && count == ten.startPos[1] && (textRow == 0 || textRow == 1)){
+						map += "| 10";
+					}
+					else if(row == ten.endPos[0] && count == ten.endPos[1] && textRow == 0){
+						map += "| 10";
+					}
+					else if(row == eleven.startPos[0] && count == eleven.startPos[1] && textRow == 1){
+						map += "| 11";
+					}
+					else if(row == (eleven.startPos[0] + eleven.endPos[0])/2 && count == eleven.startPos[1] && (textRow == 0 || textRow == 1)){
+						map += "| 11";
+					}
+					else if(row == eleven.endPos[0] && count == eleven.endPos[1] && textRow == 0){
+						map += "| 11";
+					}
+					else if(row == thirteen.startPos[0] && count == thirteen.startPos[1] && textRow == 1){
+						map += "| 13";
+					}
+					else if(row == (thirteen.startPos[0] + thirteen.endPos[0])/2 && count == thirteen.startPos[1] && (textRow == 0 || textRow == 1)){
+						map += "| 13";
+					}
+					else if(row == thirteen.endPos[0] && count == thirteen.endPos[1] && textRow == 0){
+						map += "| 13";
+					}
+					
+					
 					
 					
 					else if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
