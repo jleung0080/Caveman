@@ -12,12 +12,6 @@ public class TilesGameStart implements Playable {
 	
 	private static final String[] SEQUENCE_2 = {"By Blixen you've done it", "The door opens", "Merry Christmas!!!!"};
 	
-	private static String[] board1Cards = {"present", "tree", "reindeer", "present", "santa", "elf", "jingle bells", 
-			"star", "reindeer", "cookies", "cookies", "tree", "santa", "star", "jingle bells", "elf"};
-	private static String[] board2Cards = {"santa", "elf", "santa", "reindeer", "present", "jingle bells", "star", 
-			"tree", "star", "reindeer", "cookies", "tree", "jingle bells", "cookies", "jingle bells", "elf"};
-	
-	
 	static int board1[][] = new int[4][4];
 	static int board2[][] = new int[4][4];
 	static boolean flippedCardsBoard1[][] = new boolean[4][4];
