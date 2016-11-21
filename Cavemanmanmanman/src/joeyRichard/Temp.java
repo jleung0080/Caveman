@@ -57,6 +57,29 @@ public class Temp {
 						map+="EXIT";
 					}
 					//lengths of 2 units
+					else if(row == zero.startPos[0] && count == zero.startPos[1]){
+						map += "|000";
+					}
+					else if(row == zero.endPos[0] && count == zero.endPos[1]){
+						if(textRow == 0){
+							map += "0000";
+						}
+						if(textRow == 1){
+							map += "0000";
+						}
+					}
+					else if(row == one.startPos[0] && count == one.startPos[1]){
+						map += "|111";
+					}
+					else if(row == one.endPos[0] && count == one.endPos[1]){
+						if(textRow == 0){
+							map += "1111";
+						}
+						if(textRow == 1){
+							map += "1111";
+						}
+					}
+					
 					else if(row == two.startPos[0] && count == two.startPos[1] && textRow == 1){
 						map += "| 2 ";
 					}
