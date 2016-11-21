@@ -3,7 +3,7 @@ package katherineRisa;
 import java.util.Scanner;
 import caveExplorer.CaveExplorer;
 
-public class MainEvent{
+public class MainEvent implements caveExplorer.Playable{
 	static Scanner input;
 	
 	private static final String[] DESCRIPTION = {"Ugh. Getting all those gifts were tiring. At least you were here to help.",
