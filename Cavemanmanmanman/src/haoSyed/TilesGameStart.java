@@ -6,9 +6,9 @@ import caveExplorer.Playable;
 
 public class TilesGameStart implements Playable {
 
-	private static final String[] SEQUENCE_1 = {"The door locks behind you.", "Something something solve this puzzle to escape."};
+	private static final String[] SEQUENCE_1 = {"Bells jingle in the distance", "Ho, Ho, Ho, solve this puzzle to show your holiday spirit"};
 	
-	private static final String[] SEQUENCE_2 = {"something soemthing solved puzzle", "something something door opens"};
+	private static final String[] SEQUENCE_2 = {"By Blixen you've done it", "The door opens", "Merry Christmas!!!!"};
 	
 	private static String[] board1Cards = {"present", "tree", "reindeer", "present", "santa", "elf", "jingle bells", 
 			"star", "reindeer", "cookies", "cookies", "tree", "santa", "star", "jingle bells", "elf"};
