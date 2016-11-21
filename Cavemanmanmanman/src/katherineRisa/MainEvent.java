@@ -132,7 +132,7 @@ public class MainEvent{
 	public static void readSequence(String[] seq){
 		for(String s : seq){
 			CaveExplorer.print(s);
-			CaveExplorer.print("- - - press enter - - -");
+			CaveExplorer.print("- - - Press Enter - - -");
 			CaveExplorer.in.nextLine();
 		}
 	}

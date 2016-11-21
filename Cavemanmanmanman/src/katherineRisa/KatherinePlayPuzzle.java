@@ -4,6 +4,7 @@ import caveExplorer.CaveExplorer;
 
 public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
+	public static String[][] original;
 	public static String[][] letters;
 	private static String[][] grid;
 	private static int[][] coordinates = new int[2][2];
@@ -11,10 +12,16 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	private static String[][] hints = {{"First Row : Candy you would see for sure on Christmas.", 
 									    "Second Row : Something chocolate is made from.", 
 									    "Third Row : What should you leave for Santa?"},
-									   {"", "", ""},
-									   {"", "", ""}};
+									   {"First Row : For the ladies who want to smell nice.", 
+									    "Second Row : Something comfortable to walk indoors.", 
+									    "Third Row : A synonym for clothes maybe?"},
+									   {"First Row : A common item to hold your hot chocolate.", 
+									    "Second Row : Something to place your cookies in.", 
+									    "Third Row : What would you use to feed a baby milk?"}};
+	private static int hintIdx = 0;
 
 	public KatherinePlayPuzzle() {
+		original = MainEvent.splitWordsArray;
 		letters = MainEvent.splitWordsArray;
 		grid = MainEvent.grid;
 	}
@@ -46,14 +53,14 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		System.out.println("Type in the first coordinate of the letter you want to swap.");
 		String coord1 = MainEvent.userInput();
 		if(coord1.toLowerCase().equals("hint")){
-			giveHint();
+			giveHint(original, hints);
 		}
 		interpretAction(coord1, 0);
 		
 		System.out.println("Type in the second coordinate of the letter you want to swap with.");
 		String coord2 = MainEvent.userInput();
 		if(coord2.toLowerCase().equals("hint")){
-			giveHint();
+			giveHint(original, hints);
 		}
 		interpretAction(coord2, 1);
 		
@@ -63,13 +70,21 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		arr[coordinates[1][0]][coordinates[1][1]] = temp;
 	}
 	
-	private void giveHint() {
-		int hintCntr = 3;
-		if(hintCntr == 0){
+	private void giveHint(String[][] arr, String[][] hints) {
+		if(hintIdx == 3){
 			System.out.println("I would love to give you more hints, but you are limited to only 3.");
 		}
+		else if(arr[0][0] == "c"){
+			System.out.println(hints[0][hintIdx]);
+			hintIdx++;
+		}
+		else if(arr[1][0] == "p"){
+			System.out.println(hints[1][hintIdx]);
+			hintIdx++;
+		}
 		else{
-			
+			System.out.println(hints[2][hintIdx]);
+			hintIdx++;
 		}
 	}
 
