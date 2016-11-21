@@ -96,6 +96,9 @@ public class TilesGameStart implements Playable {
 						flippedCardsBoard1[x1][x2] = true;
 						flippedCardsBoard1[y1][y2] = true;
 						board1FlippedCards -= 2;
+						flippedCardsBoard2[x1][x2] = true;
+						flippedCardsBoard2[y1][y2] = true;
+						board2FlippedCards -= 2;
 						displayBoard1(flippedCardsBoard1, board1);
 					}
 					else{
@@ -118,6 +121,9 @@ public class TilesGameStart implements Playable {
 					
 					if (board2[i1][i2] == board2[j1][j2]){
 						System.out.println("Nice!");
+						flippedCardsBoard1[i1][i2] = true;
+						flippedCardsBoard1[j1][j2] = true;
+						board1FlippedCards -= 2;
 						flippedCardsBoard2[i1][i2] = true;
 						flippedCardsBoard2[j1][j2] = true;
 						board2FlippedCards -= 2;
