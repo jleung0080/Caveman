@@ -17,7 +17,7 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 		
 		if(checkBomb()){
 			System.out.println("You put a bomb in the bag!! How stupi-- uh... foolish can you be to mistake a bomb as a present! Leave! You're fired.");
-			//MainEvent.main();
+			MainEvent.main(null);
 		}else{
 			checkComplete();
 			if(!complete){
@@ -30,18 +30,17 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 	}
 
 	private void checkComplete() {
-		A : for(int i = 0; i < completeLetters.length; i++){
-				for(int j = 0; j < completeLetters[i].length; j++){
-					if(currentLetters[i][j] != completeLetters[i][j]){
-						if(completeLetters[i][j] == " " && currentLetters[i][j] == "!"){
-							complete = true;
-						}
-						complete = false;
-						break A;
+		for(int i = 0; i < completeLetters.length; i++){
+			for(int j = 0; j < completeLetters[i].length; j++){
+				if(currentLetters[i][j] != completeLetters[i][j]){
+					if(completeLetters[i][j] == " " && currentLetters[i][j] == "!"){
+						complete = true;
 					}
+					complete = false;
+					return;
 				}
 			}
-		
+		}
 	}
 
 	private boolean checkBomb() {
