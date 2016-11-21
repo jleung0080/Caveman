@@ -27,11 +27,6 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	}
 	
 	public void play() {
-		for(int i =0; i < original.length; i ++){
-			for(int j = 0; j < original[i].length; j++){
-				System.out.println(original[i][j]);
-			}
-		}
 		while(firstPlay){
 			letters = mixLetters(letters);
 			makeBombs(letters);
@@ -40,6 +35,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		}
 		swap(letters);
 		MainEvent.inputLetters(grid, letters);
+		MainEvent.risaPuzzle.play();
 	}
 	
 	private void makeBombs(String[][] arr) {

@@ -29,6 +29,10 @@ public class MainEvent implements caveExplorer.Playable{
 	static String[][] splitWordsArray;
 	
 	public void play(){
+		game();
+	}
+	
+	public static void game(){
 		input = new Scanner(System.in);
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
