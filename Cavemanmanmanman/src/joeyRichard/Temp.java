@@ -226,7 +226,7 @@ public class Temp {
 			}
 			System.out.println("How many spaces would you like to sleigh the car in that direction?");
 			spaces = getInt();
-			while(intersects(spaces)){
+			while(invalidMove(spaces)){
 				System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
 				spaces = getInt();
 			}
@@ -293,7 +293,7 @@ public class Temp {
 		return false;
 	}
 
-	private static boolean intersects(int spaces){
+	private static boolean invalidMove(int spaces){
 		for(int[] point: selectedCarLocation()){
 			for(int i=1; i<=spaces; i++){
 				if(direction == "left"){
