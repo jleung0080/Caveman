@@ -55,12 +55,27 @@ public class Temp {
 					if(row == (int)(grid.length/2) && count == 0 && textRow == 0){
 						map+="EXIT";
 					}
+					//lengths of 2 units
 					else if(row == two.startPos[0] && count == two.startPos[1] && textRow == 1){
 						map += "|222";
 					}
 					else if(row == two.endPos[0] && count == two.endPos[1] && textRow == 0){
 						map += "|222";
 					}
+					else if(row == five.startPos[0] && count == five.startPos[1] && textRow == 1){
+						map += "|555";
+					}
+					else if(row == five.endPos[0] && count == five.endPos[1] && textRow == 0){
+						map += "|555";
+					}
+					else if(row == twelve.startPos[0] && count == twelve.startPos[1] && textRow == 1){
+						map += "|12 ";
+					}
+					else if(row == twelve.endPos[0] && count == twelve.endPos[1] && textRow == 0){
+						map += "|12 ";
+					}
+					
+					
 					else if(row == (int)(grid.length/2) && count == 0 && textRow == 1){
 						map+=" ___";
 					}
