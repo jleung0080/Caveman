@@ -119,34 +119,6 @@ public class MainEvent{
 		}
 	}
 	
-	public void interpretAction(String input) {
-		while(!isValid(input)){
-			CaveExplorer.print("Please enter 'w', 'a', 's' or 'd'");
-			input = CaveExplorer.in.nextLine().toLowerCase();
-		}
-		
-		String[] keys = {"w", "d", "s", "a"};//order matters
-		int indexFound = -1;
-		
-		for(int i = 0; i < keys.length; i++){
-			if(keys[i].equals(input)){
-				indexFound = i;
-				break;
-			}
-		}
-	}
-
-	private boolean isValid(String input) {
-		String[] validKeys = {"w", "a", "s", "d"};
-		
-		for(String key: validKeys){
-			if(input.toLowerCase().equals(key))
-				return true;
-		}
-		
-		return false;
-	}
-	
 	/*
 	 * puzzle is a list of words
 	 * if the length of the word does not fill the length of columns, fill it with blank spaces
