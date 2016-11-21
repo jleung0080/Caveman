@@ -2,6 +2,10 @@ package caveExplorer;
 
 import java.util.Scanner;
 
+import haoSyed.TilesGameStart;
+import joeyRichard.Temp;
+import katherineRisa.MainEvent;
+
 public class CaveExplorer {
 
 	public static CaveRoomPd8[][] caves;
