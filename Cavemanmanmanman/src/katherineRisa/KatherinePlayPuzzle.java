@@ -6,7 +6,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
 	private static String[][] letters;
 	private static String[][] grid;
-	private static int[][] coordinates;
+	private static int[][] coordinates = new int[2][2];
 
 	public KatherinePlayPuzzle() {
 		letters = MainEvent.splitWordsArray;
@@ -23,12 +23,12 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
 	private void swap(String[][] arr) {
 		System.out.println("Type in the first coordinate of the letter you want to swap.");
-		String input = MainEvent.userInput();
-		interpretAction(input, 0);
+		String coord1 = MainEvent.userInput();
+		interpretAction(coord1, 0);
 		System.out.println("Type in the second coordinate of the letter you want to swap with.");
-		String input2 = MainEvent.userInput();
-		interpretAction(input2, 0);
-	
+		String coord2 = MainEvent.userInput();
+		interpretAction(coord2, 1);
+		
 		String temp;
 		temp = arr[coordinates[0][0]][coordinates[0][1]];
 		arr[coordinates[0][0]][coordinates[0][1]] = arr[coordinates[1][0]][coordinates[1][1]];
@@ -54,24 +54,18 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 			validCol[i] = "" + i;
 		}
 		
-		String subInput;
-		String subInput2;
-		
-		coordinates  = new int[2][2];
+		String coord;
 		
 		for(int i = 0; i < input.length(); i++){
-			subInput = input.substring(i, i + 1);
+			coord = input.substring(i, i + 1);
 			for(String rowKey : validRow){
-				if(subInput.equals(rowKey)){
-					coordinates[n][0] = Integer.parseInt(subInput); //converts string to integer
-					for(int j = i; j < input.length(); j++){
-						subInput2 = input.substring(j, j + 1);
-						System.out.println(subInput2);
+				if(coord.equals(rowKey)){
+					coordinates[n][0] = Integer.parseInt(coord); //converts string to integer
+					for(int j = i + 1; j < input.length(); j++){
+						coord = input.substring(j, j + 1);
 						for(String colKey : validCol){
-							if(subInput.equals(colKey)){
-								coordinates[n][1] = Integer.parseInt(subInput2); 
-//								System.out.println(coordinates[n][0]);
-//								System.out.println(coordinates[n][1]);
+							if(coord.equals(colKey)){
+								coordinates[n][1] = Integer.parseInt(coord);
 								return true;
 							}
 						}
