@@ -39,7 +39,7 @@ public class MainEvent{
 		
 	}
 
-	private static void inputLetters(String[][] grid, String[][] words) {
+	public static void inputLetters(String[][] grid, String[][] words) {
 		int row = 2;
 		for(int i = 0; i < words.length; i++){
 			int col = 3;
