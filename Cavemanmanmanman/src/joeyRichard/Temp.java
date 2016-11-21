@@ -30,20 +30,29 @@ public class Temp implements Playable{
 	static Cars fifteen = new Cars(" 15", 4);
 	static boolean inLoop = true;
 	static boolean playerResults;
-	private static int selectedCar;
-	private static int[] vertical = {2,3,5,7,8,10,11,12,13,14};
-	private static int[] horizontal = {0,1,4,6,9,15};
+	public static int selectedCar;
+	public static int[] vertical = {2,3,5,7,8,10,11,12,13,14};
+	public static int[] horizontal = {0,1,4,6,9,15};
 	private static final String[] SEQUENCE_1 = {"You have collected all your presents and are ready to go!", "Looking far in the distance, you see another Santa getting ready to go too!",
 			"There can only be one Santa", "FIRST ONE OUT GETS TO BE THIS YEAR'S SANTA!! XDDDD"};
 	private static final String[] SEQUENCE_2 = {"After a long battle of wits, you finally got out of your driveway", "After giving the other Santa the finger(thumbs up of course), you hurry off to deliver presents"};
 	private static final String[] SEQUENCE_3 = {"The other Santa got out of his driveway first!!!!", "As a fellow Santa, it hurts your little heart to see someone else take your job", "In your bag of goodies you remember that"
 			+  " you have a TIME MACHINE!!!!" + "So..... Lets try this again!!"};
+	private static boolean playerWin = false;
+	private static boolean cpuWin = false;
 	
-	public void play() {
+//	public void play() {
+	public static void main(String[] args){
 		readSequence(SEQUENCE_1);
 		createCars();
 		printMap();
-		move();
+		while(!gameEnd()){
+			move();
+			if(gameEnd()){
+				break;
+			}
+			computerMove();
+		}
 	}
 	
 	public static void readSequence(String[] seq){
@@ -221,7 +230,12 @@ public class Temp implements Playable{
 		for(int i=numberOfMoves;i>0;i-- ){
 			System.out.println("You have "+i+" moves.");
 			System.out.println("Which sleigh would you like to move? Select a sleigh by its number. Your sleigh is 0 and the other santa's sleigh is 1.");
-			selectedCar = getInt();
+			if(promptInput().equals("end")){
+				playerWin = true;
+				break;
+			}else{
+				selectedCar = getInt();
+			}
 			whichPerformMove();
 			printMap();
 		}
@@ -263,6 +277,43 @@ public class Temp implements Playable{
 			fifteen.performMove();
 
 	}
+	private static void whichCpuPerformMove() {
+		if(selectedCar == 0){
+			zero.cpuPerformMove();
+		}else if(selectedCar == 1){
+			one.cpuPerformMove();
+		}else if(selectedCar == 2){
+			two.cpuPerformMove();
+		}else if(selectedCar == 3){
+			three.cpuPerformMove();
+		}else if(selectedCar == 4){
+			four.cpuPerformMove();
+		}else if(selectedCar == 5){
+			five.cpuPerformMove();
+		}else if(selectedCar == 6){
+			six.cpuPerformMove();
+		}else if(selectedCar == 7){
+			seven.cpuPerformMove();
+		}else if(selectedCar == 8){
+			eight.cpuPerformMove();
+		}else if(selectedCar == 9){
+			nine.cpuPerformMove();
+		}else if(selectedCar == 10){
+			ten.cpuPerformMove();
+		}else if(selectedCar == 11){
+			eleven.cpuPerformMove();
+		}else if(selectedCar == 12){
+			twelve.cpuPerformMove();
+		}else if(selectedCar == 13){
+			thirteen.cpuPerformMove();
+		}else if(selectedCar == 14){
+			fourteen.cpuPerformMove();
+		}else
+			fifteen.cpuPerformMove();
+
+	}
+	
+	
 
 	public static int roll(){
 		return (int)(Math.random()*6+1);
@@ -324,21 +375,18 @@ public class Temp implements Playable{
 	}
 
 	private static void computerMove(){
-		String[] possible = {"left", "right", "up", "down"};
-		direction = "";
-		int pick = (int)(Math.random()*15);
-		int numberOfMoves = roll();
-		System.out.println("Other Santa rolled a "+numberOfMoves+"!");
-		for(int i=numberOfMoves;i>0;i-- ){
-			System.out.println("He has "+i+" moves.");
-			System.out.println("Other santa chooses to move "+pick+" car.");
-			selectedCar = pick;
-			whichPerformMove();
-			printMap();
+		if(!gameEnd()){
+			int pick;
+			int numberOfMoves = roll();
+			System.out.println("Other Santa rolled a "+numberOfMoves+"!");
+			for(int i=numberOfMoves;i>0;i-- ){
+				System.out.println("He has "+i+" moves.");
+				pick = (int)(Math.random()*15);
+				selectedCar = pick;
+				whichCpuPerformMove();
+				printMap();
+			}
 		}
-		
-		
-		
 		
 	}
 	
@@ -364,17 +412,24 @@ public class Temp implements Playable{
 		}
 		return value;
 	}
-	private void winOrLose(){
-		if(zero.location[zero.location.length-1][1] == 14){
-			//win
-			playerResults = true;
-			inLoop = false;
+	private static boolean gameEnd(){
+		if(zero.location[zero.location.length-1][1] == 14 || playerWin == true){
+			playerWin = true;
+			readSequence(SEQUENCE_2);
+			return true;
 		}
-		if(one.location[0][1] == 0){
-			//lose
-			playerResults = false;
-			inLoop = false;
+		if(one.location[0][1] == 0 || cpuWin == true){
+			cpuWin = true;
+			readSequence(SEQUENCE_3);
+			return true;
 		}
+		return false;
+	}
+
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

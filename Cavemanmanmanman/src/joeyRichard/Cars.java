@@ -27,6 +27,31 @@ public class Cars {
 		changePos(Temp.direction,spaces);
 	}
 
+	public void cpuPerformMove(){
+		String[] possible = {"left", "right", "up", "down"};
+		Temp.direction = "";
+		for(int car:Temp.horizontal){
+			if(Temp.selectedCar == car){
+				Temp.direction = possible[(int)(Math.random()*2)];
+			}
+		}
+		for(int car:Temp.vertical){
+			if(Temp.selectedCar == car){
+				Temp.direction = possible[(int)(Math.random()*2)+2];
+			}
+		}
+		int spaces;
+		spaces = (int)(Math.random()*5);
+		while(!validMove(spaces)){
+			System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
+			spaces = Temp.getInt();
+		}
+		System.out.println("Other Santa decides to move car "+Temp.selectedCar+" "+Temp.direction+" "+spaces+
+				" spaces.");
+		changePos(Temp.direction,spaces);
+	}
+
+
 
 	private boolean validMove(int spaces){
 		for(int i=1; i<=spaces; i++){
