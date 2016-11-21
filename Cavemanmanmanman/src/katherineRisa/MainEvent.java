@@ -18,7 +18,7 @@ public class MainEvent{
 												"Put the letters back together to form a complete word.",
 												"To do this, type in the coordinates of the pieces you would like to swap.",
 												"To help you out, there is one word in each row.",
-												"If you need an extra hint, just type HINT!",
+												"If you need an extra hint, just type yes!",
 												"Oh, and, before you start, make sure not to swap the '!' pieces with the middle pieces!"};
 	
 	static caveExplorer.Playable katherinePuzzle;
