@@ -131,9 +131,9 @@ public class MainEvent{
 	
 	public static void readSequence(String[] seq){
 		for(String s : seq){
-			CaveExplorer.print(s);
-			CaveExplorer.print("- - - Press Enter - - -");
-			CaveExplorer.in.nextLine();
+			System.out.println(s);
+			System.out.println("- - - Press Enter - - -");
+			input.nextLine();
 		}
 	}
 	
