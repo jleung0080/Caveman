@@ -9,7 +9,7 @@ public class Temp {
 	public static String[][] grid = new String[8][15];
 	public static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
-	private static String direction;
+	public static String direction;
 	static Scanner input = new Scanner(System.in); 
 	static Cars zero = new Cars("you", 2);
 	static Cars one = new Cars("cpu", 2);
@@ -30,8 +30,8 @@ public class Temp {
 	static boolean inLoop = true;
 	static boolean playerResults;
 	private static int selectedCar;
-	private int[] vertical = {2,3,5,7,8,10,11,12,13,14};
-	private int[] horizontal = {0,1,4,6,9,15};
+	private static int[] vertical = {2,3,5,7,8,10,11,12,13,14};
+	private static int[] horizontal = {0,1,4,6,9,15};
 	private static final String[] SEQUENCE_1 = {"You have collected all your presents and are ready to go!", "Looking far in the distance, you see another Santa getting ready to go too!",
 			"There can only be one Santa", "FIRST ONE OUT GETS TO BE THIS YEAR'S SANTA!! XDDDD"};
 	private static final String[] SEQUENCE_2 = {"After a long battle of wits, you finally got out of your driveway", "After giving the other Santa the finger(thumbs up of course), you hurry off to deliver presents"};
@@ -41,6 +41,7 @@ public class Temp {
 		readSequence(SEQUENCE_1);
 		createCars();
 		printMap();
+		move();
 	}
 	public static void readSequence(String[] seq){
 		for(String s : seq){
@@ -210,70 +211,61 @@ public class Temp {
 		fifteen.setPos();
 	}
 
-	private void move(){
+	private static void move(){
 		direction = "";
 		int numberOfMoves = roll();
 		System.out.println("You rolled a "+numberOfMoves+"!");
-		int spaces;
 		for(int i=numberOfMoves;i>0;i-- ){
-			System.out.println("You have "+numberOfMoves+" moves.");
+			System.out.println("You have "+i+" moves.");
 			System.out.println("Which sleigh would you like to move? Select a sleigh by its number. Your sleigh is 0 and the other santa's sleigh is 1.");
 			selectedCar = getInt();
-			System.out.println("Which direction would you like to move?");
-			direction = selectDirection();
-			while(!isValidDirection(direction)){
-				direction = selectDirection();
-			}
-			System.out.println("How many spaces would you like to sleigh the car in that direction?");
-			spaces = getInt();
-			while(invalidMove(spaces)){
-				System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
-				spaces = getInt();
-			}
-			performMove(spaces);
+			whichPerformMove();
+			printMap();
 		}
-
 	}
 
-	private void performMove(int spaces) {
+
+	private static void whichPerformMove() {
 		if(selectedCar == 0){
-			
+			zero.performMove();
 		}else if(selectedCar == 1){
-			
+			one.performMove();
 		}else if(selectedCar == 2){
-			
+			two.performMove();
 		}else if(selectedCar == 3){
-			
+			three.performMove();
 		}else if(selectedCar == 4){
-			
+			four.performMove();
 		}else if(selectedCar == 5){
-			
+			five.performMove();
 		}else if(selectedCar == 6){
-			
+			six.performMove();
 		}else if(selectedCar == 7){
-			
+			seven.performMove();
 		}else if(selectedCar == 8){
-			
+			eight.performMove();
 		}else if(selectedCar == 9){
-			
+			nine.performMove();
 		}else if(selectedCar == 10){
-			
+			ten.performMove();
 		}else if(selectedCar == 11){
-			
+			eleven.performMove();
 		}else if(selectedCar == 12){
-			
+			twelve.performMove();
 		}else if(selectedCar == 13){
-			
+			thirteen.performMove();
 		}else if(selectedCar == 14){
-			
+			fourteen.performMove();
 		}else
-			
+			fifteen.performMove();
+
 	}
-	private static int roll(){
+
+	public static int roll(){
 		return (int)(Math.random()*6+1);
 	}
 
-	private String selectDirection(){
+	public static String selectDirection(){
 		// TODO Auto-generated method stub
 		String directionChoice = promptInput().toLowerCase();
 
@@ -295,7 +287,7 @@ public class Temp {
 	}
 
 
-	private boolean isDir(String directionChoice) {
+	private static boolean isDir(String directionChoice) {
 		// TODO Auto-generated method stub
 		String[] validDir = {"up", "down", "left", "right"};
 		for(String key : validDir){
@@ -306,7 +298,7 @@ public class Temp {
 	}
 
 
-	private boolean isValidDirection(String dir) {
+	public static boolean isValidDirection(String dir) {
 		for(int car:vertical){
 			if(selectedCar == car){
 				if(dir == "up"||dir == "down"){
@@ -328,30 +320,6 @@ public class Temp {
 		return false;
 	}
 
-	private static boolean invalidMove(int spaces){
-		for(int[] point: selectedCarLocation()){
-			for(int i=1; i<=spaces; i++){
-				if(direction == "left"){
-					if(check[point[0]][point[1]-i]||point[1]-i<0){
-						return true;
-					}
-				}else if(direction == "right"){
-					if(check[point[0]][point[1]+i]||point[1]+i>14){
-						return true;
-					}
-				}else if(direction == "up"){
-					if(check[point[0]-i][point[1]]||point[0]-i<0){
-						return true;
-					}
-				}else{
-					if(check[point[0]+i][point[1]]||point[0]+i>7){
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
 
 
 	public static String promptInput() {
@@ -359,43 +327,7 @@ public class Temp {
 		return userInput;
 	}
 
-	private static int[][] selectedCarLocation(){
-		if(selectedCar == 0){
-			return zero.location;
-		}else if(selectedCar == 1){
-			return one.location;
-		}else if(selectedCar == 2){
-			return two.location;
-		}else if(selectedCar == 3){
-			return three.location;
-		}else if(selectedCar == 4){
-			return four.location;
-		}else if(selectedCar == 5){
-			return five.location;
-		}else if(selectedCar == 6){
-			return six.location;
-		}else if(selectedCar == 7){
-			return seven.location;
-		}else if(selectedCar == 8){
-			return eight.location;
-		}else if(selectedCar == 9){
-			return nine.location;
-		}else if(selectedCar == 10){
-			return ten.location;
-		}else if(selectedCar == 11){
-			return eleven.location;
-		}else if(selectedCar == 12){
-			return twelve.location;
-		}else if(selectedCar == 13){
-			return thirteen.location;
-		}else if(selectedCar == 14){
-			return fourteen.location;
-		}else
-			return fifteen.location;
-
-	}
-
-	private int getInt(){
+	public static int getInt(){
 		String integerString = promptInput();
 		boolean isInteger = false;
 		int value = 0;
