@@ -27,6 +27,11 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	}
 	
 	public void play() {
+		for(int i =0; i < original.length; i ++){
+			for(int j = 0; j < original[i].length; j++){
+				System.out.println(original[i][j]);
+			}
+		}
 		while(firstPlay){
 			letters = mixLetters(letters);
 			makeBombs(letters);
@@ -66,10 +71,15 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		String coord2 = MainEvent.userInput();
 		interpretAction(coord2, 1);
 		
-		String temp;
-		temp = arr[coordinates[0][0]][coordinates[0][1]];
-		arr[coordinates[0][0]][coordinates[0][1]] = arr[coordinates[1][0]][coordinates[1][1]];
-		arr[coordinates[1][0]][coordinates[1][1]] = temp;
+		if(coordinates[0][0] == (coordinates[1][0] - 1) || coordinates[0][0] == (coordinates[1][0] + 1) || coordinates[0][1] == (coordinates[1][1] - 1) || coordinates[0][1] == (coordinates[1][1] + 1)){
+			String temp;
+			temp = arr[coordinates[0][0]][coordinates[0][1]];
+			arr[coordinates[0][0]][coordinates[0][1]] = arr[coordinates[1][0]][coordinates[1][1]];
+			arr[coordinates[1][0]][coordinates[1][1]] = temp;
+		}
+		else{
+			System.out.println("You can only swap adjacent pieces.");
+		}
 	}
 
 	public void interpretAction(String input, int n) {
@@ -83,11 +93,11 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		if(hintIdx == 3){
 			System.out.println("I would love to give you more hints, but you are limited to only 3.");
 		}
-		else if(arr[0][0] == "c"){
+		else if(arr[0][0].substring(0,  1) == "c"){
 			System.out.println(hints[0][hintIdx]);
 			hintIdx++;
 		}
-		else if(arr[1][0] == "p"){
+		else if(arr[1][0].substring(0,  1) == "p"){
 			System.out.println(hints[1][hintIdx]);
 			hintIdx++;
 		}
