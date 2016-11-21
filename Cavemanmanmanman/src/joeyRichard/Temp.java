@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoomPd8;
+import caveExplorer.Playable;
 
-public class Temp {
+public class Temp implements Playable{
 	public static String[][] grid = new String[8][15];
 	public static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
@@ -372,5 +373,10 @@ public class Temp {
 			playerResults = false;
 			inLoop = false;
 		}
+	}
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		
 	}
 }
