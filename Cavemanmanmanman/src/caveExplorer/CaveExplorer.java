@@ -21,8 +21,7 @@ public class CaveExplorer {
 		currentRoom = caves[2][0];
 		
 		currentRoom.enter();
-		//caves[2][0].setConnection(CaveRoomPd8.WEST, caves[1][1], new Door());
-		//caves[2][2].setConnection(CaveRoomPd8.SOUTH, caves[2][2], new Door());
+
 		caves[2][0].setConnection(CaveRoomPd8.EAST, caves[2][1], new Door(true, false));
 		caves[2][1].setConnection(CaveRoomPd8.NORTH, caves[1][1], new Door(true, false));
 		caves[1][1].setConnection(CaveRoomPd8.NORTH, caves[0][1], new Door(true, false));
