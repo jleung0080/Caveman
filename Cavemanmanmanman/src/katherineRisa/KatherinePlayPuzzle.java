@@ -24,7 +24,6 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		letters = swap(letters);
 		MainEvent.inputLetters(grid, letters);
 	}
-
 	
 	private void makeBombs(String[][] arr) {
 		int num = (int) (Math.random()*3) + 1;
