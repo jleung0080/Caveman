@@ -33,7 +33,7 @@ public class MainEvent{
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
-		grid = new String[13][61];
+		grid = new String[10][61];
 		makeGrid(grid);
 		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
