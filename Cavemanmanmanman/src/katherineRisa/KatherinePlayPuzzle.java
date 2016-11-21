@@ -7,20 +7,42 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	private static String[][] letters;
 	private static String[][] grid;
 	private static int[][] coordinates = new int[2][2];
+	private static boolean firstPlay = true;
 
 	public KatherinePlayPuzzle() {
 		letters = MainEvent.splitWordsArray;
 		grid = MainEvent.grid;
 	}
-
+	
 	public void play() {
-		mixLetters(letters);
-		MainEvent.inputLetters(grid, letters);
+		while(firstPlay){
+			mixLetters(letters);
+			makeBombs(letters);
+			MainEvent.inputLetters(grid, letters);
+			firstPlay = false;
+		}
 		swap(letters);
 		MainEvent.inputLetters(grid, letters);
 	}
 
 	
+	private void makeBombs(String[][] arr) {
+		int num = (int) (Math.random()*3);
+		for(int i = 0; i < arr.length; i++){
+			for(int j = 0; j < arr[i].length; j++){
+				if(num > 0 && arr[i][j] == " "){
+					arr[i][j] = "!";
+					num --;
+				}
+			}
+		}
+//		for(int i = 0; i < num; i++){
+//			int rndRow = (int)(Math.random()*arr.length);
+//			int rndCol = (int)(Math.random()*arr[0].length);
+//			arr[rndRow][rndCol] += "!";
+//		}
+	}
+
 	private void swap(String[][] arr) {
 		System.out.println("Type in the first coordinate of the letter you want to swap.");
 		String coord1 = MainEvent.userInput();
