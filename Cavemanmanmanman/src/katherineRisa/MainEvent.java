@@ -19,16 +19,12 @@ public class MainEvent{
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
-		rowID = 65;
-
-		SystemCharacter.toString((char)rowID);
-		
 		grid = new String[10][37];
 		makeGrid(grid);
 		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
-//		createFields();
-//		katherinePuzzle.play();
+		createFields();
+		katherinePuzzle.play();
 //		risaPuzzle.play();
 		
 	}
