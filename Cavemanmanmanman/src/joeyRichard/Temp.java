@@ -7,7 +7,7 @@ import caveExplorer.CaveRoomPd8;
 
 public class Temp {
 	public static String[][] grid = new String[8][15];
-	private static boolean[][] check = new boolean[grid.length][grid[0].length];
+	public static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
 	static Scanner input = new Scanner(System.in); 
 	static Cars zero = new Cars("you", 2);
@@ -32,6 +32,7 @@ public class Temp {
 
 	public static void main(String[] args){
 		createCars();
+		
 		
 
 
@@ -79,7 +80,6 @@ public class Temp {
 			}
 		}
 		System.out.println(map);;
-		//function uses string and prints out board. we need to use getcontent to update mapping
 	}
 
 
@@ -126,6 +126,12 @@ public class Temp {
 
 	//creates all the obstacle cars
 	public static void createCars(){
+		for(boolean[] row: check){
+			for(boolean col: row){
+				col = false;
+			}
+		}
+		
 
 
 		zero.startPos = createPos(3,0);
