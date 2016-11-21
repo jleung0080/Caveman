@@ -29,6 +29,7 @@ public class MainEvent{
 	static String[][] splitWordsArray;
 	
 	public static void main(String[] args){
+		input = new Scanner(System.in);
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
@@ -48,7 +49,6 @@ public class MainEvent{
 	}
 	
 	private static void createFields() {
-		input = new Scanner(System.in);
 		katherinePuzzle = new KatherinePlayPuzzle();
 		risaPuzzle = new RisaCheckSolution();
 		
@@ -131,9 +131,9 @@ public class MainEvent{
 	
 	public static void readSequence(String[] seq){
 		for(String s : seq){
-			CaveExplorer.print(s);
-			CaveExplorer.print("- - - press enter - - -");
-			CaveExplorer.in.nextLine();
+			System.out.println(s);
+			System.out.println("- - - Press Enter - - -");
+			input.nextLine();
 		}
 	}
 	
