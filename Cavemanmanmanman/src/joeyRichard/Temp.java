@@ -31,6 +31,9 @@ public class Temp {
 	private int[] horizontal = {0,1,4,6,9,15};
 	private static final String[] SEQUENCE_1 = {"You have collected all your presents and are ready to go!", "Looking far in the distance, you see another Santa getting ready to go too!",
 			"There can only be one Santa", "FIRST ONE OUT GETS TO BE THIS YEAR'S SANTA!! XDDDD"};
+	private static final String[] SEQUENCE_2 = {"After a long battle of wits, you finally got out of your driveway", "After giving the other Santa the finger(thumbs up of course), you hurry off to deliver presents"};
+	private static final String[] SEQUENCE_3 = {"The other Santa got out of his driveway first!!!!", "As a fellow Santa, it hurts your little heart to see someone else take your job", "In your bag of goodies you remember that"
+			+  " you have a TIME MACHINE!!!!" + "So..... Lets try this again!!"};
 	public static void main(String[] args){
 		readSequence(SEQUENCE_1);
 		createCars();
