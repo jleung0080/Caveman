@@ -54,7 +54,6 @@ public class MainEvent{
 			}
 			row = row + 3;
 		}
-		
 		printPic(grid);
 	}
 
