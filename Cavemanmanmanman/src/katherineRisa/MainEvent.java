@@ -33,14 +33,13 @@ public class MainEvent{
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
-		grid = new String[10][37];
+		grid = new String[10][61];
 		makeGrid(grid);
 		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
 		createFields();
 		katherinePuzzle.play();
-//		risaPuzzle.play();
-		
+		risaPuzzle.play();	
 	}
 
 	public static String userInput(){
