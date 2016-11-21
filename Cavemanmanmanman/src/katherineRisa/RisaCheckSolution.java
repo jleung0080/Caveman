@@ -1,16 +1,20 @@
 package katherineRisa;
 
+import caveExplorer.CaveRoomPd8;
+import caveExplorer.Door;
 import katherineRisa.KatherinePlayPuzzle;
 
 public class RisaCheckSolution implements caveExplorer.Playable {
 	
 	private static String[][] currentLetters;
 	private static String[][] originalLetters;
-	private static boolean complete = false;
+	private static String[][] grid;
+	static boolean complete = false;
 	
 	public RisaCheckSolution() {
 		currentLetters = KatherinePlayPuzzle.letters;
 		originalLetters = MainEvent.splitWordsArray;
+		grid = MainEvent.grid;
 	}
 
 	public void play() {
@@ -25,6 +29,7 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 			}
 			else{
 				System.out.println("Thanks! You were a great help. You can leave this room now. Bye bye!!");
+				//caves[1][2].setConnection(CaveRoomPd8.EAST, caves[1][3], new Door(true, false));
 			}
 		}
 	}
@@ -48,5 +53,13 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 			}
 		}
 		return false;
+	}
+	
+	private static void cheatCode(){
+		if(MainEvent.userInput() == "cheat"){
+			MainEvent.inputLetters(grid, originalLetters);
+			System.out.println("You did it. Now on to the next job.");
+			
+		}
 	}
 }

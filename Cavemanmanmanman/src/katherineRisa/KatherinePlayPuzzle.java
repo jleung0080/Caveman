@@ -1,6 +1,9 @@
 package katherineRisa;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.CaveRoomPd8;
+import caveExplorer.Door;
+import katherineRisa.RisaCheckSolution;
 
 public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
@@ -19,6 +22,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 									    "Second Row : Something to place your cookies in.", 
 									    "Third Row : What would you use to feed a baby milk?"}};
 	private static int hintIdx = 0;
+	public static boolean gameWon = false;
 
 	public KatherinePlayPuzzle() {
 		original = MainEvent.splitWordsArray;
@@ -27,17 +31,36 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	}
 	
 	public void play() {
-		while(firstPlay){
-			letters = mixLetters(letters);
-			makeBombs(letters);
-			MainEvent.inputLetters(grid, letters);
-			firstPlay = false;
+		while(!gameWon){
+			
+			while(firstPlay){
+				if(gameWon){
+					break;
+				}
+				letters = mixLetters(letters);
+				makeBombs(letters);
+				MainEvent.inputLetters(grid, letters);
+				firstPlay = false;
+			}
+			if(gameWon){
+				break;
+			}
+			swap(letters);
+			if(RisaCheckSolution.complete == false){
+				if(gameWon){
+					break;
+				}
+				MainEvent.inputLetters(grid, letters);
+				MainEvent.risaPuzzle.play();
+			}
 		}
-		swap(letters);
-		MainEvent.inputLetters(grid, letters);
-		MainEvent.risaPuzzle.play();
 	}
 	
+	private boolean gameEnd() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	private void makeBombs(String[][] arr) {
 		int num = (int) (Math.random()*3) + 1;
 		for(int row = 0; row < arr.length; row++){
@@ -55,6 +78,10 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	private void swap(String[][] arr) {
 		System.out.println("Would you like a hint?");
 		String response = MainEvent.userInput();
+		if(response.toLowerCase().equals("cheat")){
+			cheatCode();
+			
+		}else{
 		if(response.toLowerCase().equals("yes")){
 			giveHint(original, hints);
 		}
@@ -76,6 +103,8 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		else{
 			System.out.println("You can only swap adjacent pieces.");
 		}
+		}
+		
 	}
 
 	public void interpretAction(String input, int n) {
@@ -165,5 +194,13 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 			}
 		}
 		return mixedArray;
+	}
+	
+	private static void cheatCode(){
+			RisaCheckSolution.complete = true;
+			MainEvent.inputLetters(grid, original);
+			System.out.println("You did it. Now on to the next job.");
+			CaveExplorer.caves[1][2].setConnection(CaveRoomPd8.EAST, CaveExplorer.caves[1][3], new Door(true, false));
+			gameWon = true;
 	}
 }
