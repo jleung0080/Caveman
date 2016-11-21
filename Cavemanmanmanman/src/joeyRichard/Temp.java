@@ -10,6 +10,8 @@ public class Temp {
 	private static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
 	static Scanner input = new Scanner(System.in); 
+	static Cars zero = new Cars("player", 2);
+	static Cars one = new Cars("cpu", 2);
 	static Cars two = new Cars("0", 2);
 	static Cars three = new Cars("1", 3);
 	static Cars four = new Cars("2", 4);
@@ -28,12 +30,12 @@ public class Temp {
 
 	public static void main(String[] args){
 		createCars();
-				thirteen.setPos();
-				for(int[] str:thirteen.location){
-					for(int z:str){
-						System.out.println(z);
-					}
-				}
+//				thirteen.setPos();
+//				for(int[] str:thirteen.location){
+//					for(int z:str){
+//						System.out.println(z);
+//					}
+//				}
 
 
 
@@ -193,6 +195,12 @@ public class Temp {
 
 	//creates all the obstacle cars
 	public static void createCars(){
+		zero.startPos = createPos(3,0);
+		zero.endPos = createPos(3,1);
+		
+		one.startPos = createPos(4,13);
+		one.endPos = createPos(4,14);
+		
 		two.startPos = createPos(5,1);
 		two.endPos = createPos(6,1);
 
@@ -318,7 +326,7 @@ public class Temp {
 
 
 	private boolean onEdge() {
-		if(selectedCar==2){
+		if(selectedCar==0){
 			if(two.location[0][0] == 0 || two.location[two.location.length-1][0] == grid.length-1){
 				
 			}
