@@ -19,6 +19,9 @@ public class CaveExplorer {
 		}
 		
 		currentRoom = caves[2][0];
+		caves[0][1] = new EventRoom("This is where you found the key", new MainEvent());
+		caves[1][3] = new EventRoom("", new Temp());
+		caves[2][3] = new EventRoom("", new TilesGameStart());
 		
 		currentRoom.enter();
 
