@@ -13,15 +13,14 @@ public class MainEvent{
 	static caveExplorer.Playable risaPuzzle;
 	
 	static String[][] grid;
-	private static String[][] words = {{"one", "two", "three"}, {"four", "five", "six"}, {"seven", "eight", "nine"}};
-	// {{"candycane", "cocoa", "cookies"}, {"perfume", "slippers", "apparel"}, {"mugs", "jars", "bottles"};
+	private static String[][] words = {{"candycane", "cocoa", "cookies"}, {"perfume", "slippers", "apparel"}, {"mugs", "jars", "bottles"}};
 	static String[][] splitWordsArray;
 	
 	public static void main(String[] args){
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
-		grid = new String[10][37];
+		grid = new String[13][61];
 		makeGrid(grid);
 		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
