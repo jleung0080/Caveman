@@ -21,7 +21,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 			MainEvent.inputLetters(grid, letters);
 			firstPlay = false;
 		}
-		swap(letters);
+		letters = swap(letters);
 		MainEvent.inputLetters(grid, letters);
 	}
 
@@ -43,20 +43,33 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 //		}
 	}
 
-	private void swap(String[][] arr) {
+	private String[][] swap(String[][] arr) {
 		System.out.println("Type in the first coordinate of the letter you want to swap.");
 		String coord1 = MainEvent.userInput();
+		if(coord1.toLowerCase().equals("hint")){
+			giveHint();
+		}
 		interpretAction(coord1, 0);
+		
 		System.out.println("Type in the second coordinate of the letter you want to swap with.");
 		String coord2 = MainEvent.userInput();
+		if(coord2.toLowerCase().equals("hint")){
+			giveHint();
+		}
 		interpretAction(coord2, 1);
 		
 		String temp;
 		temp = arr[coordinates[0][0]][coordinates[0][1]];
 		arr[coordinates[0][0]][coordinates[0][1]] = arr[coordinates[1][0]][coordinates[1][1]];
 		arr[coordinates[1][0]][coordinates[1][1]] = temp;
+		
+		return arr;
 	}
 	
+	private void giveHint() {
+		
+	}
+
 	public void interpretAction(String input, int n) {
 		while(!isValid(input, n)){
 			CaveExplorer.print("Please enter a valid coordinate.");
