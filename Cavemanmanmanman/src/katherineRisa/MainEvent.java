@@ -33,7 +33,7 @@ public class MainEvent{
 		readSequence(DESCRIPTION);
 		readSequence(DIRECTIONS);
 		
-		grid = new String[10][61];
+		grid = new String[11][62];
 		makeGrid(grid);
 		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
@@ -106,14 +106,18 @@ public class MainEvent{
 		for(int row = 0; row < array.length; row++){
 			for(int col = 0; col < array[row].length; col++){
 				array[row][col] = " ";
-				if(col == array[row].length){
+				if(col == array[row].length - 1 && row != 0 && row % 3 == 0){
 					array[row][col] = "" +  colNum;
 					colNum++;
 				}
-				if(col!= 0 && col!= array[row].length - 1 && row % 3 == 0){
+				if(row == array.length - 1 && col % 6 == 0){
+					array[row][col] = "" + rowNum;
+					rowNum++;
+				}
+				if(col != (array[row].length - 1) && col!= 0 && row % 3 == 0){
 					array[row][col] = "_";
 				}
-				if(row!= 0 && col % 6 == 0){
+				if(row!= 0 && row != (array.length - 1) && col % 6 == 0){
 					array[row][col] = "|";
 				}
 			}
