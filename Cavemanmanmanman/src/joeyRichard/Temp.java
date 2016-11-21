@@ -38,12 +38,14 @@ public class Temp implements Playable{
 	private static final String[] SEQUENCE_2 = {"After a long battle of wits, you finally got out of your driveway", "After giving the other Santa the finger(thumbs up of course), you hurry off to deliver presents"};
 	private static final String[] SEQUENCE_3 = {"The other Santa got out of his driveway first!!!!", "As a fellow Santa, it hurts your little heart to see someone else take your job", "In your bag of goodies you remember that"
 			+  " you have a TIME MACHINE!!!!" + "So..... Lets try this again!!"};
+	
 	public void play() {
 		readSequence(SEQUENCE_1);
 		createCars();
 		printMap();
 		move();
 	}
+	
 	public static void readSequence(String[] seq){
 		for(String s : seq){
 			System.out.println(s);
