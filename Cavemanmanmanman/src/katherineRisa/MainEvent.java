@@ -9,8 +9,11 @@ public class MainEvent{
 	private static final String[] DESCRIPTION = {"Ugh. Getting all those gifts were tiring. At least you were here to help.",
 												 "Wait what are you doing?",
 												 "There's no time to relax. You can have that cup of hot chocolate later.",
-												 ""};
-	private static final String[] DIRECTIONS = {"In each bag there are three words.", 
+												 "Your next job is to put the gifts into the bags.",
+												 "See those tags right there?",
+												 "Make sure the correct items are put in.",
+												 "It's not as simple as it sounds so you might want to get started now."};
+	private static final String[] DIRECTIONS = {"On each tag there are three words.", 
 												"Each word is scrambled so the letters are all over the place.",
 												"Put the letters back together to form a complete word.",
 												"To do this, type in the coordinates of the pieces you would like to swap.",
