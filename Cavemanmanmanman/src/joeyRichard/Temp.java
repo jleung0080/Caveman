@@ -195,18 +195,19 @@ public class Temp {
 
 	private void move(){
 		String direction;
+		int numberOfMoves = roll();
 		int spaces;
-		System.out.println("Which car would you like to move? The player's car is 0 and the computer's car is 1.");
+		System.out.println("Which sleigh would you like to move? Your sleigh is 0 and the other santa's sleigh is 1.");
 		selectedCar = getInt();
 		System.out.println("Which direction would you like to move?");
 		direction = selectDirection();
 		while(!isValidDirection(direction)){
 			direction = selectDirection();
 		}
-		System.out.println("How many spaces would you like to move the car in that direction?");
+		System.out.println("How many spaces would you like to sleigh the car in that direction?");
 		spaces = getInt();
 		while(intersects()){
-			System.out.println("That is an invalid move. Please enter a valid number of spaces to move the car.");
+			System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
 			spaces = getInt();
 		}
 
@@ -250,25 +251,25 @@ public class Temp {
 
 
 	private boolean isValidDirection(String dir) {
-		if(selectedCar == 0 || selectedCar == 1 || selectedCar == 3 || 
-				selectedCar == 5 || selectedCar == 6 || selectedCar == 8 || 
-				selectedCar == 9 || selectedCar == 10 || selectedCar == 11 || selectedCar == 12){
-			if(dir == "up"||dir == "down"){
-				return true;
+		for(int car:vertical){
+			if(selectedCar == car){
+				if(dir == "up"||dir == "down"){
+					return true;
+				}
+				System.out.println("The selected car may only move up or down. Please select a valid direction.");
+				return false;
 			}
-			System.out.println("The selected car may only move up or down. Please select a valid direction.");
-			return false;
-		}else if(selectedCar == 2 ||selectedCar == 4||selectedCar == 7||selectedCar == 13){
-			if(onEdge() || borderingCar()){
-
+		}
+		for(int car: horizontal){
+			if(selectedCar == car){
+				if(dir == "left"||dir == "right"){
+					return true;
+				}
+				System.out.println("The selected car may only move left or right. Please select a valid direction.");
+				return false;
 			}
-			if(dir == "left"||dir == "right"){
-				return true;
-			}
-			System.out.println("The selected car may only move left or right. Please select a valid direction.");
-			return false;
-		}else
-			return false;
+		}
+		return false;
 	}
 
 
@@ -279,61 +280,12 @@ public class Temp {
 
 
 	private boolean onEdge() {
-		if(selectedCar==0){
-			if(zero.location[0][0] == 0 || zero.location[zero.location.length-1][0] == grid.length-1){
-
-			}
-		}
-		if(selectedCar==1){
-			if(two.location[0][0] == 0 || two.location[two.location.length-1][0] == grid.length-1){
-
-			}
-		}
-		if(selectedCar==2){
-
-		}
-		if(selectedCar==3){
-
-		}
-		if(selectedCar==4){
-
-		}
-		if(selectedCar==5){
-
-		}
-		if(selectedCar==6){
-
-		}
-		if(selectedCar==7){
-
-		}
-		if(selectedCar==8){
-
-		}
-		if(selectedCar==9){
-
-		}
-		if(selectedCar==10){
-
-		}
-		if(selectedCar==11){
-
-		}
-		if(selectedCar==12){
-
-		}
-		if(selectedCar==13){
-
-		}
+		
 		return false;
 	}
 
 
 	private static boolean intersects(){
-
-
-
-
 		return false;
 	}
 
