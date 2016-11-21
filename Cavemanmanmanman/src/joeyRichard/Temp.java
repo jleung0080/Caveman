@@ -41,8 +41,7 @@ public class Temp implements Playable{
 	private static boolean playerWin = false;
 	private static boolean cpuWin = false;
 	
-//	public void play() {
-	public static void main(String[] args){
+	public void play(){
 		readSequence(SEQUENCE_1);
 		createCars();
 		printMap();
@@ -426,10 +425,5 @@ public class Temp implements Playable{
 		return false;
 	}
 
-	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
