@@ -297,6 +297,7 @@ public class Temp {
 
 
 	private static boolean intersects(){
+		for
 		return false;
 	}
 

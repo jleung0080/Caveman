@@ -10,6 +10,7 @@ public class Cars {
 		location = new int[length][2];
 		show = id;
 	}
+	
 
 	public void changePos(String direction, int spaces){
 		if(direction == "left"){
