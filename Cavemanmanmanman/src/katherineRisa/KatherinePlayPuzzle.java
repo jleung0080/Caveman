@@ -6,7 +6,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
 	private static String[][] letters;
 	private static String[][] grid;
-	private static int[][] coordinates = new int[2][2];
+	private static int[][] coordinates;
 
 	public KatherinePlayPuzzle() {
 		letters = MainEvent.splitWordsArray;
@@ -55,6 +55,9 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		}
 		
 		String subInput;
+		String subInput2;
+		
+		coordinates  = new int[2][2];
 		
 		for(int i = 0; i < input.length(); i++){
 			subInput = input.substring(i, i + 1);
@@ -62,17 +65,22 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 				if(subInput.equals(rowKey)){
 					coordinates[n][0] = Integer.parseInt(subInput); //converts string to integer
 					for(int j = i; j < input.length(); j++){
-						subInput = input.substring(j, j + 1);
+						subInput2 = input.substring(j, j + 1);
+						System.out.println(subInput2);
 						for(String colKey : validCol){
 							if(subInput.equals(colKey)){
-								coordinates[n][1] = Integer.parseInt(subInput); 
+								coordinates[n][1] = Integer.parseInt(subInput2); 
+//								System.out.println(coordinates[n][0]);
+//								System.out.println(coordinates[n][1]);
 								return true;
 							}
 						}
+						return false;
 					}
 					return false;
 				}
 			}
+			return false;
 		}
 		return false;
 	}
