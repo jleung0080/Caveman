@@ -39,8 +39,7 @@ public class MainEvent{
 		inputLetters(grid, splitWordsArray);
 		createFields();
 		katherinePuzzle.play();
-		risaPuzzle.play();
-		
+		risaPuzzle.play();	
 	}
 
 	public static String userInput(){
