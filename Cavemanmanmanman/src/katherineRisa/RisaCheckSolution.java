@@ -5,22 +5,26 @@ import katherineRisa.KatherinePlayPuzzle;
 public class RisaCheckSolution implements caveExplorer.Playable {
 	
 	private static String[][] currentLetters;
-	private static String[][] completeLetters;
+	private static String[][] originalLetters;
 	private static boolean complete = false;
 	
 	public RisaCheckSolution() {
 		currentLetters = KatherinePlayPuzzle.letters;
-		completeLetters = MainEvent.splitWordsArray;
+		originalLetters = MainEvent.splitWordsArray;
 	}
 
 	public void play() {
-		
+		for(int i = 0; i < originalLetters.length; i++){
+			for(int j = 0; j < originalLetters[i].length; j++){
+				System.out.println(originalLetters[i][j]);
+			}
+		}
 		if(checkBomb()){
 			System.out.println("You put a bomb in the bag!! How stupi-- uh... foolish can you be to mistake a bomb as a present! Leave! You're fired.");
+			System.out.println("...");
 			MainEvent.main(null);
 		}else{
-			checkComplete();
-			if(!complete){
+			if(checkComplete()){
 				MainEvent.katherinePuzzle.play();
 			}
 			else{
@@ -29,18 +33,15 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 		}
 	}
 
-	private void checkComplete() {
-		for(int i = 0; i < completeLetters.length; i++){
-			for(int j = 0; j < completeLetters[i].length; j++){
-				if(currentLetters[i][j] != completeLetters[i][j]){
-					if(completeLetters[i][j] == " " && currentLetters[i][j] == "!"){
-						complete = true;
-					}
-					complete = false;
-					return;
+	private boolean checkComplete() {
+		for(int i = 0; i < originalLetters.length; i++){
+			for(int j = 0; j < originalLetters[i].length; j++){
+				if(originalLetters[i][j] != " " && currentLetters[i][j] != "!" && originalLetters[i][j] != currentLetters[i][j]){
+					return false;
 				}
 			}
 		}
+		return true;
 	}
 
 	private boolean checkBomb() {

@@ -101,13 +101,14 @@ public class MainEvent{
 	}
 
 	private static void makeGrid(String[][] array) {
-		int rowID = 65;
+		int colNum = 0;
+		int rowNum = 0;
 		for(int row = 0; row < array.length; row++){
 			for(int col = 0; col < array[row].length; col++){
 				array[row][col] = " ";
 				if(col == array[row].length){
-					array[row][col] = Character.toString((char)rowID);
-					rowID++;
+					array[row][col] = "" +  colNum;
+					colNum++;
 				}
 				if(col!= 0 && col!= array[row].length - 1 && row % 3 == 0){
 					array[row][col] = "_";

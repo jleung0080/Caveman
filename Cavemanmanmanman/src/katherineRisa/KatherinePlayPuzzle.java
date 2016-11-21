@@ -27,6 +27,13 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	}
 	
 	public void play() {
+		for(int i = 0; i < original.length; i++){
+			for(int j = 0; j < original[i].length; j++){
+				System.out.println(original[i][j]);
+			}
+		}
+		
+		
 		while(firstPlay){
 			mixLetters(letters);
 			makeBombs(letters);
