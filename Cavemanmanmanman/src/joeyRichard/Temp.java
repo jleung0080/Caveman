@@ -32,12 +32,9 @@ public class Temp {
 	private static final String[] SEQUENCE_1 = {"You have collected all your presents and is ready to go!", "Looking far in the distant, you see another Santa getting ready to go too!",
 			"There can only be one Santa", "FIRST ONE OUT GETS TO BE THIS YEAR'S SANTA!! XDDDD"};
 	public static void main(String[] args){
-<<<<<<< HEAD
 		createCars();
 		
-=======
 		readSequence(SEQUENCE_1);
->>>>>>> branch 'master' of https://github.com/jleung0080/Caveman
 		
 		createCars();
 		printMap();
