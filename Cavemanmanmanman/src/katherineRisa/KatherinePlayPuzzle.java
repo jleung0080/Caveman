@@ -7,6 +7,7 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	private static String[][] letters;
 	private static String[][] grid;
 	private static int[][] coordinates = new int[2][2];
+	private static boolean firstPlay = true;
 
 	public KatherinePlayPuzzle() {
 		letters = MainEvent.splitWordsArray;
@@ -14,8 +15,11 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	}
 
 	public void play() {
-		mixLetters(letters);
-		MainEvent.inputLetters(grid, letters);
+		while(firstPlay){
+			mixLetters(letters);
+			MainEvent.inputLetters(grid, letters);
+			firstPlay = false;
+		}
 		swap(letters);
 		MainEvent.inputLetters(grid, letters);
 	}
