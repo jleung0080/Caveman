@@ -56,9 +56,9 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 	}
 	
 	private static void cheatCode(){
-		if(MainEvent.userInput() == "cheat"){
+		if(MainEvent.userInput().equals("cheat")){
 			MainEvent.inputLetters(grid, originalLetters);
-			System.out.println("You did it. Now on to the next job.");
+			System.out.println("You did it! Now move on to your next job!");
 			
 		}
 	}
