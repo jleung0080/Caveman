@@ -1,7 +1,6 @@
 package katherineRisa;
 
 import java.util.Scanner;
-import caveExplorer.CaveExplorer;
 
 public class MainEvent implements caveExplorer.Playable{
 	static Scanner input;

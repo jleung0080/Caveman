@@ -32,7 +32,6 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	
 	public void play() {
 		while(!gameWon){
-			
 			while(firstPlay){
 				if(gameWon){
 					break;
@@ -54,11 +53,6 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 				MainEvent.risaPuzzle.play();
 			}
 		}
-	}
-	
-	private boolean gameEnd() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	private void makeBombs(String[][] arr) {
@@ -109,8 +103,8 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 
 	public void interpretAction(String input, int n) {
 		while(!isValid(input, n)){
-		CaveExplorer.print("Please enter a valid coordinate.");
-		input = MainEvent.userInput();
+			CaveExplorer.print("Please enter a valid coordinate.");
+			input = MainEvent.userInput();
 		}
 	}
 	
@@ -118,11 +112,11 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		if(hintIdx == 3){
 			System.out.println("I would love to give you more hints, but you are limited to only 3.");
 		}
-		else if(arr[0][0].substring(0,  1) == "c"){
+		else if(arr[0][0].equals("c")){
 			System.out.println(hints[0][hintIdx]);
 			hintIdx++;
 		}
-		else if(arr[1][0].substring(0,  1) == "p"){
+		else if(arr[1][0].equals("p")){
 			System.out.println(hints[1][hintIdx]);
 			hintIdx++;
 		}
