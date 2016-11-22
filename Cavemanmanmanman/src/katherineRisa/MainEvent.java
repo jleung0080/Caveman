@@ -32,73 +32,43 @@ public class MainEvent implements caveExplorer.Playable{
 	static String[][] splitWordsArray;
 	
 	static String[][] mixedLetters;
-	private static int selectedIndx;
-	
-	private static String[][] hints = {{"First Row : Candy you would see for sure on Christmas.", 
-	    "Second Row : Something chocolate is made from.", 
-	    "Third Row : What should you leave for Santa?"},
-	   {"First Row : For the ladies who want to smell nice.", 
-	    "Second Row : Something comfortable to walk indoors.", 
-	    "Third Row : A synonym for clothes maybe?"},
-	   {"First Row : A common item to hold your hot chocolate.", 
-	    "Second Row : Something to place your cookies in.", 
-	    "Third Row : What would you use to feed a baby milk?"}};
-	
-	private static int hintIdx = 0;
-	
+	static int selectedIndx;
+	public static boolean gameWon = false;
 	
 	public void play(){
-		game();
+		while(!gameWon){
+			input = new Scanner(System.in);
+			readSequence(DESCRIPTION);
+			game();
+			if(gameWon){
+				break;
+			}
+		}
 	}
 	
 	public static void game(){
-		input = new Scanner(System.in);
-		readSequence(DESCRIPTION);
-		readSequence(DIRECTIONS);
-		
-		grid = new String[11][62];
-		makeGrid(grid);
-		splitWordsArray = splitWords(words, grid[0]);
-		inputLetters(grid, splitWordsArray);
-		
-		mixedLetters = mixLetters(splitWordsArray);
-		makeBombs(mixedLetters);
-		inputLetters(grid, mixedLetters);
-
-		createFields();
-
-		System.out.println("Would you like a hint?");
-		String response = userInput();
-		
-		if(response.toLowerCase().equals("cheat")){
-			cheatCode();
-		}
-		else{
-			if(response.toLowerCase().equals("yes")){
-				giveHint(selectedIndx, hints);
-			}
+		while(!gameWon){
+			input = new Scanner(System.in);
+			readSequence(DIRECTIONS);
+			
+			grid = new String[11][62];
+			makeGrid(grid);
+			splitWordsArray = splitWords(words, grid[0]);
+			
+			mixedLetters = mixLetters(splitWordsArray);
+			makeBombs(mixedLetters);
+			inputLetters(grid, mixedLetters);
+	
+			createFields();
+			
 			katherinePuzzle.play();
+			if(gameWon){
+				break;
+			}
 			risaPuzzle.play();
-		}
-		
-		createFields();
-	}
-	
-	private static void cheatCode(){
-		RisaCheckSolution.complete = true;
-		MainEvent.inputLetters(grid, original);
-		System.out.println("You did it. Now on to the next job.");
-		CaveExplorer.caves[1][2].setConnection(CaveRoomPd8.EAST, CaveExplorer.caves[1][3], new Door(true, false));
-		gameWon = true;
-	}
-	
-	private static void giveHint(int indx, String[][] hints) {
-		if(hintIdx == 3){
-			System.out.println("I would love to give you more hints, but you are limited to only 3.");
-		}
-		else{
-			System.out.println(hints[indx][hintIdx]);
-			hintIdx++;
+			if(gameWon){
+				break;
+			}
 		}
 	}
 	

@@ -6,33 +6,61 @@ import caveExplorer.Door;
 import katherineRisa.RisaCheckSolution;
 
 public class KatherinePlayPuzzle implements caveExplorer.Playable {
-	
 	private static String[][] original;
 	public static String[][] letters;
 	private static String[][] grid;
 	private static int[][] coordinates = new int[2][2];
-
-	public static boolean gameWon = false;
+	private static int selectedIndx;
+	private static String[][] hints = {{"First Row : Candy you would see for sure on Christmas.", 
+	    "Second Row : Something chocolate is made from.", 
+	    "Third Row : What should you leave for Santa?"},
+	   {"First Row : For the ladies who want to smell nice.", 
+	    "Second Row : Something comfortable to walk indoors.", 
+	    "Third Row : A synonym for clothes maybe?"},
+	   {"First Row : A common item to hold your hot chocolate.", 
+	    "Second Row : Something to place your cookies in.", 
+	    "Third Row : What would you use to feed a baby milk?"}};
+	
+	private static int hintIdx = 0;
 
 	public KatherinePlayPuzzle() {
 		original = MainEvent.splitWordsArray;
-		letters = MainEvent.splitWordsArray;
+		letters = MainEvent.mixedLetters;
 		grid = MainEvent.grid;
+		selectedIndx = MainEvent.selectedIndx;
 	}
 	
 	public void play() {
-		while(!gameWon){
-			if(gameWon){
+		while(!MainEvent.gameWon){
+			System.out.println("Would you like a hint?");
+			String response = MainEvent.userInput();
+			if(response.toLowerCase().equals("cheat")){
+				cheatCode();
 				break;
 			}
-			swap(letters);
-			if(RisaCheckSolution.complete == false){
-				if(gameWon){
-					break;
-				}
-				MainEvent.inputLetters(grid, letters);
-				MainEvent.risaPuzzle.play();
+			if(response.toLowerCase().equals("yes")){
+				giveHint(selectedIndx, hints);
 			}
+			swap(letters);
+			MainEvent.inputLetters(grid, letters);
+			MainEvent.risaPuzzle.play();
+		}
+		
+	}
+	private static void cheatCode(){
+		MainEvent.inputLetters(grid, original);
+		System.out.println("You did it. Now on to the next job.");
+		CaveExplorer.caves[1][2].setConnection(CaveRoomPd8.EAST, CaveExplorer.caves[1][3], new Door(true, false));
+		MainEvent.gameWon = true;
+	}
+	
+	private static void giveHint(int indx, String[][] hints) {
+		if(hintIdx == 3){
+			System.out.println("I would love to give you more hints, but you are limited to only 3.");
+		}
+		else{
+			System.out.println(hints[indx][hintIdx]);
+			hintIdx++;
 		}
 	}
 
