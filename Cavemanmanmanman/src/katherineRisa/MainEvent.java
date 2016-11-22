@@ -2,6 +2,10 @@ package katherineRisa;
 
 import java.util.Scanner;
 
+import caveExplorer.CaveExplorer;
+import caveExplorer.CaveRoomPd8;
+import caveExplorer.Door;
+
 public class MainEvent implements caveExplorer.Playable{
 	static Scanner input;
 	
@@ -27,6 +31,22 @@ public class MainEvent implements caveExplorer.Playable{
 	private static String[][] words = {{"candycane", "cocoa", "cookies"}, {"perfume", "slippers", "apparel"}, {"mugs", "jars", "bottles"}};
 	static String[][] splitWordsArray;
 	
+	static String[][] mixedLetters;
+	private static int selectedIndx;
+	
+	private static String[][] hints = {{"First Row : Candy you would see for sure on Christmas.", 
+	    "Second Row : Something chocolate is made from.", 
+	    "Third Row : What should you leave for Santa?"},
+	   {"First Row : For the ladies who want to smell nice.", 
+	    "Second Row : Something comfortable to walk indoors.", 
+	    "Third Row : A synonym for clothes maybe?"},
+	   {"First Row : A common item to hold your hot chocolate.", 
+	    "Second Row : Something to place your cookies in.", 
+	    "Third Row : What would you use to feed a baby milk?"}};
+	
+	private static int hintIdx = 0;
+	
+	
 	public void play(){
 		game();
 	}
@@ -40,11 +60,91 @@ public class MainEvent implements caveExplorer.Playable{
 		makeGrid(grid);
 		splitWordsArray = splitWords(words, grid[0]);
 		inputLetters(grid, splitWordsArray);
-		createFields();
-		katherinePuzzle.play();
-		risaPuzzle.play();	
-	}
+		
+		mixedLetters = mixLetters(splitWordsArray);
+		makeBombs(mixedLetters);
+		inputLetters(grid, mixedLetters);
 
+		createFields();
+
+		System.out.println("Would you like a hint?");
+		String response = userInput();
+		
+		if(response.toLowerCase().equals("cheat")){
+			cheatCode();
+		}
+		else{
+			if(response.toLowerCase().equals("yes")){
+				giveHint(selectedIndx, hints);
+			}
+			katherinePuzzle.play();
+			risaPuzzle.play();
+		}
+		
+		createFields();
+	}
+	
+	private static void cheatCode(){
+		RisaCheckSolution.complete = true;
+		MainEvent.inputLetters(grid, original);
+		System.out.println("You did it. Now on to the next job.");
+		CaveExplorer.caves[1][2].setConnection(CaveRoomPd8.EAST, CaveExplorer.caves[1][3], new Door(true, false));
+		gameWon = true;
+	}
+	
+	private static void giveHint(int indx, String[][] hints) {
+		if(hintIdx == 3){
+			System.out.println("I would love to give you more hints, but you are limited to only 3.");
+		}
+		else{
+			System.out.println(hints[indx][hintIdx]);
+			hintIdx++;
+		}
+	}
+	
+	private static void makeBombs(String[][] arr) {
+		int num = (int) (Math.random()*3) + 1;
+		for(int row = 0; row < arr.length; row++){
+			for(int col = 0; col < arr[row].length; col++){
+				if(num > 0 && arr[row][col] == " "){
+					if(row != 1){
+						arr[row][col] = "!";
+						num --;
+					}
+				}
+			}
+		}
+	}
+	
+	private static String[][] mixLetters(String[][] words){
+		String[][] mixedArray = new String[words.length][words[0].length];
+		String[] temp = new String[words.length * words[0].length];
+		int cntr = 0;
+		for(int i = 0; i < words.length; i++){
+			for(int j = 0; j < words[i].length; j++){
+				temp[cntr] = words[i][j];
+				cntr ++;
+			}
+		}
+		
+		String placeHolder;
+		for(int i = 0; i < temp.length; i++){
+			int rnd = (int)(Math.random()*temp.length);
+			placeHolder = temp[i];
+			temp[i] = temp[rnd];
+			temp[rnd] = placeHolder;
+		}
+		
+		cntr = 0;
+		for(int i = 0; i < words.length; i++){
+			for(int j = 0; j < words[i].length; j++){
+				mixedArray[i][j] = temp[cntr];
+				cntr ++;
+			}
+		}
+		return mixedArray;
+	}
+	
 	public static String userInput(){
 		String uInput = input.nextLine();
 		return uInput;
@@ -71,8 +171,8 @@ public class MainEvent implements caveExplorer.Playable{
 	}
 
 	private static String[][] splitWords(String[][] words, String[] gridCol){
-		int rndIndx = (int)(Math.random()*words.length);
-		String[] selectedArray = words[rndIndx];
+		selectedIndx = (int)(Math.random()*words.length);
+		String[] selectedArray = words[selectedIndx];
 		
 		String[][] splitWords = new String[selectedArray.length][gridCol.length/6]; //length of column should be same as column length of grid
 		
