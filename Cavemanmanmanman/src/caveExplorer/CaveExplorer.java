@@ -12,8 +12,36 @@ public class CaveExplorer {
 	public static Scanner in;
 	public static CaveRoomPd8 currentRoom;
 	public static Inventory inventory;
+	private static String[] introduction = {"Hey you!", "Yes, you!", "Do you think you can do us a favor?",
+											"See, Christmas is coming around but Santa is too sick to deliver the presents.",
+											"We need to find a substitute, and I think a person like you would definetely qualify."};
+	private static String[] respondsNo = {"C'mon you can do this.", "Don't you want to be on Santa's nice list?",
+										  "You'll be bringing joy to children around the world!", 
+										  "If you don't say yes I will make Christmas your worst nightmare."};
+	private static String[] respondsYes = {"Great! I'll tell you what you need to do.", 
+									       "First, we need to get the presents.",
+									       "Then we have to order them into the bags.",
+									       "Oh, I might have forgotten to tell you but you aren't exactly 'official' yet.",
+									       "What I mean is that there are others just like you, whom you will race.",
+									       "The fastest racer will become the substitute Santa, so get Started right now!"};
+	private static boolean no = true;
 	
 	public static void main(String[] args) {
+		MainEvent.readSequence(introduction);
+		System.out.print("Will you help us?");
+		String response = MainEvent.userInput();
+		while(no){
+			if(response.toLowerCase().equals("yes")){
+				MainEvent.readSequence(respondsYes);
+				no = false;
+			}
+			else{
+				int rnd = (int)(Math.random()*respondsNo.length);
+				System.out.println(respondsNo[rnd]);
+			}
+		}
+		
+		
 		in = new Scanner(System.in);
 		caves = new CaveRoomPd8[3][4];
 		for(int row = 0; row < caves.length; row++){
