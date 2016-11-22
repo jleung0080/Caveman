@@ -7,6 +7,7 @@ import joeyRichard.Temp;
 import katherineRisa.MainEvent;
 
 public class CaveExplorer {
+	static Scanner input;
 
 	public static CaveRoomPd8[][] caves;
 	public static Scanner in;
@@ -27,12 +28,12 @@ public class CaveExplorer {
 	private static boolean no = true;
 	
 	public static void main(String[] args) {
-		MainEvent.readSequence(introduction);
+		readSequence(introduction);
 		System.out.print("Will you help us?");
 		String response = MainEvent.userInput();
 		while(no){
 			if(response.toLowerCase().equals("yes")){
-				MainEvent.readSequence(respondsYes);
+				readSequence(respondsYes);
 				no = false;
 			}
 			else{
@@ -90,6 +91,14 @@ public class CaveExplorer {
 
 	public static void print(String text){
 		System.out.println(text);
+	}
+	
+	public static void readSequence(String[] seq){
+		for(String s : seq){
+			System.out.println(s);
+			System.out.println("- - - Press Enter - - -");
+			input.nextLine();
+		}
 	}
 
 }

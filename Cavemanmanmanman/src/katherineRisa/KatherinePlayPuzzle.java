@@ -74,31 +74,30 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 		String response = MainEvent.userInput();
 		if(response.toLowerCase().equals("cheat")){
 			cheatCode();
-			
-		}else{
-		if(response.toLowerCase().equals("yes")){
-			giveHint(original, hints);
-		}
-		
-		System.out.println("Type in the first coordinate of the letter you want to swap.");
-		String coord1 = MainEvent.userInput();
-		interpretAction(coord1, 0);
-		
-		System.out.println("Type in the second coordinate of the letter you want to swap with.");
-		String coord2 = MainEvent.userInput();
-		interpretAction(coord2, 1);
-		
-		if(coordinates[0][0] == (coordinates[1][0] - 1) || coordinates[0][0] == (coordinates[1][0] + 1) || coordinates[0][1] == (coordinates[1][1] - 1) || coordinates[0][1] == (coordinates[1][1] + 1)){
-			String temp;
-			temp = arr[coordinates[0][0]][coordinates[0][1]];
-			arr[coordinates[0][0]][coordinates[0][1]] = arr[coordinates[1][0]][coordinates[1][1]];
-			arr[coordinates[1][0]][coordinates[1][1]] = temp;
 		}
 		else{
-			System.out.println("You can only swap adjacent pieces.");
-		}
-		}
+			if(response.toLowerCase().equals("yes")){
+				giveHint(original, hints);
+			}
 		
+			System.out.println("Type in the first coordinate of the letter you want to swap.");
+			String coord1 = MainEvent.userInput();
+			interpretAction(coord1, 0);
+		
+			System.out.println("Type in the second coordinate of the letter you want to swap with.");
+			String coord2 = MainEvent.userInput();
+			interpretAction(coord2, 1);
+		
+			if(coordinates[0][0] == (coordinates[1][0] - 1) || coordinates[0][0] == (coordinates[1][0] + 1) || coordinates[0][1] == (coordinates[1][1] - 1) || coordinates[0][1] == (coordinates[1][1] + 1)){
+				String temp;
+				temp = arr[coordinates[0][0]][coordinates[0][1]];
+				arr[coordinates[0][0]][coordinates[0][1]] = arr[coordinates[1][0]][coordinates[1][1]];
+				arr[coordinates[1][0]][coordinates[1][1]] = temp;
+			}
+			else{
+				System.out.println("You can only swap adjacent pieces.");
+			}
+		}
 	}
 
 	public void interpretAction(String input, int n) {
