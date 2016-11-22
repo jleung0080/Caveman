@@ -1,4 +1,4 @@
-package haoSyed;
+package caveExplorer;
 
 import caveExplorer.CaveExplorer;
 
@@ -32,104 +32,114 @@ public class TilesGameStart implements Playable {
 			int board2FlippedCards = 16;
 			displayBoard1(flippedCardsBoard1, board1);
 			displayBoard2(flippedCardsBoard2, board2);
-			board1[0][0] = 1;
-			board1[0][1] = 7;
-			board1[0][2] = 2;
-			board1[0][3] = 3;
-			board1[1][0] = 1;
-			board1[1][1] = 3;
-			board1[1][2] = 2;
-			board1[1][3] = 4;
-			board1[2][0] = 8;
-			board1[2][1] = 5;
-			board1[2][2] = 6;
-			board1[2][3] = 4;
-			board1[3][0] = 7;
-			board1[3][1] = 6;
-			board1[3][2] = 5;
-			board1[3][3] = 5;
-			
-			
-			board2[0][0] = 2;
-			board2[0][1] = 3;
-			board2[0][2] = 7;
-			board2[0][3] = 6;
-			board2[1][0] = 1;
-			board2[1][1] = 7;
-			board2[1][2] = 8;
-			board2[1][3] = 2;
-			board2[2][0] = 3;
-			board2[2][1] = 6;
-			board2[2][2] = 4;
-			board2[2][3] = 5;
-			board2[3][0] = 1;
-			board2[3][1] = 4;
-			board2[3][2] = 8;
-			board2[3][3] = 5;
-			
+			int num[] = {1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8};
+			board1 = randomizer1();
+			board2 = randomizer2();
 			while (board1FlippedCards > 0 && board2FlippedCards > 0){
 				System.out.println("Which board would you like to play from?");
 				String selection = input.nextLine();
 				if (selection.equals("skip")){
 					board1FlippedCards = 0;
 					board2FlippedCards = 0;
-					readSequence(SEQUENCE_2);
-					break;
+					for (int i = 0; i < 4; i++){
+						for (int j = 0; j < 4; j++){
+							flippedCardsBoard1[i][j] = true;
+							flippedCardsBoard2[i][j] = true;
+						}
+					}
 				}
-				if (selection.equals("1")){
+				else if (selection.equals("restart")){
+					System.out.println("Too hard? Ho-ho-hope you get better luck and memory this time!");
+					board1FlippedCards = 16;
+					board2FlippedCards = 16;
+					for (int i = 0; i < 4; i++){
+						for (int j = 0; j < 4; j++){
+							flippedCardsBoard1[i][j] = false;
+							flippedCardsBoard2[i][j] = false;
+						}
+					}
+					board1 = randomizer1();
+					board2 = randomizer2();
+					displayBoard1(flippedCardsBoard1, board1);
+					displayBoard2(flippedCardsBoard2, board2);
+				}
+				else if (selection.equals("1")){
 					displayBoard1(flippedCardsBoard1, board1);
 					System.out.println("Enter the coordinates for your first card");
 					String x = input.nextLine();
-					int x1 = Integer.valueOf(x.substring(0, 1)) - 1;
-					int x2 = Integer.valueOf(x.substring(1, 2)) - 1;
-					System.out.print(x1);
-					System.out.println(board1[x1][x2]);
-					
-					System.out.println("Enter the coordinates for your second card");
-					String y = input.nextLine();
-					int y1 = Integer.valueOf(y.substring(0, 1)) - 1;
-					int y2 = Integer.valueOf(y.substring(1, 2)) - 1;
-					System.out.println(board1[y1][y2]);
-					if (x1 == x2 )
-					if (board1[x1][x2] == board1[y1][y2]){
-						System.out.println("Nice!");
-						flippedCardsBoard1[x1][x2] = true;
-						flippedCardsBoard1[y1][y2] = true;
-						board1FlippedCards -= 2;
-						flippedCardsBoard2[x1][x2] = true;
-						flippedCardsBoard2[y1][y2] = true;
-						board2FlippedCards -= 2;
-						displayBoard1(flippedCardsBoard1, board1);
+					if (x.length() != 2){
+						System.out.println("You need to put 2 numbers.");
 					}
-					else{
-						System.out.println("Try again.");
+					else {
+						int x1 = Integer.valueOf(x.substring(0, 1)) - 1;
+						int x2 = Integer.valueOf(x.substring(1, 2)) - 1;
+						System.out.println("The card reads " + board1[x1][x2] + ".");
+					
+						System.out.println("Enter the coordinates for your second card");
+						String y = input.nextLine();
+						if (y.length() != 2){
+							System.out.println("You need to put 2 numbers.");
+						}
+						else{
+							int y1 = Integer.valueOf(y.substring(0, 1)) - 1;
+							int y2 = Integer.valueOf(y.substring(1, 2)) - 1;
+							System.out.println("The card reads " + board1[y1][y2] + ".");
+							if (x1 == y1 && x2 == y2){
+								System.out.println("You can't pick the same tile twice!");
+							}
+							else if (board1[x1][x2] == board1[y1][y2]){
+								System.out.println("Nice!");
+								flippedCardsBoard1[x1][x2] = true;
+								flippedCardsBoard1[y1][y2] = true;
+								board1FlippedCards -= 2;
+								flippedCardsBoard2[x1][x2] = true;
+								flippedCardsBoard2[y1][y2] = true;
+								board2FlippedCards -= 2;
+								displayBoard1(flippedCardsBoard1, board1);
+							}
+							else{
+								System.out.println("Try again.");
+							}
+						}
 					}
 				}
 				else if (selection.equals("2")){
 					System.out.println("Enter the coordinates for your first card");
 					displayBoard2(flippedCardsBoard2, board2);
 					String i = input.nextLine();
-					int i1 = Integer.valueOf(i.substring(0, 1)) - 1;
-					int i2 = Integer.valueOf(i.substring(1, 2)) - 1;
-					System.out.println(board2[i1][i2]);
-					
-					System.out.println("Enter the coordinates for your second card");
-					String j = input.nextLine();
-					int j1 = Integer.valueOf(j.substring(0, 1)) - 1;
-					int j2 = Integer.valueOf(j.substring(1, 2)) - 1;
-					System.out.println(board2[j1][j2]);
-					
-					if (board2[i1][i2] == board2[j1][j2]){
-						System.out.println("Nice!");
-						flippedCardsBoard1[i1][i2] = true;
-						flippedCardsBoard1[j1][j2] = true;
-						board1FlippedCards -= 2;
-						flippedCardsBoard2[i1][i2] = true;
-						flippedCardsBoard2[j1][j2] = true;
-						board2FlippedCards -= 2;
+					if (i.length() != 2){
+						System.out.println("You need to put 2 numbers.");
 					}
-					else{
-						System.out.println("Try again.");
+					else {
+						int i1 = Integer.valueOf(i.substring(0, 1)) - 1;
+						int i2 = Integer.valueOf(i.substring(1, 2)) - 1;
+						System.out.println("The card reads " + board2[i1][i2] + ".");
+						
+						System.out.println("Enter the coordinates for your second card");
+						String j = input.nextLine();
+						if (j.length() != 2){
+							System.out.println("You need to put 2 numbers.");
+						}
+						else{
+							int j1 = Integer.valueOf(j.substring(0, 1)) - 1;
+							int j2 = Integer.valueOf(j.substring(1, 2)) - 1;
+							System.out.println("The card reads " + board2[j1][j2] + ".");
+							if (i1 == j1 && i2 == j2){
+								System.out.println("You can't pick the same tile twice!");
+							}
+							else if (board2[i1][i2] == board2[j1][j2]){
+								System.out.println("Nice!");
+								flippedCardsBoard1[i1][i2] = true;
+								flippedCardsBoard1[j1][j2] = true;
+								board1FlippedCards -= 2;
+								flippedCardsBoard2[i1][i2] = true;
+								flippedCardsBoard2[j1][j2] = true;
+								board2FlippedCards -= 2;
+							}
+							else{
+								System.out.println("Try again.");
+							}
+						}
 					}
 				}
 				else{
@@ -160,7 +170,7 @@ public class TilesGameStart implements Playable {
             System.out.print(" " + (i + 1) + " ");
             for (int a = 0; a < 4; a++) {
                 if (flippedCardsBoard2[i][a]) {
-                    System.out.print(board2[i][a]);
+                    System.out.print("|     " + board2[i][a]+ "    ");
                     System.out.print(" ");
                 }
                 else
@@ -188,6 +198,54 @@ public class TilesGameStart implements Playable {
         }
         System.out.println("");
     }
+	
+	 public static int[][] randomizer1() {
+	       int num[] = {1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8};
+	       int board1[][] = new int[4][4];
+	       Random random = new Random();
+	       int temp, t;
+	       for (int j = 0; j <= 20; j++){
+	           for (int x = 0; x < 16; x++){
+	               t = random.nextInt(1000) % 15;
+	               temp = num[x];
+	               num[x] = num[t];
+	               num[t] = temp;
+
+	           }
+	           t = 0;
+	           for (int r = 0; r < 4; r++){
+	               for (int s = 0; s < 4; s++){
+	                   board1[r][s] = num[t];
+	                    t = t + 1;
+	               }
+	           }
+	       }
+	       return board1;
+	   }
+	 public static int[][] randomizer2() {
+	        int nums[] = {1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8};
+	        int board2[][] = new int[4][4];
+	        Random random = new Random();
+	        int temp, t;
+	        for (int j = 0; j <= 20; j++){
+	            for (int x = 0; x < 16; x++){
+	                t = random.nextInt(1000) % 15;
+	                temp = nums[x];
+	                nums[x] = nums[t];
+	                nums[t] = temp;
+
+	            }
+	            t = 0;
+	            for (int r = 0; r < 4; r++){
+	                for (int s = 0; s < 4; s++){
+	                    board2[r][s] = nums[t];
+	                    t = t + 1;
+	                }
+	            }
+
+	        }
+	        return board2;
+	    }
 	
 	public static void readSequence(String[] seq){
 		for(String s : seq){
