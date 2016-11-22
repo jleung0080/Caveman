@@ -2,26 +2,24 @@ package katherineRisa;
 
 import caveExplorer.CaveRoomPd8;
 import caveExplorer.Door;
+import caveExplorer.CaveExplorer;
 import katherineRisa.KatherinePlayPuzzle;
 
 public class RisaCheckSolution implements caveExplorer.Playable {
 	
 	private static String[][] currentLetters;
 	private static String[][] originalLetters;
-	private static String[][] grid;
-	static boolean complete = false;
+	
+	private static final String[] gameOverDialouge = {"You put a bomb in the bag!! How stupi-- uh... foolish can you be to mistake a bomb as a present!", "Leave! You're fired.", "...", "Actually... can you come back here please?", "I'll explain the instructions again so...", "Help me?", "Great! Thanks. Here goes."};
 	
 	public RisaCheckSolution() {
 		currentLetters = KatherinePlayPuzzle.letters;
 		originalLetters = MainEvent.splitWordsArray;
-		grid = MainEvent.grid;
 	}
 
 	public void play() {
 		if(checkBomb()){
-			System.out.println("You put a bomb in the bag!! How stupi-- uh... foolish can you be to mistake a bomb as a present! Leave! You're fired.");
-			System.out.println("- - - Press Enter - - -");
-			MainEvent.userInput();
+			MainEvent.readSequence(gameOverDialouge);
 			MainEvent.game();
 		}else{
 			if(!checkComplete()){
@@ -29,7 +27,8 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 			}
 			else{
 				System.out.println("Thanks! You were a great help. You can leave this room now. Bye bye!!");
-				//caves[1][2].setConnection(CaveRoomPd8.EAST, caves[1][3], new Door(true, false));
+				CaveExplorer.caves[1][2].setConnection(CaveRoomPd8.EAST, CaveExplorer.caves[1][3], new Door(true, false));
+				MainEvent.gameWon = true;
 			}
 		}
 	}
@@ -48,18 +47,10 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 	private boolean checkBomb() {
 		for(int row = 1; row < currentLetters.length - 1; row++){
 			for(int col = 1; col < currentLetters[row].length - 1; col++){
-				if(currentLetters[row][col] == "!")
+				if(currentLetters[row][col].equals("!"))
 					return true;
 			}
 		}
 		return false;
-	}
-	
-	private static void cheatCode(){
-		if(MainEvent.userInput().equals("cheat")){
-			MainEvent.inputLetters(grid, originalLetters);
-			System.out.println("You did it! Now move on to your next job!");
-			
-		}
 	}
 }
