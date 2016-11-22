@@ -32,16 +32,27 @@ public class Cars {
 		Temp.direction = "";
 		for(int car:Temp.horizontal){
 			if(Temp.selectedCar == car){
-				Temp.direction = possible[(int)(Math.random()*2)];
+				if(leftBlock()){
+					Temp.direction =  "right";
+				}else if(rightBlock()){
+					Temp.direction = "left";
+				}else
+					Temp.direction = possible[(int)(Math.random()*2)];
+
 			}
 		}
 		for(int car:Temp.vertical){
 			if(Temp.selectedCar == car){
-				Temp.direction = possible[(int)(Math.random()*2)+2];
+				if(upBlock()){
+					Temp.direction =  "down";
+				}else if(downBlock()){
+					Temp.direction = "up";
+				}else
+					Temp.direction = possible[(int)(Math.random()*2)+2];
 			}
 		}
 		int spaces;
-		spaces = (int)(Math.random()*5);
+		spaces = (int)(Math.random()*7);
 		while(!validMove(spaces)){
 			System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
 			spaces = Temp.getInt();
