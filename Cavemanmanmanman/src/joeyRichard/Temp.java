@@ -351,28 +351,6 @@ public class Temp implements Playable{
 	}
 
 
-	public static boolean isValidDirection(String dir) {
-		for(int car:vertical){
-			if(selectedCar == car){
-				if(dir == "up"||dir == "down"){
-					return true;
-				}
-				System.out.println("The selected car may only move up or down. Please select a valid direction.");
-				return false;
-			}
-		}
-		for(int car: horizontal){
-			if(selectedCar == car){
-				if(dir == "left"||dir == "right"){
-					return true;
-				}
-				System.out.println("The selected car may only move left or right. Please select a valid direction.");
-				return false;
-			}
-		}
-		return false;
-	}
-
 	private static void computerMove(){
 		if(!gameEnd()){
 			int pick;
