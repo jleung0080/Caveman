@@ -40,7 +40,9 @@ public class CaveExplorer {
 			}
 			else{
 				System.out.println(respondsNo[ctr]);
-				ctr ++;
+				if(ctr<respondsNo.length-1){
+					ctr ++;					
+				}
 				System.out.print("Will you help us?\n");
 				response = userInput();
 			}

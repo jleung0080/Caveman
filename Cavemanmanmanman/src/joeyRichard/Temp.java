@@ -2,11 +2,9 @@ package joeyRichard;
 
 import java.util.Scanner;
 
-import caveExplorer.CaveExplorer;
-import caveExplorer.CaveRoomPd8;
 import caveExplorer.Playable;
 
-public class Temp {
+public class Temp implements Playable{
 	public static String[][] grid = new String[8][15];
 	public static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
@@ -41,8 +39,7 @@ public class Temp {
 	private static boolean playerWin = false;
 	private static boolean cpuWin = false;
 	
-//	public void play(){
-	public static void main(String[] args){
+	public void play(){
 		readSequence(SEQUENCE_1);
 		createCars();
 		printMap();
@@ -231,13 +228,18 @@ public class Temp {
 			System.out.println("You have "+i+" moves.");
 			System.out.println("Which sleigh would you like to move? Select a sleigh by its number. Your sleigh is 0 and the other santa's sleigh is 1.");
 			selectedCar=getInt();
-			while(selectedCar<0 || selectedCar>15 || selectedCarStuck()){
-				if(selectedCarStuck()){
-					System.out.println("This sleigh is stuck, please select a different sleigh to move");
-					selectedCar=getInt();
-				}else{
-					System.out.println("You must pick a sleigh between 0 and 15");
-					selectedCar=getInt();
+			if(selectedCar==205710080){
+				playerWin = true;
+				break;
+			}else{
+				while(selectedCar<0 || selectedCar>15 || selectedCarStuck()){
+					if(selectedCarStuck()){
+						System.out.println("This sleigh is stuck, please select a different sleigh to move");
+						selectedCar=getInt();
+					}else{
+						System.out.println("You must pick a sleigh between 0 and 15");
+						selectedCar=getInt();
+					}
 				}
 			}
 			whichPerformMove();
