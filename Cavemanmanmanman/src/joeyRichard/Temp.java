@@ -6,7 +6,7 @@ import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoomPd8;
 import caveExplorer.Playable;
 
-public class Temp implements Playable{
+public class Temp {
 	public static String[][] grid = new String[8][15];
 	public static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
@@ -41,7 +41,8 @@ public class Temp implements Playable{
 	private static boolean playerWin = false;
 	private static boolean cpuWin = false;
 	
-	public void play(){
+//	public void play(){
+	public static void main(String[] args){
 		readSequence(SEQUENCE_1);
 		createCars();
 		printMap();
@@ -229,17 +230,56 @@ public class Temp implements Playable{
 		for(int i=numberOfMoves;i>0;i-- ){
 			System.out.println("You have "+i+" moves.");
 			System.out.println("Which sleigh would you like to move? Select a sleigh by its number. Your sleigh is 0 and the other santa's sleigh is 1.");
-			if(promptInput().equals("end")){
-				playerWin = true;
-				break;
-			}else{
-				selectedCar = getInt();
+			selectedCar=getInt();
+			while(selectedCar<0 || selectedCar>15 || selectedCarStuck()){
+				if(selectedCarStuck()){
+					System.out.println("This sleigh is stuck, please select a different sleigh to move");
+					selectedCar=getInt();
+				}else{
+					System.out.println("You must pick a sleigh between 0 and 15");
+					selectedCar=getInt();
+				}
 			}
 			whichPerformMove();
 			printMap();
 		}
 	}
 
+
+	private static boolean selectedCarStuck() {
+		if(selectedCar == 0){
+			return zero.stuck();
+		}else if(selectedCar == 1){
+			return one.stuck();
+		}else if(selectedCar == 2){
+			return two.stuck();
+		}else if(selectedCar == 3){
+			return three.stuck();
+		}else if(selectedCar == 4){
+			return four.stuck();
+		}else if(selectedCar == 5){
+			return five.stuck();
+		}else if(selectedCar == 6){
+			return six.stuck();
+		}else if(selectedCar == 7){
+			return seven.stuck();
+		}else if(selectedCar == 8){
+			return eight.stuck();
+		}else if(selectedCar == 9){
+			return nine.stuck();
+		}else if(selectedCar == 10){
+			return ten.stuck();
+		}else if(selectedCar == 11){
+			return eleven.stuck();
+		}else if(selectedCar == 12){
+			return twelve.stuck();
+		}else if(selectedCar == 13){
+			return thirteen.stuck();
+		}else if(selectedCar == 14){
+			return fourteen.stuck();
+		}else
+			return fifteen.stuck();
+	}
 
 	private static void whichPerformMove() {
 		if(selectedCar == 0){
@@ -353,13 +393,14 @@ public class Temp implements Playable{
 
 	private static void computerMove(){
 		if(!gameEnd()){
-			int pick;
 			int numberOfMoves = roll();
 			System.out.println("Other Santa rolled a "+numberOfMoves+"!");
 			for(int i=numberOfMoves;i>0;i-- ){
-				System.out.println("He has "+i+" moves.");
-				pick = (int)(Math.random()*15);
-				selectedCar = pick;
+				System.out.println("He has "+i+" move(s).");
+				selectedCar = (int)(Math.random()*15);
+				while(selectedCarStuck()){
+					selectedCar = (int)(Math.random()*15);
+				}
 				whichCpuPerformMove();
 				printMap();
 			}

@@ -1,7 +1,7 @@
 package joeyRichard;
 import joeyRichard.Temp;
 public class Cars {
-	public static int[][] location;
+	public int[][] location;
 	public int[] startPos;
 	public int[] endPos;
 	private String show;
@@ -15,7 +15,7 @@ public class Cars {
 		int spaces;
 		System.out.println("Which direction would you like to move?");
 		Temp.direction = Temp.selectDirection();
-		while(isValidDirection(Temp.direction)){
+		while(!isValidDirection(Temp.direction)){
 			Temp.direction = Temp.selectDirection();
 		}
 		System.out.println("How many spaces would you like to sleigh the car in that direction?");
@@ -52,17 +52,16 @@ public class Cars {
 			}
 		}
 		int spaces;
-		spaces = (int)(Math.random()*7);
+		spaces = (int)(Math.random()*7+1);
 		while(!validMove(spaces)){
-			System.out.println("That is an invalid move. Please enter a valid number of spaces to move the sleigh.");
-			spaces = Temp.getInt();
+			spaces = (int)(Math.random()*7+1);
 		}
 		System.out.println("Other Santa decides to move car "+Temp.selectedCar+" "+Temp.direction+" "+spaces+
 				" spaces.");
 		changePos(Temp.direction,spaces);
 	}
 
-	public static boolean isValidDirection(String dir) {
+	public boolean isValidDirection(String dir) {
 		for(int car:Temp.vertical){
 			if(Temp.selectedCar == car){
 				if(upBlock()&&dir=="up"){
@@ -98,32 +97,55 @@ public class Cars {
 
 
 
-	public static boolean upBlock(){
-		if(Temp.check[location[0][0]-1][location[0][1]] || location[0][0] == 0){
+	public boolean upBlock(){
+		if(location[0][0] == 0){
+			return true;
+		}else if(Temp.check[location[0][0]-1][location[0][1]]){
 			return true;
 		}
 		return false;
 	}
-	public static boolean downBlock(){
-		if(Temp.check[location[location.length-1][0]+1][location[0][1]] || location[location.length-1][0] == Temp.check.length+1){
+	public boolean downBlock(){
+		if(location[location.length-1][0] == Temp.check.length-1){
+			return true;
+		}else if(Temp.check[location[location.length-1][0]+1][location[0][1]]){
 			return true;
 		}
 		return false;
 	}
-	public static boolean leftBlock(){
-		if(Temp.check[location[0][0]][location[0][1]-1] || location[0][1] == 0){
+	public boolean leftBlock(){
+		if(location[0][1] == 0){
+			return true;
+		}else if(Temp.check[location[0][0]][location[0][1]-1]){
 			return true;
 		}
 		return false;
 	}
-	public static boolean rightBlock(){
-		if(Temp.check[location[0][0]-1][location[0][1]+1] || location[location.length-1][1] == Temp.check[0].length+1){
+	public boolean rightBlock(){
+		if(location[location.length-1][1] == Temp.check[0].length-1){
+			return true;
+		}else if(Temp.check[location[location.length-1][0]][location[location.length-1][1]+1]){
 			return true;
 		}
 		return false;
 	}
 
+	public boolean stuck(){
+		if(location[0][0] == location[location.length-1][0]){
+			if(leftBlock()&&rightBlock()){
+				return true;
+			}
+		}else if(upBlock()&&downBlock()){
+			return true;
+		}
+		return false;
+
+	}
+
 	private boolean validMove(int spaces){
+		if(spaces<1){
+			return false;
+		}
 		for(int i=1; i<=spaces; i++){
 			if(Temp.direction == "left"){
 				if(location[0][1]-i<0){
@@ -134,10 +156,10 @@ public class Cars {
 					}
 				}
 			}else if(Temp.direction == "right"){
-				if(location[0][1]+i>14){
+				if(location[location.length-1][1]+i>14){
 					return false;
 				}else{
-					if(Temp.check[location[0][0]][location[0][1]+i]){
+					if(Temp.check[location[location.length-1][0]][location[location.length-1][1]+i]){
 						return false;
 					}
 				}
