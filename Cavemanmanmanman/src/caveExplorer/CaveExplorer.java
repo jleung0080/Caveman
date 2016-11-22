@@ -25,23 +25,26 @@ public class CaveExplorer {
 									       "Oh, I might have forgotten to tell you but you aren't exactly 'official' yet.",
 									       "What I mean is that there are others just like you, whom you will race.",
 									       "The fastest racer will become the substitute Santa, so get Started right now!"};
-	private static boolean no = true;
+	private static boolean accept = false;
 	
 	public static void main(String[] args) {
+		input = new Scanner(System.in);
 		readSequence(introduction);
-		System.out.print("Will you help us?");
-		String response = MainEvent.userInput();
-		while(no){
+		System.out.print("Will you help us?\n");
+		String response = userInput();
+		int ctr = 0;
+		while(!accept){
 			if(response.toLowerCase().equals("yes")){
 				readSequence(respondsYes);
-				no = false;
+				accept = true;
 			}
 			else{
-				int rnd = (int)(Math.random()*respondsNo.length);
-				System.out.println(respondsNo[rnd]);
+				System.out.println(respondsNo[ctr]);
+				ctr ++;
+				System.out.print("Will you help us?\n");
+				response = userInput();
 			}
 		}
-		
 		
 		in = new Scanner(System.in);
 		caves = new CaveRoomPd8[3][4];
@@ -91,6 +94,11 @@ public class CaveExplorer {
 
 	public static void print(String text){
 		System.out.println(text);
+	}
+	
+	public static String userInput(){
+		String uInput = input.nextLine();
+		return uInput;
 	}
 	
 	public static void readSequence(String[] seq){
