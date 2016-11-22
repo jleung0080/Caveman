@@ -9,6 +9,7 @@ public class RisaCheckSolution implements caveExplorer.Playable {
 	
 	private static String[][] currentLetters;
 	private static String[][] originalLetters;
+	
 	private static final String[] gameOverDialouge = {"You put a bomb in the bag!! How stupi-- uh... foolish can you be to mistake a bomb as a present!", "Leave! You're fired.", "...", "Actually... can you come back here please?", "I'll explain the instructions again so...", "Help me?", "Great! Thanks. Here goes."};
 	
 	public RisaCheckSolution() {

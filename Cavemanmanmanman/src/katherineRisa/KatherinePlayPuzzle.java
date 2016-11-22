@@ -9,8 +9,10 @@ public class KatherinePlayPuzzle implements caveExplorer.Playable {
 	private static String[][] original;
 	public static String[][] letters;
 	private static String[][] grid;
+
 	private static int[][] coordinates = new int[2][2];
 	private static int selectedIndx;
+	
 	private static String[][] hints = {{"First Row : Candy you would see for sure on Christmas.", 
 	    "Second Row : Something chocolate is made from.", 
 	    "Third Row : What should you leave for Santa?"},

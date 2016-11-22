@@ -16,6 +16,7 @@ public class MainEvent implements caveExplorer.Playable{
 												 "See those tags right there?",
 												 "Make sure the correct items are put in.",
 												 "It's not as simple as it sounds so you might want to get started now."};
+	
 	private static final String[] DIRECTIONS = {"On each tag there are three words.", 
 												"Each word is scrambled so the letters are all over the place.",
 												"Put the letters back together to form a complete word.",
