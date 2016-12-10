@@ -361,37 +361,8 @@ public class Main implements Playable{
 		return (int)(Math.random()*6+1);
 	}
 
-	public static String selectDirection(){
-		// TODO Auto-generated method stub
-		String directionChoice = promptInput().toLowerCase();
-
-		while(!isDir(directionChoice)){
-			System.out.println("Please enter one of the following: 'up', 'down', 'left', 'right'");
-			directionChoice = promptInput();
-		}
-		String[] keys = {"up", "down", "left", "right"};
-		int indexFound = -1;
-		for(int i = 0; i < keys.length; i++){
-			if(keys[i].equals(directionChoice)){
-				indexFound = i;
-				break;
-			}
-		}
-
-		System.out.println(keys[indexFound]);
-		return keys[indexFound];
-	}
 
 
-	private static boolean isDir(String directionChoice) {
-		// TODO Auto-generated method stub
-		String[] validDir = {"up", "down", "left", "right"};
-		for(String key : validDir){
-			if(directionChoice.equals(key))
-				return true;
-		}
-		return false;
-	}
 
 
 	private static void computerMove(){
