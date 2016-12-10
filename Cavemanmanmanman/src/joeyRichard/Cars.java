@@ -14,9 +14,9 @@ public class Cars {
 	public void performMove(){
 		int spaces;
 		System.out.println("Which direction would you like to move?");
-		Main.direction = Main.selectDirection();
+		Main.direction = JoeyClass.selectDirection();
 		while(!isValidDirection(Main.direction)){
-			Main.direction = Main.selectDirection();
+			Main.direction = JoeyClass.selectDirection();
 		}
 		System.out.println("How many spaces would you like to sleigh the car in that direction?");
 		spaces = Main.getInt();
@@ -31,7 +31,7 @@ public class Cars {
 		String[] possible = {"left", "right", "up", "down"};
 		Main.direction = "";
 		for(int car:Main.horizontal){
-			if(Main.selectedCar == car){
+			if(RichardClass.selectedCar == car){
 				if(leftBlock()){
 					Main.direction =  "right";
 				}else if(rightBlock()){
@@ -42,7 +42,7 @@ public class Cars {
 			}
 		}
 		for(int car:Main.vertical){
-			if(Main.selectedCar == car){
+			if(RichardClass.selectedCar == car){
 				if(upBlock()){
 					Main.direction =  "down";
 				}else if(downBlock()){
@@ -56,14 +56,14 @@ public class Cars {
 		while(!validMove(spaces)){
 			spaces = (int)(Math.random()*7+1);
 		}
-		System.out.println("Other Santa decides to move car "+Main.selectedCar+" "+Main.direction+" "+spaces+
+		System.out.println("Other Santa decides to move car "+RichardClass.selectedCar+" "+Main.direction+" "+spaces+
 				" spaces.");
 		changePos(Main.direction,spaces);
 	}
 
 	public boolean isValidDirection(String dir) {
 		for(int car:Main.vertical){
-			if(Main.selectedCar == car){
+			if(RichardClass.selectedCar == car){
 				if(upBlock()&&dir=="up"){
 					System.out.println("The selected car may only move down. Please select a valid direction.");
 					return false;
@@ -78,7 +78,7 @@ public class Cars {
 			}
 		}
 		for(int car: Main.horizontal){
-			if(Main.selectedCar == car){
+			if(RichardClass.selectedCar == car){
 				if(leftBlock()&&dir=="left"){
 					System.out.println("The selected car may only move right. Please select a valid direction.");
 					return false;
