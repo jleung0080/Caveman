@@ -4,12 +4,25 @@ import java.util.Scanner;
 
 import caveExplorer.Playable;
 
-public class Temp implements Playable{
+public class Main implements Playable{
 	public static String[][] grid = new String[8][15];
 	public static boolean[][] check = new boolean[grid.length][grid[0].length];
 	private static String map;
 	public static String direction;
 	static Scanner input = new Scanner(System.in); 
+	static boolean inLoop = true;
+	static boolean playerResults;
+	public static int selectedCar;
+	public static int[] vertical = {2,3,5,7,8,10,11,12,13,14};
+	public static int[] horizontal = {0,1,4,6,9,15};
+	private static final String[] SEQUENCE_1 = {"You have collected all your presents and are ready to go!", "Looking far in the distance, you see another Santa getting ready to go too!",
+			"There can only be one Santa", "FIRST ONE OUT GETS TO BE THIS YEAR'S SANTA!! XDDDD"};
+	private static final String[] SEQUENCE_2 = {"After a long battle of wits, you finally got out of your driveway", "After giving the other Santa the finger(thumbs up of course), you hurry off to deliver presents"};
+	private static final String[] SEQUENCE_3 = {"The other Santa got out of his driveway first!!!!", "As a fellow Santa, it hurts your little heart to see someone else take your job", "In your bag of goodies you remember that"
+			+  " you have a TIME MACHINE!!!!" + "So..... Lets try this again!!"};
+	private static boolean playerWin = false;
+	private static boolean cpuWin = false;
+	
 	static Cars zero = new Cars("you", 2);
 	static Cars one = new Cars("cpu", 2);
 	static Cars two = new Cars(" 2 ", 2);
@@ -26,18 +39,6 @@ public class Temp implements Playable{
 	static Cars thirteen = new Cars(" 13", 3);
 	static Cars fourteen = new Cars(" 14", 4);
 	static Cars fifteen = new Cars(" 15", 4);
-	static boolean inLoop = true;
-	static boolean playerResults;
-	public static int selectedCar;
-	public static int[] vertical = {2,3,5,7,8,10,11,12,13,14};
-	public static int[] horizontal = {0,1,4,6,9,15};
-	private static final String[] SEQUENCE_1 = {"You have collected all your presents and are ready to go!", "Looking far in the distance, you see another Santa getting ready to go too!",
-			"There can only be one Santa", "FIRST ONE OUT GETS TO BE THIS YEAR'S SANTA!! XDDDD"};
-	private static final String[] SEQUENCE_2 = {"After a long battle of wits, you finally got out of your driveway", "After giving the other Santa the finger(thumbs up of course), you hurry off to deliver presents"};
-	private static final String[] SEQUENCE_3 = {"The other Santa got out of his driveway first!!!!", "As a fellow Santa, it hurts your little heart to see someone else take your job", "In your bag of goodies you remember that"
-			+  " you have a TIME MACHINE!!!!" + "So..... Lets try this again!!"};
-	private static boolean playerWin = false;
-	private static boolean cpuWin = false;
 	
 	public void play(){
 		readSequence(SEQUENCE_1);
