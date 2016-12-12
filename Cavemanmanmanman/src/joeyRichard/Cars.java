@@ -156,7 +156,7 @@ public class Cars {
 					}
 				}
 			}else if(Main.direction == "right"){
-				if(location[location.length-1][1]+i>14){
+				if(location[location.length-1][1]+i>Main.grid[0].length){
 					return false;
 				}else{
 					if(Main.check[location[location.length-1][0]][location[location.length-1][1]+i]){
@@ -172,7 +172,7 @@ public class Cars {
 					}
 				}
 			}else{
-				if(location[location.length-1][0]+i>7){
+				if(location[location.length-1][0]+i>Main.grid.length){
 					return false;
 				}else{
 					if(Main.check[location[location.length-1][0]+i][location[location.length-1][1]]){
