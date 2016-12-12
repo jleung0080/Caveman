@@ -109,9 +109,9 @@ public class JoeyClass {
 	 public void performMove(){
 		int spaces;
 		System.out.println("Which direction would you like to move?");
-		Main.direction = JoeyClass.selectDirection();
+		Main.direction = RichardClass.selectDirection();
 		while(!isValidDirection(Main.direction)){
-			Main.direction = JoeyClass.selectDirection();
+			Main.direction = RichardClass.selectDirection();
 		}
 		System.out.println("How many spaces would you like to sleigh the car in that direction?");
 		spaces = Main.getInt();
