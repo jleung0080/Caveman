@@ -25,6 +25,7 @@ public class RichardClass {
 
 
 	public static void printMap(){
+		//modified for our purposes
 		map = " ";
 		for(int i = 0; i < Main.grid[0].length - 1; i++){
 			map += "___ ";
