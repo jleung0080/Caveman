@@ -242,19 +242,9 @@ public class RichardClass {
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
-
-
-
 
 	/*
 	CAR CODE
-	
-	
 	
 	 public void changePos(String direction, int spaces){
 		for(int[] point:location){

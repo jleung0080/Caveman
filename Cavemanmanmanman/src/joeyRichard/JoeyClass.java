@@ -95,15 +95,8 @@ public class JoeyClass {
 			return RichardClass.fifteen.stuck();
 	}
 
-
-
-
-
-
 	/*
 	 CAR CODE
-
-
 
 
 	 public void performMove(){
@@ -279,6 +272,8 @@ public class JoeyClass {
 		}
 		return true;
 	}
+	
+	
 	 */
 
 }
