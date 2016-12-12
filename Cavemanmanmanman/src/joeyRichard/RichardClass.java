@@ -209,7 +209,7 @@ public class RichardClass {
 				}
 			}
 			whichPerformMove();
-			RichardClass.printMap();
+			printMap();
 		}
 	}
 	
