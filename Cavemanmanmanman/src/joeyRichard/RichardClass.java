@@ -20,10 +20,10 @@ public class RichardClass {
 	static Cars thirteen = new Cars(" 13", 3);
 	static Cars fourteen = new Cars(" 14", 4);
 	static Cars fifteen = new Cars(" 15", 4);
-	
-	
-	
-	
+
+
+
+
 	public static void printMap(){
 		map = " ";
 		for(int i = 0; i < Main.grid[0].length - 1; i++){
@@ -67,7 +67,7 @@ public class RichardClass {
 		}
 		System.out.println(map);;
 	}
-	
+
 	public static void createCars(){
 		for(boolean[] row: Main.check){
 			for(boolean col: row){
@@ -138,17 +138,17 @@ public class RichardClass {
 		fifteen.endPos = createPos(7,14);
 		fifteen.setPos();
 	}
-	
+
 	private static int[] createPos(int start, int end){
 		int[] position = new int[2];
 		position[0] = start;
 		position[1] = end;
 		return position;
 	}
-	
-	
-	
-	
+
+
+
+
 	private static void whichPerformMove() {
 		if(selectedCar == 0){
 			RichardClass.zero.performMove();
@@ -184,7 +184,7 @@ public class RichardClass {
 			RichardClass.fifteen.performMove();
 
 	}
-	
+
 	public static void move(){
 		Main.direction = "";
 		int numberOfMoves = Main.roll();
@@ -212,9 +212,97 @@ public class RichardClass {
 		}
 	}
 	
+	public static String selectDirection(){
+		// TODO Auto-generated method stub
+		String directionChoice = Main.promptInput().toLowerCase();
+		while(!isDir(directionChoice)){
+			System.out.println("Please enter one of the following: 'up', 'down', 'left', 'right'");
+			directionChoice = Main.promptInput();
+		}
+		String[] keys = {"up", "down", "left", "right"};
+		int indexFound = -1;
+		for(int i = 0; i < keys.length; i++){
+			if(keys[i].equals(directionChoice)){
+				indexFound = i;
+				break;
+			}
+		}
+
+		System.out.println(keys[indexFound]);
+		return keys[indexFound];
+	}
+
+	private static boolean isDir(String directionChoice) {
+		// TODO Auto-generated method stub
+		String[] validDir = {"up", "down", "left", "right"};
+		for(String key : validDir){
+			if(directionChoice.equals(key))
+				return true;
+		}
+		return false;
+	}
 	
 	
 	
 	
 	
+
+
+
+
+	/*
+	CAR CODE
+	
+	
+	
+	 public void changePos(String direction, int spaces){
+		for(int[] point:location){
+			Main.check[point[0]][point[1]]=false;
+			Main.grid[point[0]][point[1]]=null;
+		}
+		for(int i =0;i<location.length;i++){
+			if(Main.direction == "left"){
+				Main.check[location[i][0]][location[i][1]-spaces]=true;
+				Main.grid[location[i][0]][location[i][1]-spaces]=show;
+				location[i][1] = location[i][1]-spaces;
+			}else if(Main.direction == "right"){
+				Main.check[location[i][0]][location[i][1]+spaces]=true;
+				Main.grid[location[i][0]][location[i][1]+spaces]=show;
+				location[i][1] = location[i][1]+spaces;
+			}else if(Main.direction == "up"){
+				Main.check[location[i][0]-spaces][location[i][1]]=true;
+				Main.grid[location[i][0]-spaces][location[i][1]]=show;
+				location[i][0] = location[i][0]-spaces;
+			}else{
+				Main.check[location[i][0]+spaces][location[i][1]]=true;
+				Main.grid[location[i][0]+spaces][location[i][1]]=show;
+				location[i][0] = location[i][0]+spaces;
+			}
+		}
+	}
+
+	public void setPos(){
+		if(startPos[0] == endPos[0]){
+			for(int i=0; i<location.length;i++){
+				location[i][0] = startPos[0];
+				location[i][1] = startPos[1]+i;
+				Main.grid[location[i][0]][location[i][1]] = show;
+				Main.check[location[i][0]][location[i][1]] = true;
+			}
+		}else{
+			for(int i=0; i<location.length;i++){
+				location[i][0] = startPos[0]+i;
+				location[i][1] = startPos[1];
+				Main.grid[location[i][0]][location[i][1]] = show;
+				Main.check[location[i][0]][location[i][1]] = true;
+			}
+		}
+	}
+}
+	 */
+
+
+
+
+
 }
