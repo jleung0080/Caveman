@@ -60,4 +60,15 @@ public class HaoRandomize {
 	     return board2;
 	     
 	 }
+
+	public static void identifyMatch(int[][] board1, int x1,int x2, int y1, int y2, boolean[][] flippedCardsBoard1,
+			boolean[][] flippedCardsBoard2) {
+		System.out.println("Nice!");
+		flippedCardsBoard1[x1][x2] = true;
+		flippedCardsBoard1[y1][y2] = true;
+		flippedCardsBoard2[x1][x2] = true;
+		flippedCardsBoard2[y1][y2] = true;
+		SyedDisplayBoard.displayBoard1(flippedCardsBoard1, board1);
+		
+	}
 }

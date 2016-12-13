@@ -85,14 +85,15 @@ public class TilesGameStart implements Playable {
 								System.out.println("You can't pick the same tile twice!");
 							}
 							else if (board1[x1][x2] == board1[y1][y2]){
-								System.out.println("Nice!");
-								flippedCardsBoard1[x1][x2] = true;
-								flippedCardsBoard1[y1][y2] = true;
+								HaoRandomize.identifyMatch(board1, x1,x2,y1,y2, flippedCardsBoard1, flippedCardsBoard2);
+//								System.out.println("Nice!");
+//								flippedCardsBoard1[x1][x2] = true;
+//								flippedCardsBoard1[y1][y2] = true;
 								board1FlippedCards -= 2;
-								flippedCardsBoard2[x1][x2] = true;
-								flippedCardsBoard2[y1][y2] = true;
+//								flippedCardsBoard2[x1][x2] = true;
+//								flippedCardsBoard2[y1][y2] = true;
 								board2FlippedCards -= 2;
-								SyedDisplayBoard.displayBoard1(flippedCardsBoard1, board1);
+//								SyedDisplayBoard.displayBoard1(flippedCardsBoard1, board1);
 							}
 							else{
 								System.out.println("Try again.");
@@ -125,14 +126,15 @@ public class TilesGameStart implements Playable {
 								System.out.println("You can't pick the same tile twice!");
 							}
 							else if (board2[i1][i2] == board2[j1][j2]){
-								System.out.println("Nice!");
-								flippedCardsBoard1[i1][i2] = true;
-								flippedCardsBoard1[j1][j2] = true;
+								HaoRandomize.identifyMatch(board1, i1,i2,j1,j2, flippedCardsBoard1, flippedCardsBoard2);
+//								System.out.println("Nice!");
+//								flippedCardsBoard1[i1][i2] = true;
+//								flippedCardsBoard1[j1][j2] = true;
 								board1FlippedCards -= 2;
-								flippedCardsBoard2[i1][i2] = true;
-								flippedCardsBoard2[j1][j2] = true;
+//								flippedCardsBoard2[i1][i2] = true;
+//								flippedCardsBoard2[j1][j2] = true;
 								board2FlippedCards -= 2;
-								SyedDisplayBoard.displayBoard2(flippedCardsBoard2, board2);
+//								SyedDisplayBoard.displayBoard2(flippedCardsBoard2, board2);
 							}
 							else{
 								System.out.println("Try again.");
