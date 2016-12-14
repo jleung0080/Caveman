@@ -44,105 +44,69 @@ public class TilesGameStart implements Playable {
 							flippedCardsBoard2[i][j] = true;
 						}
 					}
-				}
-				else if (selection.equals("restart")){
-					System.out.println("Too hard? Ho-ho-hope you get better luck and memory this time!");
-					board1FlippedCards = 16;
-					board2FlippedCards = 16;
-					for (int i = 0; i < 4; i++){
-						for (int j = 0; j < 4; j++){
-							flippedCardsBoard1[i][j] = false;
-							flippedCardsBoard2[i][j] = false;
-						}
-					}
-					board1 = HaoRandomize.randomizer1();
-					board2 = HaoRandomize.randomizer2();
+				}else if (selection.equals("restart")){
+					HaoRandomize.reset(board1FlippedCards, board2FlippedCards, flippedCardsBoard1, flippedCardsBoard2);
 					SyedDisplayBoard.displayBoard1(flippedCardsBoard1, board1);
 					SyedDisplayBoard.displayBoard2(flippedCardsBoard2, board2);
-				}
-				else if (selection.equals("1")){
+					board1 = HaoRandomize.randomizer1();
+					board2 = HaoRandomize.randomizer2();
+				}else if (selection.equals("1")){
 					SyedDisplayBoard.displayBoard1(flippedCardsBoard1, board1);
 					System.out.println("Enter the coordinates for your first card");
 					String x = input.nextLine();
 					if (x.length() != 2){
 						System.out.println("You need to put 2 numbers.");
-					}
-					else {
+					}else {
 						int x1 = Integer.valueOf(x.substring(0, 1)) - 1;
 						int x2 = Integer.valueOf(x.substring(1, 2)) - 1;
 						System.out.println("The card reads " + board1[x1][x2] + ".");
-					
 						System.out.println("Enter the coordinates for your second card");
 						String y = input.nextLine();
 						if (y.length() != 2){
 							System.out.println("You need to put 2 numbers.");
-						}
-						else{
+						}else{
 							int y1 = Integer.valueOf(y.substring(0, 1)) - 1;
 							int y2 = Integer.valueOf(y.substring(1, 2)) - 1;
 							System.out.println("The card reads " + board1[y1][y2] + ".");
-							if (x1 == y1 && x2 == y2){
-								System.out.println("You can't pick the same tile twice!");
-							}
-							else if (board1[x1][x2] == board1[y1][y2]){
+							if (HaoRandomize.checkMatch(board1, board2, x1, x2, y1, y2)){
 								HaoRandomize.identifyMatch(board1, x1,x2,y1,y2, flippedCardsBoard1, flippedCardsBoard2);
-//								System.out.println("Nice!");
-//								flippedCardsBoard1[x1][x2] = true;
-//								flippedCardsBoard1[y1][y2] = true;
 								board1FlippedCards -= 2;
-//								flippedCardsBoard2[x1][x2] = true;
-//								flippedCardsBoard2[y1][y2] = true;
 								board2FlippedCards -= 2;
-//								SyedDisplayBoard.displayBoard1(flippedCardsBoard1, board1);
-							}
-							else{
+								SyedDisplayBoard.displayBoard1(flippedCardsBoard1, board1);
+							}else{
 								System.out.println("Try again.");
 							}
 						}
 					}
-				}
-				else if (selection.equals("2")){
+				}else if (selection.equals("2")){
 					System.out.println("Enter the coordinates for your first card");
 					SyedDisplayBoard.displayBoard2(flippedCardsBoard2, board2);
 					String i = input.nextLine();
 					if (i.length() != 2){
 						System.out.println("You need to put 2 numbers.");
-					}
-					else {
+					}else {
 						int i1 = Integer.valueOf(i.substring(0, 1)) - 1;
 						int i2 = Integer.valueOf(i.substring(1, 2)) - 1;
 						System.out.println("The card reads " + board2[i1][i2] + ".");
-						
 						System.out.println("Enter the coordinates for your second card");
 						String j = input.nextLine();
 						if (j.length() != 2){
 							System.out.println("You need to put 2 numbers.");
-						}
-						else{
+						}else{
 							int j1 = Integer.valueOf(j.substring(0, 1)) - 1;
 							int j2 = Integer.valueOf(j.substring(1, 2)) - 1;
 							System.out.println("The card reads " + board2[j1][j2] + ".");
-							if (i1 == j1 && i2 == j2){
-								System.out.println("You can't pick the same tile twice!");
-							}
-							else if (board2[i1][i2] == board2[j1][j2]){
+							if (HaoRandomize.checkMatch(board1, board2, i1, i2, j1, j2)){
 								HaoRandomize.identifyMatch(board1, i1,i2,j1,j2, flippedCardsBoard1, flippedCardsBoard2);
-//								System.out.println("Nice!");
-//								flippedCardsBoard1[i1][i2] = true;
-//								flippedCardsBoard1[j1][j2] = true;
 								board1FlippedCards -= 2;
-//								flippedCardsBoard2[i1][i2] = true;
-//								flippedCardsBoard2[j1][j2] = true;
 								board2FlippedCards -= 2;
-//								SyedDisplayBoard.displayBoard2(flippedCardsBoard2, board2);
-							}
-							else{
+								SyedDisplayBoard.displayBoard2(flippedCardsBoard2, board2);
+							}else{
 								System.out.println("Try again.");
 							}
 						}
 					}
-				}
-				else{
+				}else{
 					System.out.println("That is not a valid board");
 				}
 			}
@@ -150,7 +114,7 @@ public class TilesGameStart implements Playable {
 			SyedDisplayBoard.displayBoard2(flippedCardsBoard2, board2);
 			readSequence(SEQUENCE_2);
 		}
-	
+
 	public static void TilesGameStart() {
 		
 	}
