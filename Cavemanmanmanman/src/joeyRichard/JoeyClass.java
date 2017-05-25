@@ -1,17 +1,105 @@
 package joeyRichard;
-import joeyRichard.Main;
-public class Cars {
-	public int[][] location;
-	public int[] startPos;
-	public int[] endPos;
-	private String show;
 
-	public Cars(String id, int length){
-		location = new int[length][2];
-		show = id;
+
+
+public class JoeyClass {
+
+	public static void computerMove(){
+		if(!Main.gameEnd()){
+			int numberOfMoves = Main.roll();
+			System.out.println("Other Santa rolled a "+numberOfMoves+"!");
+			for(int i=numberOfMoves;i>0;i-- ){
+				System.out.println("He has "+i+" move(s).");
+				RichardClass.selectedCar = (int)(Math.random()*15);
+				while(selectedCarStuck()){
+					RichardClass.selectedCar = (int)(Math.random()*15);
+				}
+				whichCpuPerformMove();
+				RichardClass.printMap();
+			}
+		}
+
 	}
 
-	public void performMove(){
+
+	private static void whichCpuPerformMove() {
+		if(RichardClass.selectedCar == 0){
+			RichardClass.zero.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 1){
+			RichardClass.one.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 2){
+			RichardClass.two.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 3){
+			RichardClass.three.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 4){
+			RichardClass.four.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 5){
+			RichardClass.five.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 6){
+			RichardClass.six.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 7){
+			RichardClass.seven.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 8){
+			RichardClass.eight.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 9){
+			RichardClass.nine.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 10){
+			RichardClass.ten.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 11){
+			RichardClass.eleven.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 12){
+			RichardClass.twelve.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 13){
+			RichardClass.thirteen.cpuPerformMove();
+		}else if(RichardClass.selectedCar == 14){
+			RichardClass.fourteen.cpuPerformMove();
+		}else
+			RichardClass.fifteen.cpuPerformMove();
+
+	}
+
+
+
+	public static boolean selectedCarStuck() {
+		if(RichardClass.selectedCar == 0){
+			return RichardClass.zero.stuck();
+		}else if(RichardClass.selectedCar == 1){
+			return RichardClass.one.stuck();
+		}else if(RichardClass.selectedCar == 2){
+			return RichardClass.two.stuck();
+		}else if(RichardClass.selectedCar == 3){
+			return RichardClass.three.stuck();
+		}else if(RichardClass.selectedCar == 4){
+			return RichardClass.four.stuck();
+		}else if(RichardClass.selectedCar == 5){
+			return RichardClass.five.stuck();
+		}else if(RichardClass.selectedCar == 6){
+			return RichardClass.six.stuck();
+		}else if(RichardClass.selectedCar == 7){
+			return RichardClass.seven.stuck();
+		}else if(RichardClass.selectedCar == 8){
+			return RichardClass.eight.stuck();
+		}else if(RichardClass.selectedCar == 9){
+			return RichardClass.nine.stuck();
+		}else if(RichardClass.selectedCar == 10){
+			return RichardClass.ten.stuck();
+		}else if(RichardClass.selectedCar == 11){
+			return RichardClass.eleven.stuck();
+		}else if(RichardClass.selectedCar == 12){
+			return RichardClass.twelve.stuck();
+		}else if(RichardClass.selectedCar == 13){
+			return RichardClass.thirteen.stuck();
+		}else if(RichardClass.selectedCar == 14){
+			return RichardClass.fourteen.stuck();
+		}else
+			return RichardClass.fifteen.stuck();
+	}
+
+	/*
+	 CAR CODE
+
+
+	 public void performMove(){
 		int spaces;
 		System.out.println("Which direction would you like to move?");
 		Main.direction = RichardClass.selectDirection();
@@ -184,47 +272,8 @@ public class Cars {
 		}
 		return true;
 	}
-	public void changePos(String direction, int spaces){
-		for(int[] point:location){
-			Main.check[point[0]][point[1]]=false;
-			Main.grid[point[0]][point[1]]=null;
-		}
-		for(int i =0;i<location.length;i++){
-			if(Main.direction == "left"){
-				Main.check[location[i][0]][location[i][1]-spaces]=true;
-				Main.grid[location[i][0]][location[i][1]-spaces]=show;
-				location[i][1] = location[i][1]-spaces;
-			}else if(Main.direction == "right"){
-				Main.check[location[i][0]][location[i][1]+spaces]=true;
-				Main.grid[location[i][0]][location[i][1]+spaces]=show;
-				location[i][1] = location[i][1]+spaces;
-			}else if(Main.direction == "up"){
-				Main.check[location[i][0]-spaces][location[i][1]]=true;
-				Main.grid[location[i][0]-spaces][location[i][1]]=show;
-				location[i][0] = location[i][0]-spaces;
-			}else{
-				Main.check[location[i][0]+spaces][location[i][1]]=true;
-				Main.grid[location[i][0]+spaces][location[i][1]]=show;
-				location[i][0] = location[i][0]+spaces;
-			}
-		}
-	}
+	
+	
+	 */
 
-	public void setPos(){
-		if(startPos[0] == endPos[0]){
-			for(int i=0; i<location.length;i++){
-				location[i][0] = startPos[0];
-				location[i][1] = startPos[1]+i;
-				Main.grid[location[i][0]][location[i][1]] = show;
-				Main.check[location[i][0]][location[i][1]] = true;
-			}
-		}else{
-			for(int i=0; i<location.length;i++){
-				location[i][0] = startPos[0]+i;
-				location[i][1] = startPos[1];
-				Main.grid[location[i][0]][location[i][1]] = show;
-				Main.check[location[i][0]][location[i][1]] = true;
-			}
-		}
-	}
 }

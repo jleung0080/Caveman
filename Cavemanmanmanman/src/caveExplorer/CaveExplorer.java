@@ -3,7 +3,7 @@ package caveExplorer;
 import java.util.Scanner;
 
 import haoSyed.TilesGameStart;
-import joeyRichard.Temp;
+import joeyRichard.Main;
 import katherineRisa.MainEvent;
 
 public class CaveExplorer {
@@ -58,7 +58,7 @@ public class CaveExplorer {
 		
 		currentRoom = caves[2][0];
 		caves[0][1] = new EventRoom("This is where you found the key", new MainEvent());
-		caves[1][3] = new EventRoom("", new Temp());
+		caves[1][3] = new EventRoom("", new Main());
 		caves[2][3] = new EventRoom("", new TilesGameStart());
 		
 		currentRoom.enter();
